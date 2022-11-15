@@ -26,7 +26,9 @@ fredr_set_key("529a8fe75d1703e7b03fbbb9898730b2")
 
 #||||||||||||------------------ ECONOMY SECTION----------------------||||||
 
-#New comment 
+#Testing 1-2 
+
+#its a new day 
 
 GDP_Monthly_Industry <-get_cansim("36-10-0434-01")
 
