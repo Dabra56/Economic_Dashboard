@@ -783,11 +783,11 @@ Household_Liability_Variations <- Household_Liability_History %>%
            Date==Household_Liability_Last_Date ) 
            
 
-household_debt_gdp <- merge(x=Household_Liability_History,y=Nominal_GDP_History, by="Date")
+household_debt_gdp <- merge(x=Household_Liability_History,y=Nominal_GDP_History, by="Date") 
 
-
-
-government_debt_gdp <- merge(x=Household_Liability_History,y=Nominal_GDP_History, by="Date")
+household_debt_gdp <- 
+  household_debt_gdp %>%
+    mutate(household_debt_gdp = Total_Liability/Nominal_GDP)
 
 
 
@@ -814,6 +814,13 @@ Government_Debt_Variations <- Government_Debt %>%
            Date==Government_Debt_Last_Quarter | 
            Date==Government_Debt_Last_Date ) 
 
+
+
+government_debt_gdp <- merge(x=Government_Debt,y=Nominal_GDP_History, by="Date")
+
+government_debt_gdp <- 
+  government_debt_gdp %>% 
+      mutate(government_debt_gdp = Government_Liability / Nominal_GDP)
  
 # Inflation
 
@@ -837,6 +844,82 @@ Inflation_Variations <- Inflation_History %>%
   filter(Date==Inflation_Last_Year | 
            Date==Inflation_Last_Month | 
            Date==Inflation_Last_Date ) 
+
+
+
+cpi_all_items<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="All-items") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_all_item = val_norm)
+
+cpi_no_energy<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="All-items excluding energy") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_no_energy = val_norm)
+
+cpi_food<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="Food") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_food = val_norm)
+
+cpi_shelter<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="Shelter") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_shelter = val_norm)
+  
+
+cpi_transportation<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="Transportation") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_transportation = val_norm)
+
+
+cpi_goods<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="Goods") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_goods = val_norm)
+
+cpi_services<- Inflation %>% 
+  filter(GEO=="Canada",
+         Products_and_product_groups=="Services") %>% 
+  filter(Date == Inflation_Last_Date | 
+           Date == Inflation_Last_Month | 
+           Date == Inflation_Last_Year ) %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi_services = val_norm)
+  
+ 
+
+cpi_component <- bind_cols(cpi_all_items, 
+                           cpi_no_energy %>% select(cpi_no_energy),
+                           cpi_food %>% select(cpi_food),
+                           cpi_shelter %>% select )
+
+
 
 
 
@@ -870,10 +953,10 @@ addWorksheet(Finance_Data,"Inflation_Variations")
 addWorksheet(Finance_Data,"CREA_Data")
 
 
-writeData(Finance_Data,sheet = "Household_Liability_History",x=Household_Liability_History)
+writeData(Finance_Data,sheet = "Household_Liability_History",x=household_debt_gdp)
 writeData(Finance_Data,sheet = "Household_Liability_Variations",x=Household_Liability_Variations)
 
-writeData(Finance_Data,sheet = "Government_Debt",x=Government_Debt)
+writeData(Finance_Data,sheet = "Government_Debt",x=government_debt_gdp)
 writeData(Finance_Data,sheet = "Government_Debt_Variations",x=Government_Debt_Variations)
 
 writeData(Finance_Data,sheet = "Inflation_History",x=Inflation_History)
