@@ -677,6 +677,22 @@ Unemployed_Provinces <-  Labor_Market_Canada %>%
                         rename(Unemployed = val_norm)
 
 
+job_vacancy_monthly  <-get_cansim("14-10-0372-01")
+
+names(job_vacancy_monthly)<-str_replace_all(names(job_vacancy_monthly ),
+                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+job_vacancy_monthly  <- 
+  job_vacancy_monthly %>% 
+      filter(GEO=="Canada",
+             North_American_Industry_Classification_System__NAICS_=="Total, all industries",
+             Statistics=="Job vacancies") %>% 
+      select(Date,
+             val_norm) %>% 
+      rename(job_vacancy_monthly = val_norm)
+        
+
+
 # Wages
 
 Wages <-get_cansim("14-10-0320-02")
@@ -716,6 +732,7 @@ addWorksheet(Labor_Data,"Employment_Rate_Canada_25_54")
 addWorksheet(Labor_Data,"Job_Vacancy_Quartely_Canada")
 addWorksheet(Labor_Data,"Job_Vacancy_Rate_Provinces")
 addWorksheet(Labor_Data,"Job_Vacancy_Rate_Canada")
+addWorksheet(Labor_Data,"job_vacancy_monthly")
 addWorksheet(Labor_Data,"Provinces_Labor_Indicators")
 addWorksheet(Labor_Data,"Unemployed_Provinces")
 
@@ -729,6 +746,7 @@ writeData(Labor_Data,sheet = "Total_Jobs_Canada",x=Total_Jobs_Canada)
 writeData(Labor_Data,sheet = "Unemployment_Rate_Canada",x=Unemployment_Rate_Canada)
 writeData(Labor_Data,sheet = "Employment_Rate_Canada_25_54",x=Employment_Rate_Canada_25_54)
 writeData(Labor_Data,sheet = "Job_Vacancy_Quartely_Canada",x=Job_Vacancy_Quartely_Canada)
+writeData(Labor_Data,sheet = "job_vacancy_monthly",x=job_vacancy_monthly)
 writeData(Labor_Data,sheet = "Job_Vacancy_Rate_Provinces",x=Job_Vacancy_Rate_Provinces)
 writeData(Labor_Data,sheet = "Job_Vacancy_Rate_Canada",x=Job_Vacancy_Rate_Canada)
 writeData(Labor_Data,sheet = "Provinces_Labor_Indicators",x=Provinces_Labor_Indicators)
@@ -917,7 +935,10 @@ cpi_services<- Inflation %>%
 cpi_component <- bind_cols(cpi_all_items, 
                            cpi_no_energy %>% select(cpi_no_energy),
                            cpi_food %>% select(cpi_food),
-                           cpi_shelter %>% select )
+                           cpi_shelter %>% select(cpi_shelter),
+                           cpi_transportation %>% select(cpi_transportation),
+                           cpi_goods %>% select(cpi_goods),
+                           cpi_services %>% select(cpi_services))
 
 
 
@@ -950,8 +971,9 @@ addWorksheet(Finance_Data,"Government_Debt_Variations")
 addWorksheet(Finance_Data,"Inflation_History")
 addWorksheet(Finance_Data,"Inflation_Variations")
 
-addWorksheet(Finance_Data,"CREA_Data")
+#addWorksheet(Finance_Data,"CREA_Data")
 
+addWorksheet(Finance_Data,"cpi_component")
 
 writeData(Finance_Data,sheet = "Household_Liability_History",x=household_debt_gdp)
 writeData(Finance_Data,sheet = "Household_Liability_Variations",x=Household_Liability_Variations)
@@ -962,7 +984,10 @@ writeData(Finance_Data,sheet = "Government_Debt_Variations",x=Government_Debt_Va
 writeData(Finance_Data,sheet = "Inflation_History",x=Inflation_History)
 writeData(Finance_Data,sheet = "Inflation_Variations",x=Inflation_Variations)
 
-writeData(Finance_Data,sheet = "CREA_Data",x=CREA_Data)
+#writeData(Finance_Data,sheet = "CREA_Data",x=CREA_Data)
+
+writeData(Finance_Data,sheet = "cpi_component",x=cpi_component)
+
 
 saveWorkbook(Finance_Data,"Finance_Data.xlsx",overwrite = TRUE)
 
