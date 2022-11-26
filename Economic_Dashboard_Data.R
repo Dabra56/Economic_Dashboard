@@ -26,9 +26,6 @@ fredr_set_key("529a8fe75d1703e7b03fbbb9898730b2")
 
 #||||||||||||------------------ ECONOMY SECTION----------------------||||||
 
-#Testing 1-2 
-
-#its a new day 
 
 GDP_Monthly_Industry <-get_cansim("36-10-0434-01")
 
@@ -831,7 +828,9 @@ Inflation_Last_Year <-  Inflation_Last_Date-months(12)
 Inflation_Variations <- Inflation_History %>% 
   filter(Date==Inflation_Last_Year | 
            Date==Inflation_Last_Month | 
-           Date==Inflation_Last_Date ) 
+           Date==Inflation_Last_Date)
+
+
 
 
 # Housing 
@@ -1143,11 +1142,6 @@ Average_Wage_Women <-  Women_Wage_Average %>%
 
 
 
- 
-
-
-
-
 #setwd("C:/Users/dabrassard/Desktop/Working folder/Ecnomic_Dashboard/Data")
 
 setwd("C:/Users/LNB/Desktop/Dossier_DAB/Projets R/Economic_Dashboard")
@@ -1172,6 +1166,196 @@ writeData(Demography_Social_Data,sheet = "Wage_Difference_Men_Women",x=Wage_Diff
 
 
 saveWorkbook(Demography_Social_Data,"Social_Data.xlsx",overwrite = TRUE)
+
+
+
+
+
+
+### Getting provincial data 
+
+get_date <- function(df,spread) {
+  
+  
+  # Spread is 1 for monthly, 3 for quartely and 12 for annual data
+  date_1 <- tail({{df}}$Date,n=1)
+  date_2 <- date_1 - months(spread)
+ date_3 <- date_2 - months(12)
+  
+  date_vector <<- c(date_1,date_2, date_3)
+  
+}
+
+
+
+# rename_column <- function(df) {
+#   
+#   df <- 
+#       df %>% rename_with(.fn=~str_replace_all(names(df), 
+#                                               c(" " = "_" ,
+#                                                 "," = "_", 
+#                                                 "[(]" ="_", 
+#                                                 "[)]"="_")))
+#   
+#   
+
+
+# }
+
+
+#------------------- GDP-------------------------------
+
+
+gdp_annual <-get_cansim("36-10-0222-01")
+
+
+
+province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+
+
+names(gdp_annual )<-str_replace_all(names(gdp_annual ),
+                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))                              
+get_date(gdp_annual,12)
+
+gdp_annual <- 
+        gdp_annual  %>%  
+          filter(GEO %in% province_vector, 
+                 Date %in% date_vector, 
+                 Prices == "Chained (2012) dollars",
+                 Estimates=="Gross domestic product at market prices") %>%  
+          select(GEO,Date,val_norm) %>% 
+          rename(real_gdp= val_norm) %>% 
+          arrange(GEO,Date) 
+          
+#-------------------MANUFACTURING-------------------------------  
+
+manufacturing <-  get_cansim("16-10-0048-01") 
+
+names(manufacturing )<-str_replace_all(names(manufacturing ),
+                                    c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))    
+
+get_date(manufacturing,1)
+
+manufacturing <- 
+    manufacturing %>%  
+      filter(GEO %in% province_vector, 
+             Date %in% date_vector) %>% 
+      filter(North_American_Industry_Classification_System__NAICS_=="Manufacturing [31-33]",
+             Seasonal_adjustment=="Seasonally adjusted",
+             Principal_statistics=="Sales of goods manufactured (shipments)") %>% 
+        select(GEO,Date,val_norm) %>% 
+        rename(manufacturing_sales= val_norm) %>% 
+        arrange(GEO,Date) 
+      
+
+
+#-------------------EXPORTS-------------------------------  
+
+
+export <- get_cansim("12-10-0119-01") 
+get_date(export,1)
+
+
+names(export)<-str_replace_all(names(export ),
+                                       c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+
+
+export_province <- 
+    export %>% 
+        filter(GEO %in% province_vector, 
+              Date %in% date_vector,
+              North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
+               Principal_trading_partners=="All countries",
+              Trade=="Domestic export") %>% 
+        select(GEO, Date,val_norm) %>% 
+        rename(export = val_norm) %>% 
+        arrange(GEO,Date)
+       
+    
+export_canada <- 
+  export %>% 
+        filter(GEO=="Canada",
+                Date > "",
+                North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
+                Principal_trading_partners=="All countries",
+                Trade=="	Domestic export") %>% 
+        select(Date, val_norm) %>% 
+        rename(domestic_export = val_norm) %>% 
+        arrange(Date)
+            
+
+#------------------RETAIL TRADE------------------------------  
+
+
+retail_trade <-get_cansim("20-10-0008-01")
+
+get_date(retail_trade,1)
+
+names(retail_trade)<-str_replace_all(names(retail_trade),
+                                     c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+
+retail_trade_province <- 
+    retail_trade %>% 
+      filter(GEO %in% province_vector, 
+             Date %in% date_vector) %>% 
+      filter(Adjustments=="Seasonally adjusted",
+             North_American_Industry_Classification_System__NAICS_=="Retail trade [44-45]") %>% 
+      select(GEO, Date,val_norm) %>% 
+      rename(retail_sale = val_norm) %>% 
+      arrange(GEO,Date)
+
+
+
+#------------------ACTIVE BUSINESSES------------------------------  
+
+
+business <-get_cansim("33-10-0270-01")
+
+names(business)<-str_replace_all(names(business),
+                                        c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+get_date(business,1) 
+
+
+business_province <- 
+    business %>%  
+      filter(GEO %in% province_vector, 
+             Date %in% date_vector) %>% 
+      filter(Industry=="Business sector industries [T004]",
+             Business_dynamics_measure=="Active businesses") %>% 
+      select(GEO, Date,val_norm) %>% 
+      rename(active_business = val_norm) %>% 
+      arrange(GEO,Date)
+
+
+
+
+#Mistake in the database 
+
+
+province_number <- c(1,2,4,5,7,10,16,33,35,38,42,47,48,49)
+
+province_vector_mistake <- c(unique(business$GEO)[1])
+
+for (i in 1:length(province_number)) {
+ 
+  value =  unique(business$GEO)[province_number[i]]
+  province_vector_mistake <-  append(province_vector_mistake,values = value)
+
+}
+
+
+business_province <- 
+  business %>%  
+  filter( Date %in% date_vector) %>% 
+  filter(GEO  %in% province_vector_mistake) %>% 
+  filter(Industry=="Business sector industries [T004]",
+         Business_dynamics_measure=="Active businesses") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(active_business = val_norm) %>% 
+  arrange(GEO,Date)
 
 
 
