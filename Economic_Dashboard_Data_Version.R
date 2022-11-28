@@ -1,6 +1,6 @@
 library(tidyverse)
 library(cansim)
-library(xlsx)
+#library(xlsx)
 library(writexl)
 library(lubridate)
 library(zoo)
@@ -1395,6 +1395,62 @@ export_canada <-
   arrange(Date)
 
 
+# 
+# export_province_vector <- c("v1001819785",
+#                             "v1001820916",
+#                             "v1001809606",
+#                             "v1001817523",
+#                             "v1001814130",
+#                             "v1001810737",
+#                             "v1001824309",
+#                             "v1001812999",
+#                             "v1001825440",
+#                             "v1001816392",
+#                             "v1001811868",
+#                             "v1001815261",
+#                             "v1001818654",
+#                             "v1001822047"
+#                             )
+# 
+# export_province_name_vector <- c("Canada",
+#                                  "v1001820916",
+#                                  "v1001809606",
+#                                  "v1001817523",
+#                                  "v1001814130",
+#                                  "v1001810737",
+#                                  "v1001824309",
+#                                  "v1001812999",
+#                                  "v1001825440",
+#                                  "v1001816392",
+#                                  "v1001811868",
+#                                  "v1001815261",
+#                                  "v1001818654",
+#                                  "v1001822047"
+# )
+#   
+# 
+# export_try <- 
+#   export %>% 
+#   filter(GEO %in% province_vector, 
+#          Date %in% date_vector,
+#          North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
+#          Principal_trading_partners=="All countries",
+#          Trade=="Domestic export") %>% 
+#   select(GEO, Date,val_norm,VECTOR) %>% 
+#   rename(export = val_norm) %>% 
+#   arrange(GEO,Date)
+# 
+# 
+# Vector_exports <- unique(export_try$VECTOR)
+# 
+# 
+# unique(export_try$GEO)
+# 
+# tryyy <- get_cansim_vector(Vector_exports,
+#                   start_time = date_vector[1],
+#                   end_time = date_vector[1]) %>% 
+#         bind_cols()
+
 #------------------RETAIL TRADE------------------------------  
 
 
@@ -1468,6 +1524,162 @@ business_province <-
   arrange(GEO,Date)
 
 
+
+#------------------LABOR STATISTISCS-----------------------------  
+
+
+
+
+
+labor <-get_cansim("14-10-0287-03")
+
+names(labor)<-str_replace_all(names(labor),
+                                            c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+
+get_date(labor,1) 
+
+job_province <- 
+ labor %>%  
+  filter(GEO %in% province_vector, 
+         Date %in% date_vector) %>% 
+  filter(Sex=="Both sexes",
+        Age_group=="15 years and over",
+        Data_type=="Seasonally adjusted",
+        Statistics =="Estimate") %>% 
+  filter(Labour_force_characteristics=="Employment") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(total_job = val_norm) %>% 
+  arrange(GEO,Date)
+
+
+unemployment_province <- 
+  labor %>%  
+  filter(GEO %in% province_vector, 
+         Date %in% date_vector) %>% 
+  filter(Sex=="Both sexes",
+         Age_group=="15 years and over",
+         Data_type=="Seasonally adjusted",
+         Statistics =="Estimate") %>% 
+  filter(Labour_force_characteristics=="Unemployment rate") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(unemployment = val_norm) %>% 
+  arrange(GEO,Date)
+
+
+
+employment_province <- 
+  labor %>%  
+  filter(GEO %in% province_vector, 
+         Date %in% date_vector) %>% 
+  filter(Sex=="Both sexes",
+         Age_group=="25 to 54 years",
+         Data_type=="Seasonally adjusted",
+         Statistics =="Estimate") %>% 
+  filter(Labour_force_characteristics=="Employment rate") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(unemployment = val_norm) %>% 
+  arrange(GEO,Date)
+
+
+
+
+#------------------Job Vacancy-----------------------------  
+
+job_vacancy_monthly <-get_cansim("14-10-0371-01")
+get_date(job_vacancy_monthly,1) 
+
+
+names(job_vacancy_monthly )<-str_replace_all(names(job_vacancy_monthly  ),
+                                             c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+
+job_vacancy_province <- 
+  job_vacancy_monthly%>% 
+   filter(GEO %in% province_vector, 
+          Date %in% date_vector) %>% 
+  filter(Statistics=="Job vacancies") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(job_vacancy= val_norm) %>% 
+  arrange(GEO,Date)
+
+
+job_vacancy_rate_province <- 
+  job_vacancy_monthly%>% 
+  filter(GEO %in% province_vector, 
+         Date %in% date_vector) %>% 
+  filter(Statistics=="Job vacancy rate") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(job_vacancy_rate= val_norm) %>% 
+  arrange(GEO,Date)
+
+
+job_vacancy <- inner_join(x=job_vacancy_province,
+                          y=job_vacancy_rate_province,
+                          by=c("GEO","Date")) 
+
+
+wage <-get_cansim("14-10-0063-01")
+
+names(wage)<-str_replace_all(names(wage),
+                              c(" " = "_" , 
+                                "," = "_", 
+                                "[(]" ="_",
+                                "[)]"="_"))
+
+get_date(wage,1) 
+
+wage_province <- wage %>%  
+  filter(GEO %in% province_vector, 
+         Date %in% date_vector) %>% 
+  filter(Characteristics=="25 years and over",
+         Hours_and_wages=="Full-time employees, average weekly wages") %>% 
+  select(GEO, Date,val_norm) %>% 
+  rename(wage= val_norm) %>% 
+  arrange(GEO,Date)
+
+
+
+
+
+
+setwd("C:/Users/LNB/Desktop/Dossier_DAB/Projets R/Economic_Dashboard")
+
+province <- createWorkbook()
+
+addWorksheet(province,"gdp")
+addWorksheet(province,"manufacturing_sale")
+addWorksheet(province,"export")
+addWorksheet(province,"retail_trade")
+addWorksheet(province,"active_business")
+#-------------------------------------------------
+addWorksheet(province,"total_employment")
+addWorksheet(province,"unemployment_rate")
+addWorksheet(province,"employment_rate")
+addWorksheet(province,"job_vacancy")
+addWorksheet(province,"average_earning")
+#-------------------------------------------------
+addWorksheet(province,"inflation")
+addWorksheet(province,"immigration")
+
+#-------------------------------------------------
+#-------------------------------------------------
+writeData(province,sheet = "gdp",x=gdp_annual)
+writeData(province,sheet = "manufacturing_sale",x=manufacturing)
+writeData(province,sheet = "export",x=export_province)
+writeData(province,sheet = "retail_trade",x=retail_trade_province)
+writeData(province,sheet = "active_business",x=business_province)
+#-------------------------------------------------
+writeData(province,sheet = "total_employment",x=job_province)
+writeData(province,sheet = "unemployment_rate",x=unemployment_province)
+writeData(province,sheet = "employment_rate",x=employment_province)
+writeData(province,sheet = "job_vacancy",x=job_vacancy)
+writeData(province,sheet = "average_earning",x=Quintiles_Wealth)
+#-------------------------------------------------
+writeData(province,sheet = "inflation",x=NSNE_Young_People)
+writeData(province,sheet = "immigration",x=Wage_Difference_Loop)
+
+
+saveWorkbook(province,"province.xlsx",overwrite = TRUE)
 
 
 
