@@ -16,15 +16,26 @@ library(seasonalview)
 
 library(lubridate)
 
-setwd("C:/Users/dabrassard/Desktop/Working folder/Ecnomic_Dashboard/Data")
+#setwd("C:/Users/dabrassard/Desktop/Working folder/Ecnomic_Dashboard/Data")
 
 fredr_set_key("529a8fe75d1703e7b03fbbb9898730b2")
 
 
-
+setwd("D:/economic_dashboard")
 #||||||||||||------------------ ECONOMY SECTION----------------------||||||
 
 
+get_date <- function(df,spread) {
+  
+  
+  # Spread is 1 for monthly, 3 for quartely and 12 for annual data
+  date_1 <- tail({{df}}$Date,n=1)
+  date_2 <- date_1 - months(spread)
+  date_3 <- date_2 - months(12)
+  
+  date_vector <<- c(date_1,date_2, date_3)
+  
+}
 
 
 GDP_Monthly_Industry <-get_cansim("36-10-0434-01")
@@ -39,79 +50,11 @@ GDP_Monthly_History <- GDP_Monthly_Industry %>%
                                 select(Date,val_norm) %>% 
                             rename(Real_GDP=val_norm) 
 
-GDP_Monthly_Last_Date <- tail(GDP_Monthly_History$Date,n=1)
-GDP_Monthly_Last_Month <- GDP_Monthly_Last_Date-months(1) 
-GDP_Monthly_Last_Year <-  GDP_Monthly_Last_Date-months(12)
-Pandemic <- GDP_Monthly_Last_Date-months(28)
+get_date(GDP_Monthly_Industry,1)
 
 
 GDP_Monthly_Variations <- GDP_Monthly_History%>% 
-                          filter(Date==GDP_Monthly_Last_Date | 
-                                   Date==GDP_Monthly_Last_Month | 
-                                   Date==GDP_Monthly_Last_Year)
-
-
-# GDP Additional Page - Industry
-
-
-GDP_Monthly_NAIC2 <- GDP_Monthly_Industry %>% 
-                      filter(North_American_Industry_Classification_System__NAICS_ == "All industries [T001]" | North_American_Industry_Classification_System__NAICS_ == "Agriculture, forestry, fishing and hunting [11]"|
-    North_American_Industry_Classification_System__NAICS_ == "Mining, quarrying, and oil and gas extraction [21]"|
-    North_American_Industry_Classification_System__NAICS_ == "Utilities [22]"|
-    North_American_Industry_Classification_System__NAICS_ == "Construction [23]"|
-    North_American_Industry_Classification_System__NAICS_ == "Manufacturing [31-33]"|
-    North_American_Industry_Classification_System__NAICS_ == "Wholesale trade [41]"|
-    North_American_Industry_Classification_System__NAICS_ == "Retail trade [44-45]"|
-    North_American_Industry_Classification_System__NAICS_ == "Transportation and warehousing [48-49]"|
-    North_American_Industry_Classification_System__NAICS_ == "Information and cultural industries [51]"|
-    North_American_Industry_Classification_System__NAICS_ == "Finance and insurance [52]"|
-    North_American_Industry_Classification_System__NAICS_ == "Real estate and rental and leasing [53]"|
-    North_American_Industry_Classification_System__NAICS_ == "Professional, scientific and technical services [54]" |
-    North_American_Industry_Classification_System__NAICS_ == "Administrative and support, waste management and remediation services [56]"|
-    North_American_Industry_Classification_System__NAICS_ == "Educational services [61]"|
-    North_American_Industry_Classification_System__NAICS_ == "Health care and social assistance [62]"|
-    North_American_Industry_Classification_System__NAICS_ == "Arts, entertainment and recreation [71]"|
-    North_American_Industry_Classification_System__NAICS_ == "Accommodation and food services [72]"|
-    North_American_Industry_Classification_System__NAICS_ == "Other services (except public administration) [81]"|
-    North_American_Industry_Classification_System__NAICS_ == "Public administration [91]") %>% 
-            filter(Seasonal_adjustment=="Seasonally adjusted at annual rates",
-                   Prices=="Chained (2012) dollars") %>%  
-        select(Date,North_American_Industry_Classification_System__NAICS_,val_norm) %>% 
-         rename(Industry=North_American_Industry_Classification_System__NAICS_) %>% 
-  arrange(Industry)
-
-
-GDP_Monthly_NAIC2_Last_Date  <- GDP_Monthly_NAIC2 %>%  
-                filter(Date==GDP_Monthly_Last_Date) %>% 
-                select(Industry,val_norm) %>% 
-                rename(Last_Date=val_norm)
-
-GDP_Monthly_NAIC2_Last_Month <- GDP_Monthly_NAIC2 %>%  
-  filter(Date==GDP_Monthly_Last_Month)  %>%  
-  select(Industry,val_norm) %>% 
-  rename(Last_Month=val_norm, Industry2=Industry)
-
-GDP_Monthly_NAIC2_Last_Year <- GDP_Monthly_NAIC2 %>%  
-  filter(Date==GDP_Monthly_Last_Year) %>%  
-  select(Industry,val_norm) %>% 
-  rename(Last_Year=val_norm,Industry3=Industry)
-
-# Change date for pandemic
-
-GDP_Monthly_NAIC2_Pandemic <- GDP_Monthly_NAIC2 %>%  
-  filter(Date==Pandemic) %>%  
-  select(Industry,val_norm) %>% 
-  rename(Pandemic=val_norm,Industry4=Industry)
-
-GDP_Monthly_NAIC2_Variations <- cbind(GDP_Monthly_NAIC2_Last_Date,
-                                      GDP_Monthly_NAIC2_Last_Month,
-                                      GDP_Monthly_NAIC2_Last_Year,
-                                      GDP_Monthly_NAIC2_Pandemic)
-
-GDP_Monthly_NAIC2_Variations <- GDP_Monthly_NAIC2_Variations %>% 
-            select(Industry,Last_Date,Last_Month,Last_Year, Pandemic)
-
-
+                          filter(Date %in% date_vector)
 
 # Manufacturing sales
 
@@ -120,6 +63,7 @@ Manufacturing <-get_cansim("16-10-0047-01")
 names(Manufacturing)<-str_replace_all(names(Manufacturing),
                                       c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
 
+get_date(Manufacturing,1)
 
 Manufacturing_History <- Manufacturing %>% 
                           filter(North_American_Industry_Classification_System__NAICS_=="Manufacturing [31-33]",
@@ -128,99 +72,68 @@ Manufacturing_History <- Manufacturing %>%
                           select(Date,val_norm) %>% 
                           rename(Manufacturing_sales=val_norm)
 
-Manufacturing_Last_Date <- tail(Manufacturing$Date,n=1)
-Manufacturing_Last_Month <- Manufacturing_Last_Date-months(1) 
-Manufacturing_Last_Year <-  Manufacturing_Last_Date-months(12)
-
 
 Manufacturing_Variations <- Manufacturing_History %>% 
-                            filter(Date==Manufacturing_Last_Year | 
-                                     Date==Manufacturing_Last_Month | 
-                                     Date==Manufacturing_Last_Date )
+                            filter(Date %in% date_vector)
 
 
 
 # International_Trade
 
-International_Trade <-get_cansim("12-10-0122-01")
+export_canada<- get_cansim_vector("v1001809606",
+                                  start_time = "2000-01-01") %>% 
+                    select(Date,val_norm) %>% 
+                    rename(export = val_norm)
 
-names(International_Trade)<-str_replace_all(names(International_Trade ),
-                                            c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+get_date(export_canada,1)
 
-International_Trade_History <- International_Trade %>% 
-                                filter(North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
-                                       Seasonal_adjustment=="Seasonally adjusted",
-                                       Basis=="Balance of payments",
-                                       Trade=="Export") %>% 
-                                select(Date,val_norm) %>% 
-                                rename(Export=val_norm)
-
-
-International_Trade_Last_Date <- tail(International_Trade$Date,n=1)
-International_Trade_Last_Quarter <- International_Trade_Last_Date-months(3) 
-International_Trade_Last_Year <-  International_Trade_Last_Date-months(12)
-
-
-International_Trade_Variations <- International_Trade_History  %>% 
-  filter(Date==International_Trade_Last_Year | 
-           Date==International_Trade_Last_Quarter | 
-           Date==International_Trade_Last_Date )
-
-
+export_canada_variations <- 
+  export_canada %>% 
+    filter(Date %in% date_vector)
+        
 
 
 # Retail_Trade
 
-Retail_Trade <-get_cansim("20-10-0008-01")
+retail_trade <-get_cansim("20-10-0008-01")
 
-names(Retail_Trade)<-str_replace_all(names(Retail_Trade),
+names(retail_trade)<-str_replace_all(names(retail_trade),
                                      c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
 
+get_date(retail_trade,1)
 
-Retail_Trade_History <- Retail_Trade %>% 
+
+retail_trade_history <- retail_trade %>% 
                         filter(GEO=="Canada",
                                Adjustments=="Seasonally adjusted",
                                North_American_Industry_Classification_System__NAICS_=="Retail trade [44-45]") %>% 
                         select(Date,val_norm) %>% 
                         rename(Retail_trade = val_norm)
 
-
-Retail_Trade_Last_Date <- tail(Retail_Trade$Date,n=1)
-Retail_Trade_Last_Month <- Retail_Trade_Last_Date-months(1) 
-Retail_Trade_Last_Year <-  Retail_Trade_Last_Date-months(12)
-
-Retail_Trade_Variations <- Retail_Trade_History %>% 
-  filter(Date==Retail_Trade_Last_Year | 
-           Date==Retail_Trade_Last_Month | 
-           Date==Retail_Trade_Last_Date )
+retail_trade_variations <- retail_trade_history %>% 
+  filter(Date %in% date_vector )
 
 
 # Active_businesses
 
 
-Active_Business <-get_cansim("33-10-0270-01")
+business <-get_cansim("33-10-0270-01")
 
-names(Active_Business)<-str_replace_all(names(Active_Business),
+names(business)<-str_replace_all(names(business),
                                      c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
 
-Active_Business_History <- Active_Business %>%  
+get_date(business,1) 
+
+
+Active_Business_History <- business %>%  
   filter(GEO=="Canada",
          Industry=="Business sector industries [T004]",
   Business_dynamics_measure=="Active businesses") %>% 
   select(Date,val_norm) %>% 
   rename(Active_Business = val_norm)
 
-
-
-Active_Business_Last_Date <- tail(Active_Business$Date,n=1)
-Active_Business_Last_Month <- Active_Business_Last_Date-months(1) 
-Active_Business_Last_Year <-  Active_Business_Last_Date-months(12)
-
 Active_Business_Variations <- Active_Business_History %>% 
-  filter(Date==Active_Business_Last_Year | 
-           Date==Active_Business_Last_Month | 
-           Date==Active_Business_Last_Date )
-
+  filter(Date %in% date_vector)
 
 # Nominal GDP 
 
@@ -239,459 +152,125 @@ Nominal_GDP_History <- Nominal_GDP %>%
   rename(Nominal_GDP = val_norm)
 
 
-
-# Investments ----------------- FUN TO HAVE
-
-# Investments <-get_cansim("36-10-0108-01")
-# 
-# names(Investments)<-str_replace_all(names(Investments),
-#                                         c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-# 
-# 
-# Investments_History <- Investments %>%  
-#   filter(GEO=="Canada",
-#          Industry=="Business sector industries [T004]",
-#          Business_dynamics_measure=="Active businesses") %>% 
-#   select(Date,val_norm) %>% 
-#   rename(Investments = val_norm)
-# 
-# 
-# 
-# Investments_Last_Date <- tail(Investments$Date,n=1)
-# Investments_Last_Month <- Investments_Last_Date-months(1) 
-# Investments_Last_Year <-  Investments_Last_Date-months(12)
-# 
-# Investments_Variations <- Investments_History %>% 
-#   filter(Date==Investments_Last_Year | 
-#            Date==Investments_Last_Month | 
-#            Date==Investments_Last_Date )
-# 
-# 
-# 
-
+summary_table_economy <- 
+        bind_rows(GDP_Monthly_Variations,
+                  Manufacturing_Variations,
+                  export_canada_variations,
+                  retail_trade_variations,
+                  Active_Business_Variations)
 
 
 Economy_data <- createWorkbook()
 
-
+addWorksheet(Economy_data,"summary_table")
 addWorksheet(Economy_data,"GDP_Monthly_History")
-addWorksheet(Economy_data,"GDP_Monthly_Variations")
-addWorksheet(Economy_data,"GDP_Monthly_NAIC2_Variations")
 addWorksheet(Economy_data,"Nominal_GDP_History")
-
 addWorksheet(Economy_data,"Manufacturing_History")
-addWorksheet(Economy_data,"Manufacturing_Variations")
-
 addWorksheet(Economy_data,"International_Trade_History")
-addWorksheet(Economy_data,"International_Trade_Variations")
-
 addWorksheet(Economy_data,"Retail_Trade_History")
-addWorksheet(Economy_data,"Retail_Trade_Variations")
-
 addWorksheet(Economy_data,"Active_Business_History")
-addWorksheet(Economy_data,"Active_Business_Variations")
 
 
+writeData(Economy_data,sheet = "summary_table",x=summary_table_economy)
 writeData(Economy_data,sheet = "GDP_Monthly_History",x=GDP_Monthly_History)
-writeData(Economy_data,sheet = "GDP_Monthly_Variations",x=GDP_Monthly_Variations)
-writeData(Economy_data,sheet = "GDP_Monthly_NAIC2_Variations",x=GDP_Monthly_NAIC2_Variations)
 writeData(Economy_data,sheet = "Nominal_GDP_History",x=Nominal_GDP_History)
-
 writeData(Economy_data,sheet = "Manufacturing_History",x=Manufacturing_History)
-writeData(Economy_data,sheet = "Manufacturing_Variations",x=Manufacturing_Variations)
-
-writeData(Economy_data,sheet = "International_Trade_History",x=International_Trade_History)
-writeData(Economy_data,sheet = "International_Trade_Variations",x=International_Trade_Variations)
-
-writeData(Economy_data,sheet = "Retail_Trade_History",x=Retail_Trade_History)
-writeData(Economy_data,sheet = "Retail_Trade_Variations",x=Retail_Trade_Variations)
-
+writeData(Economy_data,sheet = "International_Trade_History",x=export_canada)
+writeData(Economy_data,sheet = "Retail_Trade_History",x=retail_trade_history)
 writeData(Economy_data,sheet = "Active_Business_History",x=Active_Business_History)
-writeData(Economy_data,sheet = "Active_Business_Variations",x=Active_Business_Variations)
 
 
 saveWorkbook(Economy_data,"Economy_Dashboard_Data.xlsx",overwrite = TRUE)
 
 
 
-
-
-# GDP Additional Page - Province ----> Rien d'intéressant
-
-#GDP_Provinces_Annual <-get_cansim("36-10-0402-01")
-
-#names(GDP_Provinces_Annual)<-str_replace_all(names(GDP_Provinces_Annual),
-#                                             c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
-#GDP_Provinces_Annual_Last_Date <- tail(GDP_Provinces_Annual$Date,n=1)
-#GDP_Provinces_Annual_Last_Year <- GDP_Provinces_Annual_Last_Date-months(12)
-
-#GDP_Provinces_Annual_Real <-GDP_Provinces_Annual  %>% 
-#                      filter(Value=="Chained (2012) dollars", 
- #                            North_American_Industry_Classification_System__NAICS_=="All industries [T001]")
-
-#GDP_Provinces_Annual_Real_Last_Date <- GDP_Provinces_Annual_Real %>% 
-#                                          filter(Date==GDP_Provinces_Annual_Last_Date) %>% 
- #                                           select(GEO,val_norm)
-
-
-
-
-# Province GDP annual table : 36-10-0402-01 
-
-
 #||||||||||||------------------ LABOR MARKET ----------------------||||||
 
 
+employment_canada<- get_cansim_vector("v2062811",
+                                      start_time = "2000-01-01") %>% 
+                    select(Date,val_norm) %>% 
+                    rename(employment = val_norm)
 
-Labor_Market_Canada <-get_cansim("14-10-0287-03")
+get_date(employment_canada,1)
 
-names(Labor_Market_Canada)<-str_replace_all(names(Labor_Market_Canada),
-                                             c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+employment_canada_variations <- 
+  employment_canada %>% 
+  filter(Date %in% date_vector)
 
-Labor_Market_Canada_Last_Date <- tail(Labor_Market_Canada$Date,n=1)
-Labor_Market_Canada_Last_Month <- Labor_Market_Canada_Last_Date-months(1) 
-Labor_Market_Canada_Last_Year <-  Labor_Market_Canada_Last_Date-months(12)
-Labor_Market_Canada_Pandemic <- Labor_Market_Canada_Last_Date-months(30)
+#---------------------------------------------------------------------------
 
+unemployment_canada<- get_cansim_vector("v2062815",
+                                        start_time = "2000-01-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(unemployment = val_norm)
 
-Labor_Market_Canada_Seasonnaly <-  Labor_Market_Canada %>% filter(Sex=="Both sexes",
-                                                                  Age_group=="15 years and over",
-                                                                  Data_type=="Seasonally adjusted",
-                                                                  Statistics =="Estimate",
-                                                                  Date>"1999-12-01",
-                                                                  GEO=="Canada")
-                
-Total_Jobs_Canada <- Labor_Market_Canada_Seasonnaly  %>% 
-                        filter(Labour_force_characteristics=="Employment") %>% 
-                          select(Date,
-                                 val_norm) %>% 
-                          rename(Total_Jobs=val_norm)
+get_date(unemployment_canada,1)
 
-Unemployment_Rate_Canada <- Labor_Market_Canada_Seasonnaly %>% 
-                      filter(Labour_force_characteristics=="Unemployment rate") %>% 
-                        select(Date,
-                               val_norm) %>% 
-                        rename(Unemployment_Rate=val_norm)
+unemployment_canada_variations <- 
+  unemployment_canada %>% 
+  filter(Date %in% date_vector)
 
-Employment_Rate_Canada_25_54 <-  Labor_Market_Canada %>% filter(Sex=="Both sexes",
-                                                                Age_group=="25 to 54 years",
-                                                                Data_type=="Seasonally adjusted",
-                                                                Statistics =="Estimate",
-                                                                Date>"1999-12-01",
-                                                                GEO=="Canada",
-                                                                Labour_force_characteristics=="Employment rate") %>% 
-                                                select(Date,
-                                                       val_norm) %>% 
-                                                rename(Employment_Rate=val_norm)
 
-  
+#---------------------------------------------------------------------------
 
-Total_Jobs_Canada_Last_Date  <- Total_Jobs_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Date) %>% 
-  rename(Last_Date=Total_Jobs) %>% 
-        select(Last_Date)
+employment_rate_canada<- get_cansim_vector("v2062952",
+                                           start_time = "2000-01-01") %>% 
+                          select(Date,val_norm) %>% 
+                          rename(employment_rate = val_norm)
 
-Total_Jobs_Canada_Last_Month <- Total_Jobs_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Month) %>% 
-  rename(Last_Month=Total_Jobs) %>% 
-  select(Last_Month)
+get_date(employment_rate_canada,1)
 
 
-Total_Jobs_Canada_Last_Year  <- Total_Jobs_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Year) %>% 
-  rename(Last_Year=Total_Jobs) %>% 
-  select(Last_Year)
+employment_rate_canada_variations <- 
+  employment_rate_canada %>% 
+  filter(Date %in% date_vector)
 
 
-Total_Jobs_Canada_Pandemic <- Total_Jobs_Canada %>%  
-  filter(Date==Labor_Market_Canada_Pandemic) %>% 
-  rename(Pandemic =Total_Jobs) %>% 
-  select(Pandemic )
+#---------------------------------------------------------------------------
 
 
-Total_Jobs_Canada_Variations <- cbind(Total_Jobs_Canada_Last_Date,
-                                      Total_Jobs_Canada_Last_Month,
-                                      Total_Jobs_Canada_Last_Year ,
-                                      Total_Jobs_Canada_Pandemic)
 
-row.names(Total_Jobs_Canada_Variations)[1] <-  "Total_Jobs"
+job_vacancy_quarter<- get_cansim_vector("v104272652", 
+                                        end_time = "2020-10-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy = val_norm)
 
 
-Unemployment_Rate_Canada_Last_Date  <- Unemployment_Rate_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Date) %>% 
-  rename(Last_Date=Unemployment_Rate) %>% 
-  select(Last_Date)
+job_vacancy_rate_quarter<- get_cansim_vector("v104272654",
+                                             end_time = "2020-10-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy_rate = val_norm)
 
-Unemployment_Rate_Canada_Last_Month <- Unemployment_Rate_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Month) %>% 
-  rename(Last_Month=Unemployment_Rate) %>% 
-  select(Last_Month)
 
+job_vacancy_monthly<- get_cansim_vector("v1212389364",
+                                        start_time = "2020-11-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy = val_norm)
 
-Unemployment_Rate_Canada_Last_Year  <- Unemployment_Rate_Canada %>%  
-  filter(Date==Labor_Market_Canada_Last_Year) %>% 
-  rename(Last_Year=Unemployment_Rate) %>% 
-  select(Last_Year)
+get_date(job_vacancy_monthly,1)
 
+job_vacancy_rate_monthly<- get_cansim_vector("v1212389365",
+                                             start_time = "2020-11-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy_rate = val_norm)
 
-Unemployment_Rate_Canada_Pandemic <- Unemployment_Rate_Canada %>%  
-  filter(Date==Labor_Market_Canada_Pandemic) %>% 
-  rename(Pandemic =Unemployment_Rate) %>% 
-  select(Pandemic )
 
+job_vacancy_canada <- 
+    bind_rows(job_vacancy_quarter,
+              job_vacancy_monthly)
 
-Unemployment_Rate_Canada_Variations <- cbind(Unemployment_Rate_Canada_Last_Date,
-                                      Unemployment_Rate_Canada_Last_Month,
-                                      Unemployment_Rate_Canada_Last_Year ,
-                                      Unemployment_Rate_Canada_Pandemic)
+job_vacancy_rate_canada <- 
+    bind_rows(job_vacancy_rate_quarter,
+              job_vacancy_rate_monthly)
 
-row.names(Unemployment_Rate_Canada_Variations)[1] <-  "Unemployment_Rate"
+job_vacancy_canada_variations <- 
+  job_vacancy_canada %>% 
+      filter(Date %in% date_vector)
 
-
-
-Employment_Rate_Canada_25_54_Last_Date  <- Employment_Rate_Canada_25_54 %>%  
-  filter(Date==Labor_Market_Canada_Last_Date) %>% 
-  rename(Last_Date=Employment_Rate) %>% 
-  select(Last_Date)
-
-Employment_Rate_Canada_25_54_Last_Month <- Employment_Rate_Canada_25_54 %>%  
-  filter(Date==Labor_Market_Canada_Last_Month) %>% 
-  rename(Last_Month=Employment_Rate) %>% 
-  select(Last_Month)
-
-
-Employment_Rate_Canada_25_54_Last_Year  <- Employment_Rate_Canada_25_54 %>%  
-  filter(Date==Labor_Market_Canada_Last_Year) %>% 
-  rename(Last_Year=Employment_Rate) %>% 
-  select(Last_Year)
-
-
-Employment_Rate_Canada_25_54_Pandemic <- Employment_Rate_Canada_25_54 %>%  
-  filter(Date==Labor_Market_Canada_Pandemic) %>% 
-  rename(Pandemic =Employment_Rate) %>% 
-  select(Pandemic )
-
-
-Employment_Rate_Canada_25_54_Variations <- cbind(Employment_Rate_Canada_25_54_Last_Date,
-                                             Employment_Rate_Canada_25_54_Last_Month,
-                                             Employment_Rate_Canada_25_54_Last_Year ,
-                                             Employment_Rate_Canada_25_54_Pandemic)
-
-row.names(Employment_Rate_Canada_25_54_Variations)[1] <-  "Employment_Rate_Canada_25_54"
-
-Name_Labor_Market_Indicators <- c("Total_Jobs","Unemployment_rate","Employment_rate")
-Labor_Market_Indicators <- rbind(Total_Jobs_Canada_Variations,Unemployment_Rate_Canada_Variations,Employment_Rate_Canada_25_54_Variations)
-
-Labor_Market_Indicators <- cbind(Name_Labor_Market_Indicators,Labor_Market_Indicators )
-
-
-# Province data
-
-
- 
-Total_Jobs_Provinces <- Labor_Market_Canada %>% filter(Sex=="Both sexes",
-                               Age_group=="15 years and over",
-                               Data_type=="Seasonally adjusted",
-                               Statistics =="Estimate",
-                               Labour_force_characteristics=="Employment") %>% 
-                        filter(Date==Labor_Market_Canada_Last_Date   |
-                                 Date==Labor_Market_Canada_Last_Month |
-                                 Date==Labor_Market_Canada_Last_Year) %>% 
-                        select(GEO,Date,val_norm) %>% 
-                        rename(Total_jobs = val_norm)
-
-
-Total_Jobs_Provinces_Last_Date <- Total_Jobs_Provinces %>% 
-                                    filter(Date==Labor_Market_Canada_Last_Date) %>% 
-                                  select(GEO,Total_jobs) %>% 
-                                  rename(Last_Date = Total_jobs)
-
-Total_Jobs_Provinces_Last_Month <- Total_Jobs_Provinces %>% 
-  filter(Date==Labor_Market_Canada_Last_Month) %>% 
-  select(GEO,Total_jobs) %>% 
-  rename(Last_Month = Total_jobs)
-
-Total_Jobs_Provinces_Last_Year <- Total_Jobs_Provinces %>% 
-  filter(Date==Labor_Market_Canada_Last_Year) %>% 
-  select(GEO,Total_jobs) %>% 
-  rename(Last_Year = Total_jobs)
-
-
-
-Total_Jobs_Provinces_Merge <- merge(Total_Jobs_Provinces_Last_Date,Total_Jobs_Provinces_Last_Month,by="GEO")
-Total_Jobs_Provinces_Variations <- merge(Total_Jobs_Provinces_Merge,Total_Jobs_Provinces_Last_Year,by="GEO")
-
-
-Total_Jobs_Provinces_Variations <- Total_Jobs_Provinces_Variations %>% 
-                                    mutate(Job_Variations_Month = Last_Date/Last_Month -1,
-                                           Job_Variations_Year = Last_Date/Last_Year -1)
-
-Total_Jobs_Provinces_Variations_Month_Year <- Total_Jobs_Provinces_Variations %>% 
-                                                  select(GEO, Job_Variations_Month,Job_Variations_Year)
-
-
-Unemployment_Rate_Provinces <- Labor_Market_Canada %>% 
-                                      filter(Sex=="Both sexes",
-                                             Age_group=="15 years and over",
-                                            Data_type=="Seasonally adjusted",
-                                              Statistics =="Estimate",
-                                            Labour_force_characteristics=="Unemployment rate") %>% 
-                                  filter(Date==Labor_Market_Canada_Last_Date   |
-                                           Date==Labor_Market_Canada_Last_Month |
-                                           Date==Labor_Market_Canada_Last_Year) %>% 
-                                  select(GEO,Date,val_norm) %>% 
-                                  rename(Unemployment_Rate = val_norm)
-
-
-Unemployment_Rate_Provinces_Last_Date <- Unemployment_Rate_Provinces  %>% 
-  filter(Date==Labor_Market_Canada_Last_Date) %>% 
-  select(GEO,Unemployment_Rate)
-
-
-# 
-# Unemployment_Rate_Provinces_Last_Month <- Unemployment_Rate_Provinces  %>% 
-#   filter(Date==Labor_Market_Canada_Last_Month) %>% 
-#   select(GEO,Unemployment_Rate) %>% 
-#   rename(Last_Month = Unemployment_Rate)
-# 
-# Unemployment_Rate_Provinces_Last_Year <- Unemployment_Rate_Provinces  %>% 
-#   filter(Date==Labor_Market_Canada_Last_Year) %>% 
-#   select(GEO, Unemployment_Rate) %>% 
-#   rename(Last_Year = Unemployment_Rate)
-# 
-# 
-# Unemployment_Rate_Provinces_Merge <- merge(Unemployment_Rate_Provinces_Last_Date,Unemployment_Rate_Provinces_Last_Month,by="GEO")
-# Unemployment_Rate_Provinces_Variations <- merge(Unemployment_Rate_Provinces_Merge,Unemployment_Rate_Provinces_Last_Year,by="GEO")
-
-
-
-Employment_Rate_Provinces <- Labor_Market_Canada %>% 
-  filter(Sex=="Both sexes",
-         Age_group=="25 to 54 years",
-         Data_type=="Seasonally adjusted",
-         Statistics =="Estimate",
-         Labour_force_characteristics=="Employment rate") %>% 
-  filter(Date==Labor_Market_Canada_Last_Date   |
-           Date==Labor_Market_Canada_Last_Month |
-           Date==Labor_Market_Canada_Last_Year) %>% 
-  select(GEO,Date,val_norm) %>% 
-  rename(Employment_Rate = val_norm)
-
-
-Employment_Rate_Provinces_Last_Date <- Employment_Rate_Provinces  %>% 
-  filter(Date==Labor_Market_Canada_Last_Date) %>% 
-  select(GEO,Employment_Rate)  
-
-
-Provinces_Labor_Indicators_Merge <- merge(Total_Jobs_Provinces_Variations_Month_Year,Unemployment_Rate_Provinces_Last_Date,by="GEO")
-Provinces_Labor_Indicators <- merge(Provinces_Labor_Indicators_Merge,Employment_Rate_Provinces_Last_Date,by="GEO")
-
-Provinces_Labor_Indicators <- Provinces_Labor_Indicators[c(3,1,2,4,5,6,7,8,9,10,11),]
-
-
-# Employment_Rate_Provinces_Last_Month <- Employment_Rate_Provinces  %>% 
-#   filter(Date==Labor_Market_Canada_Last_Month) %>% 
-#   select(GEO,Employment_Rate) %>% 
-#   rename(Last_Month = Employment_Rate)
-# 
-# Employment_Rate_Provinces_Last_Year <- Employment_Rate_Provinces  %>% 
-#   filter(Date==Labor_Market_Canada_Last_Year) %>% 
-#   select(GEO, Employment_Rate) %>% 
-#   rename(Last_Year = Employment_Rate)
-# 
-# 
-# Employment_Rate_Provinces_Merge <- merge(Employment_Rate_Provinces_Last_Date,Employment_Rate_Provinces_Last_Month,by="GEO")
-# Employment_Rate_Provinces_Variations <- merge(Employment_Rate_Provinces_Merge,Employment_Rate_Provinces_Last_Year,by="GEO")
-# 
-# 
-
-
-# Job Vacancies - we'll work with quartely data
-
-
-Job_Vacancy_Quartely <-get_cansim("14-10-0325-01")
-
-names(Job_Vacancy_Quartely )<-str_replace_all(names(Job_Vacancy_Quartely ),
-                                            c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
-Job_Vacancy_Quartely_Canada <- Job_Vacancy_Quartely %>% filter(GEO=="Canada", 
-                                             Statistics == "Job vacancies") %>% 
-                                        select(Date,val_norm) %>% 
-                                        rename(Job_vacancy = val_norm)
-
-Job_Vacancy_Monthly <-get_cansim("14-10-0371-01")
-
-names(Job_Vacancy_Monthly )<-str_replace_all(names(Job_Vacancy_Monthly  ),
-                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
-Job_Vacancy_Last_Date <- tail(Job_Vacancy_Monthly$Date,n=1)
-Job_Vacancy_Last_Month <- Job_Vacancy_Last_Date-months(1) 
-
-
-
-Job_Vacancy_Rate <- Job_Vacancy_Monthly %>% filter(Statistics == "Job vacancy rate") %>% 
-                                select(GEO,Date, val_norm) %>% 
-                                rename(Job_vacancy_rate = val_norm)
-
-Job_Vacancy_Rate_Last_Date <- Job_Vacancy_Rate %>% 
-                              filter(Date==Job_Vacancy_Last_Date) %>% 
-                              rename(Last_Date = Job_vacancy_rate)
-
-Job_Vacancy_Rate_Last_Month <- Job_Vacancy_Rate %>% 
-  filter(Date==Job_Vacancy_Last_Month) %>% 
-  rename(Last_Month = Job_vacancy_rate)
-
-
-Job_Vacancy_Rate_Provinces_merge <- merge(Job_Vacancy_Rate_Last_Date,Job_Vacancy_Rate_Last_Month, by="GEO")
-
-
-Job_Vacancy_Province<- Job_Vacancy_Monthly %>% filter(Statistics=="Job vacancies",
-                                                  Date==Job_Vacancy_Last_Date) %>% 
-                                            select(GEO,val_norm) %>% 
-                                            rename(Job_vacancy = val_norm)
-
-Job_Vacancy_Rate_Provinces <- merge(Job_Vacancy_Rate_Provinces_merge,Job_Vacancy_Province, by="GEO")
-
-
-
-Job_Vacancy_Rate_Provinces  <- Job_Vacancy_Rate_Provinces[c(3,1,2,4,5,6,7,8,9,10,11,12,13,14),]
-
-Job_Vacancy_Rate_Canada <- Job_Vacancy_Monthly %>% 
-         filter( Statistics == "Job vacancies" | 
-                   Statistics == "Job vacancy rate") %>%                           
-            filter(GEO=="Canada") %>% 
-                            filter(Date==Job_Vacancy_Last_Date | 
-                                     Date == Job_Vacancy_Last_Month) %>% 
-            select(Date,Statistics,val_norm)
-
-
-Unemployed_Provinces <-  Labor_Market_Canada %>% 
-                        filter(Sex=="Both sexes",
-                               Age_group=="15 years and over",
-                               Data_type=="Seasonally adjusted",
-                               Statistics =="Estimate",
-                               Labour_force_characteristics=="Unemployment",
-                               Date==Labor_Market_Canada_Last_Date) %>% 
-                        select(GEO,val_norm) %>% 
-                        rename(Unemployed = val_norm)
-
-
-job_vacancy_monthly  <-get_cansim("14-10-0372-01")
-
-names(job_vacancy_monthly)<-str_replace_all(names(job_vacancy_monthly ),
-                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
-job_vacancy_monthly  <- 
-  job_vacancy_monthly %>% 
-      filter(GEO=="Canada",
-             North_American_Industry_Classification_System__NAICS_=="Total, all industries",
-             Statistics=="Job vacancies") %>% 
-      select(Date,
-             val_norm) %>% 
-      rename(job_vacancy_monthly = val_norm)
-        
-
+job_vacancy_rate_canada_variations <- 
+  job_vacancy_rate_canada %>% 
+  filter(Date %in% date_vector)
 
 # Wages
 
@@ -699,8 +278,7 @@ Wages <-get_cansim("14-10-0320-02")
 
 names(Wages)<-str_replace_all(names(Wages),
                                      c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
-
+get_date(Wages,1) 
 
 Wages_History <- Wages %>%  
   filter(GEO=="Canada",
@@ -709,55 +287,40 @@ Wages_History <- Wages %>%
   select(Date,val_norm) %>% 
   rename(Wages = val_norm)
 
-Wages_Last_Date <- tail(Wages$Date,n=1)
-Wages_Last_Month <- Wages_Last_Date-months(1) 
-Wages_Last_Year <-  Wages_Last_Date-months(12)
-
 Wages_Variations <- Wages_History %>% 
-  filter(Date==Wages_Last_Year | 
-           Date==Wages_Last_Month | 
-           Date==Wages_Last_Date )
+  filter(Date %in% date_vector)
 
 
-
+summary_table_labor <- 
+        bind_rows(employment_canada_variations,
+                  unemployment_canada_variations,
+                  employment_rate_canada_variations,
+                  job_vacancy_canada_variations,
+                  Wages_Variations)
 
 
 Labor_Data <- createWorkbook()
 
 
-addWorksheet(Labor_Data,"Labor_Market_Indicators")
+addWorksheet(Labor_Data,"summary_table")
 addWorksheet(Labor_Data,"Total_Jobs_Canada")
 addWorksheet(Labor_Data,"Unemployment_Rate_Canada")
 addWorksheet(Labor_Data,"Employment_Rate_Canada_25_54")
-addWorksheet(Labor_Data,"Job_Vacancy_Quartely_Canada")
-addWorksheet(Labor_Data,"Job_Vacancy_Rate_Provinces")
-addWorksheet(Labor_Data,"Job_Vacancy_Rate_Canada")
-addWorksheet(Labor_Data,"job_vacancy_monthly")
-addWorksheet(Labor_Data,"Provinces_Labor_Indicators")
-addWorksheet(Labor_Data,"Unemployed_Provinces")
-
+addWorksheet(Labor_Data,"Job_Vacancy")
+addWorksheet(Labor_Data,"Job_Vacancy_Rate")
 addWorksheet(Labor_Data,"Wages_History")
-addWorksheet(Labor_Data,"Wages_Variations")
 
 
-
-writeData(Labor_Data,sheet = "Labor_Market_Indicators",x=Labor_Market_Indicators)
-writeData(Labor_Data,sheet = "Total_Jobs_Canada",x=Total_Jobs_Canada)
-writeData(Labor_Data,sheet = "Unemployment_Rate_Canada",x=Unemployment_Rate_Canada)
-writeData(Labor_Data,sheet = "Employment_Rate_Canada_25_54",x=Employment_Rate_Canada_25_54)
-writeData(Labor_Data,sheet = "Job_Vacancy_Quartely_Canada",x=Job_Vacancy_Quartely_Canada)
-writeData(Labor_Data,sheet = "job_vacancy_monthly",x=job_vacancy_monthly)
-writeData(Labor_Data,sheet = "Job_Vacancy_Rate_Provinces",x=Job_Vacancy_Rate_Provinces)
-writeData(Labor_Data,sheet = "Job_Vacancy_Rate_Canada",x=Job_Vacancy_Rate_Canada)
-writeData(Labor_Data,sheet = "Provinces_Labor_Indicators",x=Provinces_Labor_Indicators)
-writeData(Labor_Data,sheet = "Unemployed_Provinces",x=Unemployed_Provinces)
-
+writeData(Labor_Data,sheet = "summary_table",x=summary_table_labor)
+writeData(Labor_Data,sheet = "Total_Jobs_Canada",x=employment_canada_variations)
+writeData(Labor_Data,sheet = "Unemployment_Rate_Canada",x=unemployment_canada)
+writeData(Labor_Data,sheet = "Employment_Rate_Canada_25_54",x=employment_rate_canada)
+writeData(Labor_Data,sheet = "Job_Vacancy",x=job_vacancy_canada)
+writeData(Labor_Data,sheet = "Job_Vacancy_Rate",x=job_vacancy_rate_canada)
 writeData(Labor_Data,sheet = "Wages_History",x=Wages_History)
-writeData(Labor_Data,sheet = "Wages_Variations",x=Wages_Variations)
 
 
 saveWorkbook(Labor_Data,"Labor_Data.xlsx",overwrite = TRUE)
-
 
 
 #||||||||||||------------------ FINANCE  ----------------------||||||
@@ -939,23 +502,6 @@ cpi_component <- bind_cols(cpi_all_items,
                            cpi_transportation %>% select(cpi_transportation),
                            cpi_goods %>% select(cpi_goods),
                            cpi_services %>% select(cpi_services))
-
-
-
-
-
-
-# Housing 
-
-# 
-# CREA_Data <- read_excel("Not Seasonally Adjusted.xlsx", sheet = "Aggregate")
-# 
-# CREA_Data <- my_data %>% 
-#             mutate(Date2=as.Date(as.numeric(Date),origin="1899-12-30")) %>% 
-#             select(Date2,Composite_Benchmark) %>% 
-#             rename(Date=Date2) %>% 
-#             drop_na(Date)
-# 
 
 
 
@@ -1154,7 +700,7 @@ Quintiles_Wealth <- cbind(First_Quintile,Second_Quintile,Third_Quintile,Fourth_Q
 
 # Working with LFS microdata 
 
-setwd("C:/Users/dabrassard/Desktop/Working folder/Ecnomic_Dashboard/Data/LFS")
+setwd("D:/economic_dashboard/LFS")
 
 
 files <- c("pub0921.csv","pub0822.csv","pub0922.csv") # Change for last month, last year
@@ -1256,9 +802,7 @@ Average_Wage_Women <-  Women_Wage_Average %>%
 
 
 
-
-
-setwd("C:/Users/dabrassard/Desktop/Working folder/Ecnomic_Dashboard/Data")
+setwd("D:/economic_dashboard")
 
 Demography_Social_Data <- createWorkbook()
 
@@ -1282,42 +826,12 @@ writeData(Demography_Social_Data,sheet = "Wage_Difference_Men_Women",x=Wage_Diff
 saveWorkbook(Demography_Social_Data,"Social_Data.xlsx",overwrite = TRUE)
 
 
-### Getting provincial data 
-
-get_date <- function(df,spread) {
-  
-  
-  # Spread is 1 for monthly, 3 for quartely and 12 for annual data
-  date_1 <- tail({{df}}$Date,n=1)
-  date_2 <- date_1 - months(spread)
-  date_3 <- date_2 - months(12)
-  
-  date_vector <<- c(date_1,date_2, date_3)
-  
-}
-
-
-
-# rename_column <- function(df) {
-#   
-#   df <- 
-#       df %>% rename_with(.fn=~str_replace_all(names(df), 
-#                                               c(" " = "_" ,
-#                                                 "," = "_", 
-#                                                 "[(]" ="_", 
-#                                                 "[)]"="_")))
-#   
-#   
-
-
-# }
-
+### PROVINCE DATA
 
 #------------------- GDP-------------------------------
 
 
 gdp_annual <-get_cansim("36-10-0222-01")
-
 
 
 province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
@@ -1361,106 +875,69 @@ manufacturing <-
 
 #-------------------EXPORTS-------------------------------  
 
-
-export <- get_cansim("12-10-0119-01") 
-get_date(export,1)
+get_date(export_canada,1)
 
 
-names(export)<-str_replace_all(names(export ),
-                               c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+export_province <- tibble()
 
+ province_vector <- c("v1001819785",
+                             "v1001820916",
+                             "v1001809606",
+                             "v1001817523",
+                             "v1001814130",
+                             "v1001810737",
+                             "v1001824309",
+                             "v1001812999",
+                             "v1001825440",
+                             "v1001816392",
+                             "v1001811868",
+                             "v1001815261",
+                             "v1001818654",
+                             "v1001822047"
+                             )
+ 
+ province_name_vector <- c("Alberta",
+                                  "British Columbia",
+                                  "Canada",
+                                  "Manitoba",
+                                 "New Brunswick",
+                                  "Newfoundland and Labrador",
+                                  "Northwest Territories",
+                                  "Nova Scotia",
+                                  "Nunavut",
+                                  "Ontario",
+                                  "Prince Edward Island",
+                                  "Quebec",
+                                  "Saskatchewan",
+                                  "Yukon")
 
-
-export_province <- 
-  export %>% 
-  filter(GEO %in% province_vector, 
-         Date %in% date_vector,
-         North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
-         Principal_trading_partners=="All countries",
-         Trade=="Domestic export") %>% 
-  select(GEO, Date,val_norm) %>% 
-  rename(export = val_norm) %>% 
-  arrange(GEO,Date)
-
-
-export_canada <- 
-  export %>% 
-  filter(GEO=="Canada",
-         Date > "",
-         North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
-         Principal_trading_partners=="All countries",
-         Trade=="	Domestic export") %>% 
-  select(Date, val_norm) %>% 
-  rename(domestic_export = val_norm) %>% 
-  arrange(Date)
-
-
-# 
-# export_province_vector <- c("v1001819785",
-#                             "v1001820916",
-#                             "v1001809606",
-#                             "v1001817523",
-#                             "v1001814130",
-#                             "v1001810737",
-#                             "v1001824309",
-#                             "v1001812999",
-#                             "v1001825440",
-#                             "v1001816392",
-#                             "v1001811868",
-#                             "v1001815261",
-#                             "v1001818654",
-#                             "v1001822047"
-#                             )
-# 
-# export_province_name_vector <- c("Canada",
-#                                  "v1001820916",
-#                                  "v1001809606",
-#                                  "v1001817523",
-#                                  "v1001814130",
-#                                  "v1001810737",
-#                                  "v1001824309",
-#                                  "v1001812999",
-#                                  "v1001825440",
-#                                  "v1001816392",
-#                                  "v1001811868",
-#                                  "v1001815261",
-#                                  "v1001818654",
-#                                  "v1001822047"
-# )
-#   
-# 
-# export_try <- 
-#   export %>% 
-#   filter(GEO %in% province_vector, 
-#          Date %in% date_vector,
-#          North_American_Product_Classification_System__NAPCS_=="Total of all merchandise",
-#          Principal_trading_partners=="All countries",
-#          Trade=="Domestic export") %>% 
-#   select(GEO, Date,val_norm,VECTOR) %>% 
-#   rename(export = val_norm) %>% 
-#   arrange(GEO,Date)
-# 
-# 
-# Vector_exports <- unique(export_try$VECTOR)
-# 
-# 
-# unique(export_try$GEO)
-# 
-# tryyy <- get_cansim_vector(Vector_exports,
-#                   start_time = date_vector[1],
-#                   end_time = date_vector[1]) %>% 
-#         bind_cols()
+ 
+for (j in 1:3) {
+ 
+ for (i in 1:length(province_vector)) {
+   
+   vector_value <- get_cansim_vector(province_vector[i],
+                      start_time = date_vector[j],
+                      end_time = date_vector[j])
+   
+   vector_value <- bind_cols( vector_value,province_name_vector[i])
+   export_province <- bind_rows(export_province,vector_value)
+   
+ }
+}
+ 
+ names(export_province)[12] <- "GEO"
+ 
+ export_province <- 
+   export_province %>% 
+      select(GEO,Date,val_norm) %>% 
+      rename(export = val_norm)
+ 
+ 
 
 #------------------RETAIL TRADE------------------------------  
 
-
-retail_trade <-get_cansim("20-10-0008-01")
-
 get_date(retail_trade,1)
-
-names(retail_trade)<-str_replace_all(names(retail_trade),
-                                     c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
 
 retail_trade_province <- 
   retail_trade %>% 
@@ -1476,14 +953,7 @@ retail_trade_province <-
 
 #------------------ACTIVE BUSINESSES------------------------------  
 
-
-business <-get_cansim("33-10-0270-01")
-
-names(business)<-str_replace_all(names(business),
-                                 c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-
 get_date(business,1) 
-
 
 business_province <- 
   business %>%  
@@ -1524,67 +994,207 @@ business_province <-
   arrange(GEO,Date)
 
 
+summary_table_economy_province <- 
+
+
+
+setwd("D:/economic_dashboard")
+
+province_economy  <- createWorkbook()
+
+addWorksheet(province_economy ,"gdp")
+addWorksheet(province_economy ,"manufacturing_sale")
+addWorksheet(province_economy ,"export")
+addWorksheet(province_economy ,"retail_trade")
+addWorksheet(province_economy ,"active_business")
+
+writeData(province_economy ,sheet = "gdp",x=gdp_annual)
+writeData(province_economy ,sheet = "manufacturing_sale",x=manufacturing)
+writeData(province_economy ,sheet = "export",x=export_province)
+writeData(province_economy ,sheet = "retail_trade",x=retail_trade_province)
+writeData(province_economy ,sheet = "active_business",x=business_province)
+
+
+saveWorkbook(province_economy ,"province_economy.xlsx",overwrite = TRUE)
+
 
 #------------------LABOR STATISTISCS-----------------------------  
 
 
 
+# labor <-get_cansim("14-10-0287-03")
+# 
+# names(labor)<-str_replace_all(names(labor),
+#                                             c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
 
 
-labor <-get_cansim("14-10-0287-03")
+get_date(employment_canada,1)
 
-names(labor)<-str_replace_all(names(labor),
-                                            c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+employment_province <- tibble()
 
-
-get_date(labor,1) 
-
-job_province <- 
- labor %>%  
-  filter(GEO %in% province_vector, 
-         Date %in% date_vector) %>% 
-  filter(Sex=="Both sexes",
-        Age_group=="15 years and over",
-        Data_type=="Seasonally adjusted",
-        Statistics =="Estimate") %>% 
-  filter(Labour_force_characteristics=="Employment") %>% 
-  select(GEO, Date,val_norm) %>% 
-  rename(total_job = val_norm) %>% 
-  arrange(GEO,Date)
+province_vector <- c("v2062811",
+                     "v2063000",
+                     "v2063189",
+                     "v2063378",
+                     "v2063567",
+                     "v2063756",
+                     "v2063945",
+                     "v2064134",
+                     "v2064323",
+                     "v2064512",
+                     "v2064701"
+)
 
 
-unemployment_province <- 
-  labor %>%  
-  filter(GEO %in% province_vector, 
-         Date %in% date_vector) %>% 
-  filter(Sex=="Both sexes",
-         Age_group=="15 years and over",
-         Data_type=="Seasonally adjusted",
-         Statistics =="Estimate") %>% 
-  filter(Labour_force_characteristics=="Unemployment rate") %>% 
-  select(GEO, Date,val_norm) %>% 
-  rename(unemployment = val_norm) %>% 
-  arrange(GEO,Date)
+province_name_vector <- c("Canada",
+                          "Newfoundland and Labrador",
+                          "Prince Edward Island",
+                          "Nova Scotia",
+                          "New Brunswick",
+                          "Quebec",
+                          "Ontario",
+                          "Manitoba",
+                          "Saskatchewan",
+                          "Alberta",
+                          "British Columbia")
 
+for (j in 1:3) {
+  
+  for (i in 1:length(province_vector)) {
+    
+    vector_value <- get_cansim_vector(province_vector[i],
+                                      start_time = date_vector[j],
+                                      end_time = date_vector[j])
+    
+    vector_value <- bind_cols( vector_value,province_name_vector[i])
+    employment_province <- bind_rows(employment_province,vector_value)
+    
+  }
+}
 
+names(employment_province)[12] <- "GEO"
 
 employment_province <- 
-  labor %>%  
-  filter(GEO %in% province_vector, 
-         Date %in% date_vector) %>% 
-  filter(Sex=="Both sexes",
-         Age_group=="25 to 54 years",
-         Data_type=="Seasonally adjusted",
-         Statistics =="Estimate") %>% 
-  filter(Labour_force_characteristics=="Employment rate") %>% 
-  select(GEO, Date,val_norm) %>% 
+  employment_province %>% 
+  select(GEO,Date,val_norm) %>% 
+  rename(total_employment = val_norm) %>% 
+  arrange(GEO,Date)
+
+
+
+#-------------------------------------------------------------
+
+get_date(unemployment_canada,1)
+
+unemployment_province <- tibble()
+
+province_vector <- c("v2062815",
+                     "v2063004",
+                     "v2063193",
+                     "v2063382",
+                     "v2063571",
+                     "v2063760",
+                     "v2063949",
+                     "v2064138",
+                     "v2064327",
+                     "v2064516",
+                     "v2064705"
+)
+
+
+province_name_vector <- c("Canada",
+                          "Newfoundland and Labrador",
+                          "Prince Edward Island",
+                          "Nova Scotia",
+                          "New Brunswick",
+                          "Quebec",
+                          "Ontario",
+                          "Manitoba",
+                          "Saskatchewan",
+                          "Alberta",
+                          "British Columbia")
+
+for (j in 1:3) {
+  
+  for (i in 1:length(province_vector)) {
+    
+    vector_value <- get_cansim_vector(province_vector[i],
+                                      start_time = date_vector[j],
+                                      end_time = date_vector[j])
+    
+    vector_value <- bind_cols( vector_value,province_name_vector[i])
+    unemployment_province <- bind_rows(unemployment_province,vector_value)
+    
+  }
+}
+
+names(unemployment_province)[12] <- "GEO"
+
+unemployment_province <- 
+  unemployment_province %>% 
+  select(GEO,Date,val_norm) %>% 
   rename(unemployment = val_norm) %>% 
   arrange(GEO,Date)
 
+
+#-------------------------------------------------------------
+
+get_date(employment_rate_canada,1)
+
+employment_rate_province <- tibble()
+
+province_vector <- c("v2062952",
+                     "v2063141",
+                     "v2063330",
+                     "v2063519",
+                     "v2063708",
+                     "v2063897",
+                     "v2064086",
+                     "v2064275",
+                     "v2064464",
+                     "v2064653",
+                     "v2064842"
+)
+
+
+province_name_vector <- c("Canada",
+                          "Newfoundland and Labrador",
+                          "Prince Edward Island",
+                          "Nova Scotia",
+                          "New Brunswick",
+                          "Quebec",
+                          "Ontario",
+                          "Manitoba",
+                          "Saskatchewan",
+                          "Alberta",
+                          "British Columbia")
+
+for (j in 1:3) {
+  
+  for (i in 1:length(province_vector)) {
+    
+    vector_value <- get_cansim_vector(province_vector[i],
+                                      start_time = date_vector[j],
+                                      end_time = date_vector[j])
+    
+    vector_value <- bind_cols( vector_value,province_name_vector[i])
+    employment_rate_province <- bind_rows(employment_rate_province,vector_value)
+    
+  }
+}
+
+names(employment_rate_province)[12] <- "GEO"
+
+employment_rate_province <- 
+  employment_rate_province %>% 
+  select(GEO,Date,val_norm) %>% 
+  rename(employment_rate = val_norm) %>% 
+  arrange(GEO,Date)
 
 
 
 #------------------Job Vacancy-----------------------------  
+
 
 job_vacancy_monthly <-get_cansim("14-10-0371-01")
 get_date(job_vacancy_monthly,1) 
@@ -1592,6 +1202,8 @@ get_date(job_vacancy_monthly,1)
 
 names(job_vacancy_monthly )<-str_replace_all(names(job_vacancy_monthly  ),
                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
+province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+
 
 job_vacancy_province <- 
   job_vacancy_monthly%>% 
@@ -1618,68 +1230,132 @@ job_vacancy <- inner_join(x=job_vacancy_province,
                           by=c("GEO","Date")) 
 
 
-wage <-get_cansim("14-10-0063-01")
 
-names(wage)<-str_replace_all(names(wage),
-                              c(" " = "_" , 
-                                "," = "_", 
-                                "[(]" ="_",
-                                "[)]"="_"))
+#-------------------------------------------------
 
-get_date(wage,1) 
+wages_canada <- get_cansim_vector("v2133245")
 
-wage_province <- wage %>%  
-  filter(GEO %in% province_vector, 
-         Date %in% date_vector) %>% 
-  filter(Characteristics=="25 years and over",
-         Hours_and_wages=="Full-time employees, average weekly wages") %>% 
-  select(GEO, Date,val_norm) %>% 
-  rename(wage= val_norm) %>% 
+get_date(wages_canada,1)
+
+wages_province <- tibble()
+
+province_vector <- c("v2133245",
+                     "v2136665",
+                     "v2140085",
+                     "v2143505",
+                     "v2146925",
+                     "v2150345",
+                     "v2153765",
+                     "v2157185",
+                     "v2160605",
+                     "v2164025",
+                     "v2167445"
+)
+
+
+province_name_vector <- c("Canada",
+                          "Newfoundland and Labrador",
+                          "Prince Edward Island",
+                          "Nova Scotia",
+                          "New Brunswick",
+                          "Quebec",
+                          "Ontario",
+                          "Manitoba",
+                          "Saskatchewan",
+                          "Alberta",
+                          "British Columbia")
+
+for (j in 1:3) {
+  
+  for (i in 1:length(province_vector)) {
+    
+    vector_value <- get_cansim_vector(province_vector[i],
+                                      start_time = date_vector[j],
+                                      end_time = date_vector[j])
+    
+    vector_value <- bind_cols( vector_value,province_name_vector[i])
+    wages_province <- bind_rows(wages_province,vector_value)
+    
+  }
+}
+
+
+names(wages_province)[12] <- "GEO"
+
+wages_province <- 
+  wages_province %>% 
+  select(GEO,Date,val_norm) %>% 
+  rename(wages = val_norm) %>% 
   arrange(GEO,Date)
 
 
+province_labor  <- createWorkbook()
+
+#------------------------ 
+get_date(Inflation,3)
+
+province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15]) 
+
+inflation_province <- 
+     Inflation %>% 
+          filter(GEO %in% province_vector, 
+                 Date %in% date_vector) %>%
+          filter(Products_and_product_groups=="All-items") %>% 
+          select(GEO,Date, val_norm) %>% 
+          rename(cpi = val_norm) %>% 
+          arrange(GEO,Date)
+
+#------------------------ 
+get_date(Immigration,3)
 
 
+immigration_province <- 
+      Immigration %>% 
+            filter(GEO %in% province_vector, 
+                   Date %in% date_vector) %>% 
+            filter(Components_of_population_growth=="Immigrants") %>% 
+            select(GEO,Date, val_norm) %>% 
+            rename(immigration = val_norm) %>% 
+            arrange(GEO,Date)
 
+        
 
-setwd("C:/Users/LNB/Desktop/Dossier_DAB/Projets R/Economic_Dashboard")
+province_labor  <- createWorkbook()
 
-province <- createWorkbook()
-
-addWorksheet(province,"gdp")
-addWorksheet(province,"manufacturing_sale")
-addWorksheet(province,"export")
-addWorksheet(province,"retail_trade")
-addWorksheet(province,"active_business")
 #-------------------------------------------------
-addWorksheet(province,"total_employment")
-addWorksheet(province,"unemployment_rate")
-addWorksheet(province,"employment_rate")
-addWorksheet(province,"job_vacancy")
-addWorksheet(province,"average_earning")
-#-------------------------------------------------
-addWorksheet(province,"inflation")
-addWorksheet(province,"immigration")
-
-#-------------------------------------------------
-#-------------------------------------------------
-writeData(province,sheet = "gdp",x=gdp_annual)
-writeData(province,sheet = "manufacturing_sale",x=manufacturing)
-writeData(province,sheet = "export",x=export_province)
-writeData(province,sheet = "retail_trade",x=retail_trade_province)
-writeData(province,sheet = "active_business",x=business_province)
-#-------------------------------------------------
-writeData(province,sheet = "total_employment",x=job_province)
-writeData(province,sheet = "unemployment_rate",x=unemployment_province)
-writeData(province,sheet = "employment_rate",x=employment_province)
-writeData(province,sheet = "job_vacancy",x=job_vacancy)
-writeData(province,sheet = "average_earning",x=Quintiles_Wealth)
-#-------------------------------------------------
-writeData(province,sheet = "inflation",x=NSNE_Young_People)
-writeData(province,sheet = "immigration",x=Wage_Difference_Loop)
+addWorksheet(province_labor ,"total_employment")
+addWorksheet(province_labor ,"unemployment_rate")
+addWorksheet(province_labor ,"employment_rate")
+addWorksheet(province_labor ,"job_vacancy")
+addWorksheet(province_labor ,"average_earning")
+addWorksheet(province_labor ,"inflation_province")
+addWorksheet(province_labor ,"immigration_province")
 
 
-saveWorkbook(province,"province.xlsx",overwrite = TRUE)
+
+#-------------------------------------------------
+writeData(province_labor,sheet = "total_employment",x=employment_province)
+writeData(province_labor,sheet = "unemployment_rate",x=unemployment_province)
+writeData(province_labor,sheet = "employment_rate",x=employment_province)
+writeData(province_labor,sheet = "job_vacancy",x=job_vacancy)
+writeData(province_labor,sheet = "average_earning",x=wages_province)
+writeData(province_labor,sheet = "inflation_province",x=inflation_province)
+writeData(province_labor,sheet = "immigration_province",x=immigration_province)
+
+
+saveWorkbook(province_labor,"province_labor_finance.xlsx",overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
