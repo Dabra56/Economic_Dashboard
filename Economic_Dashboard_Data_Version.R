@@ -31,7 +31,7 @@ get_date <- function(df,spread) {
   # Spread is 1 for monthly, 3 for quartely and 12 for annual data
   date_1 <- tail({{df}}$Date,n=1)
   date_2 <- date_1 - months(spread)
-  date_3 <- date_2 - months(12)
+  date_3 <- date_1 - months(12)
   
   date_vector <<- c(date_1,date_2, date_3)
   
@@ -847,7 +847,8 @@ gdp_annual <-
          Date %in% date_vector, 
          Prices == "Chained (2012) dollars",
          Estimates=="Gross domestic product at market prices") %>%  
-  select(GEO,Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm) %>% 
   rename(real_gdp= val_norm) %>% 
   arrange(GEO,Date) 
 
@@ -866,8 +867,9 @@ manufacturing <-
          Date %in% date_vector) %>% 
   filter(North_American_Industry_Classification_System__NAICS_=="Manufacturing [31-33]",
          Seasonal_adjustment=="Seasonally adjusted",
-         Principal_statistics=="Sales of goods manufactured (shipments)") %>% 
-  select(GEO,Date,val_norm) %>% 
+         Principal_statistics=="Sales of goods manufactured (shipments)") %>%  
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(manufacturing_sales= val_norm) %>% 
   arrange(GEO,Date) 
 
@@ -929,8 +931,9 @@ for (j in 1:3) {
  names(export_province)[12] <- "GEO"
  
  export_province <- 
-   export_province %>% 
-      select(GEO,Date,val_norm) %>% 
+   export_province %>%  
+   mutate(merge=paste0(GEO,Date)) %>% 
+   select(merge,GEO,Date,val_norm)%>% 
       rename(export = val_norm)
  
  
@@ -938,14 +941,17 @@ for (j in 1:3) {
 #------------------RETAIL TRADE------------------------------  
 
 get_date(retail_trade,1)
-
+ 
+province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+ 
 retail_trade_province <- 
   retail_trade %>% 
   filter(GEO %in% province_vector, 
          Date %in% date_vector) %>% 
   filter(Adjustments=="Seasonally adjusted",
          North_American_Industry_Classification_System__NAICS_=="Retail trade [44-45]") %>% 
-  select(GEO, Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm) %>% 
   rename(retail_sale = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -961,7 +967,8 @@ business_province <-
          Date %in% date_vector) %>% 
   filter(Industry=="Business sector industries [T004]",
          Business_dynamics_measure=="Active businesses") %>% 
-  select(GEO, Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(active_business = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -989,12 +996,11 @@ business_province <-
   filter(GEO  %in% province_vector_mistake) %>% 
   filter(Industry=="Business sector industries [T004]",
          Business_dynamics_measure=="Active businesses") %>% 
-  select(GEO, Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(active_business = val_norm) %>% 
   arrange(GEO,Date)
 
-
-summary_table_economy_province <- 
 
 
 
@@ -1076,7 +1082,8 @@ names(employment_province)[12] <- "GEO"
 
 employment_province <- 
   employment_province %>% 
-  select(GEO,Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(total_employment = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -1131,8 +1138,9 @@ for (j in 1:3) {
 names(unemployment_province)[12] <- "GEO"
 
 unemployment_province <- 
-  unemployment_province %>% 
-  select(GEO,Date,val_norm) %>% 
+  unemployment_province %>%
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(unemployment = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -1187,7 +1195,8 @@ names(employment_rate_province)[12] <- "GEO"
 
 employment_rate_province <- 
   employment_rate_province %>% 
-  select(GEO,Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
   rename(employment_rate = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -1220,14 +1229,16 @@ job_vacancy_rate_province <-
   filter(GEO %in% province_vector, 
          Date %in% date_vector) %>% 
   filter(Statistics=="Job vacancy rate") %>% 
-  select(GEO, Date,val_norm) %>% 
+  select(GEO,Date,val_norm)%>% 
   rename(job_vacancy_rate= val_norm) %>% 
   arrange(GEO,Date)
 
 
 job_vacancy <- inner_join(x=job_vacancy_province,
                           y=job_vacancy_rate_province,
-                          by=c("GEO","Date")) 
+                          by=c("GEO","Date")) %>% 
+               mutate(merge=paste0(GEO,Date)) %>% 
+              select(merge,GEO,Date,job_vacancy,job_vacancy_rate)
 
 
 
@@ -1284,7 +1295,8 @@ names(wages_province)[12] <- "GEO"
 
 wages_province <- 
   wages_province %>% 
-  select(GEO,Date,val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm) %>% 
   rename(wages = val_norm) %>% 
   arrange(GEO,Date)
 
@@ -1292,7 +1304,7 @@ wages_province <-
 province_labor  <- createWorkbook()
 
 #------------------------ 
-get_date(Inflation,3)
+get_date(Inflation,1)
 
 province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15]) 
 
@@ -1301,7 +1313,8 @@ inflation_province <-
           filter(GEO %in% province_vector, 
                  Date %in% date_vector) %>%
           filter(Products_and_product_groups=="All-items") %>% 
-          select(GEO,Date, val_norm) %>% 
+  mutate(merge=paste0(GEO,Date)) %>% 
+  select(merge,GEO,Date,val_norm)  %>% 
           rename(cpi = val_norm) %>% 
           arrange(GEO,Date)
 
@@ -1314,12 +1327,13 @@ immigration_province <-
             filter(GEO %in% province_vector, 
                    Date %in% date_vector) %>% 
             filter(Components_of_population_growth=="Immigrants") %>% 
-            select(GEO,Date, val_norm) %>% 
+              mutate(merge=paste0(GEO,Date)) %>% 
+              select(merge,GEO,Date,val_norm) %>% 
             rename(immigration = val_norm) %>% 
             arrange(GEO,Date)
 
         
-
+setwd("D:/economic_dashboard")
 province_labor  <- createWorkbook()
 
 #-------------------------------------------------
@@ -1336,7 +1350,7 @@ addWorksheet(province_labor ,"immigration_province")
 #-------------------------------------------------
 writeData(province_labor,sheet = "total_employment",x=employment_province)
 writeData(province_labor,sheet = "unemployment_rate",x=unemployment_province)
-writeData(province_labor,sheet = "employment_rate",x=employment_province)
+writeData(province_labor,sheet = "employment_rate",x=employment_rate_province)
 writeData(province_labor,sheet = "job_vacancy",x=job_vacancy)
 writeData(province_labor,sheet = "average_earning",x=wages_province)
 writeData(province_labor,sheet = "inflation_province",x=inflation_province)
