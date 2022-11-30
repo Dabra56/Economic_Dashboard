@@ -834,7 +834,7 @@ saveWorkbook(Demography_Social_Data,"Social_Data.xlsx",overwrite = TRUE)
 gdp_annual <-get_cansim("36-10-0222-01")
 
 
-province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+province_vector <- c(unique(gdp_annual$GEO)[1:14])
 
 
 names(gdp_annual )<-str_replace_all(names(gdp_annual ),
@@ -942,7 +942,7 @@ for (j in 1:3) {
 
 get_date(retail_trade,1)
  
-province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+province_vector <- c(unique(gdp_annual$GEO)[1:14])
  
 retail_trade_province <- 
   retail_trade %>% 
@@ -1211,7 +1211,8 @@ get_date(job_vacancy_monthly,1)
 
 names(job_vacancy_monthly )<-str_replace_all(names(job_vacancy_monthly  ),
                                              c(" " = "_" , "," = "_", "[(]" ="_","[)]"="_"))
-province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15])
+
+province_vector <- c(unique(gdp_annual$GEO)[1:14])
 
 
 job_vacancy_province <- 
@@ -1306,7 +1307,8 @@ province_labor  <- createWorkbook()
 #------------------------ 
 get_date(Inflation,1)
 
-province_vector <- c(unique(gdp_annual$GEO)[1:12],unique(gdp_annual$GEO)[14:15]) 
+province_vector <- c(unique(gdp_annual$GEO)[1:14])
+
 
 inflation_province <- 
      Inflation %>% 
