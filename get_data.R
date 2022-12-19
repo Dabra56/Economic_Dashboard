@@ -86,7 +86,7 @@ job_vacancy <-
 write.csv(x = job_vacancy, file="data/job_vacancy.csv")
 
 
-wages<- get_cansim_vector("v105812662",
+wages<- get_cansim_vector("v10581268",
                           start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(wages = val_norm)
