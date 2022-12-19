@@ -9,7 +9,7 @@ businesses <-
     select(Date,val_norm) %>% 
     rename(Active_Businesses = val_norm)
 
-write.csv(x = businesses, file="businesses.csv")
+write.csv(x = businesses, file="data/businesses.csv")
 
 
 
