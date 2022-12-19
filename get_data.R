@@ -2,6 +2,8 @@ library(tidyverse)
 library(cansim)
 
 
+# --------------------- ECONOMY -------------------------  # 
+
 businesses <- get_cansim_vector("v1203704156") %>% 
     select(Date,val_norm) %>% 
     rename(Active_Businesses = val_norm)
@@ -23,7 +25,6 @@ manufacturing <- get_cansim_vector("v800450") %>%
 
 write.csv(x = manufacturing, file="data/manufacturing.csv")
 
-
 export <- get_cansim_vector("v1001809606",
                             start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
@@ -33,8 +34,57 @@ write.csv(x = export, file="data/export.csv")
 
 
 
-retail <- get_cansim_vector("52367097") %>% 
+retail <- get_cansim_vector("v52367097",
+                            start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(retail = val_norm)
 
 write.csv(x = retail, file="data/retail.csv")
+
+# --------------------- LABOUR -------------------------  # 
+
+
+employment<- get_cansim_vector("v2062811",
+                                      start_time = "2000-01-01") %>% 
+                    select(Date,val_norm) %>% 
+                    rename(employment = val_norm)
+
+write.csv(x = employment, file="data/employment.csv")
+
+unemployment<- get_cansim_vector("v2062815",
+                                start_time = "2000-01-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(unemployment = val_norm)
+
+write.csv(x = unemployment, file="data/unemployment.csv")
+
+
+employment_rate<- get_cansim_vector("v2062952",
+                                  start_time = "2000-01-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(employment_rate = val_norm)
+
+write.csv(x = employment_rate, file="data/employment_rate.csv")
+
+
+job_vacancy_quarter<- get_cansim_vector("v104272652", 
+                                        end_time = "2020-10-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy = val_norm)
+
+
+job_vacancy_monthly<- get_cansim_vector("v1212389364",
+                                        start_time = "2020-11-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(job_vacancy = val_norm)
+
+
+job_vacancy <- 
+  bind_rows(job_vacancy_quarter,
+            job_vacancy_monthly)
+
+write.csv(x = job_vacancy, file="data/job_vacancy.csv")
+
+
+
+
