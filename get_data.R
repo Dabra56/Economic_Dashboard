@@ -43,7 +43,6 @@ write.csv(x = retail, file="data/retail.csv")
 
 # --------------------- LABOUR -------------------------  # 
 
-
 employment<- get_cansim_vector("v2062811",
                                       start_time = "2000-01-01") %>% 
                     select(Date,val_norm) %>% 
@@ -86,12 +85,18 @@ job_vacancy <-
 write.csv(x = job_vacancy, file="data/job_vacancy.csv")
 
 
-wages<- get_cansim_vector("v10581268",
+wages<- get_cansim_vector("v105812668",
                           start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(wages = val_norm)
 
 write.csv(x = wages, file="data/wages.csv")
 
+# --------------------- FINANCE -------------------------  # 
 
 
+
+household_debt<- get_cansim_vector("v1231415625",
+                          start_time = "2000-01-01") %>% 
+  select(Date,val_norm) %>% 
+  rename(household_debt = val_norm)
