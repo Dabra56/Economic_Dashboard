@@ -96,7 +96,40 @@ write.csv(x = wages, file="data/wages.csv")
 
 
 
-household_debt<- get_cansim_vector("v1231415625",
-                          start_time = "2000-01-01") %>% 
+household_debt<- get_cansim_vector("v1231415625") %>% 
   select(Date,val_norm) %>% 
   rename(household_debt = val_norm)
+
+
+government_debt<- get_cansim_vector("v52531047") %>% 
+  select(Date,val_norm) %>% 
+  rename(government_debt = val_norm)
+
+
+
+nominal_debt<- get_cansim_vector("v62305783") %>% 
+  select(Date,val_norm) %>% 
+  rename(nominal_gdp = val_norm)
+
+household_debt_gdp <- inner_join(household_debt,nominal_debt,by="Date")
+household_gvm_debt_gdp <- inner_join(household_debt_gdp,government_debt,by="Date")
+
+household_gvm_debt_gdp <- 
+  household_gvm_debt_gdp %>% 
+      mutate(Household = household_debt / nominal_gdp,
+             Government = government_debt / nominal_gdp) %>% 
+      select(Date, Household, Government)
+
+write.csv(x = household_gvm_debt_gdp, file="data/debt.csv")
+
+cpi<- get_cansim_vector("v41690973") %>% 
+  select(Date,val_norm) %>% 
+  rename(cpi = val_norm)
+
+cpi <- 
+  cpi %>%  mutate(yoy = ((cpi / lag(cpi, n=12))-1)*100) %>% 
+  select(Date,yoy) %>% 
+  filter(Date >= "1990-01-01")
+
+write.csv(x = cpi, file="data/cpi.csv")
+
