@@ -116,8 +116,8 @@ household_gvm_debt_gdp <- inner_join(household_debt_gdp,government_debt,by="Date
 
 household_gvm_debt_gdp <- 
   household_gvm_debt_gdp %>% 
-      mutate(Household = household_debt / nominal_gdp,
-             Government = government_debt / nominal_gdp) %>% 
+      mutate(Household = household_debt / nominal_gdp *100,
+             Government = government_debt / nominal_gdp *100) %>% 
       select(Date, Household, Government)
 
 write.csv(x = household_gvm_debt_gdp, file="data/debt.csv")
