@@ -133,3 +133,324 @@ cpi <-
 
 write.csv(x = cpi, file="data/cpi.csv")
 
+# Province - economy 
+
+vector_gdp <- c("v62787277",
+                "v62787378",
+                "v62787495",
+                "v62787612",
+                "v62787729",
+                "v62787846",
+                "v62787963",
+                "v62788080",
+                "v62788197",
+                "v62788314",
+                "v62788431")
+
+province_vector <- c("Canada",
+                     "Newfoundland and Labrador",
+                     "Prince Edward Island",
+                     "Nova Scotia",
+                     "New Brunswick",
+                     "Quebec",
+                     "Ontario",
+                     "Manitoba",
+                     "Saskatchewan",
+                     "Alberta",
+                     "British Colombia")
+
+dataframe_gdp <- data.frame()
+  
+for (i in 1:length(vector_gdp)) {
+  
+  gdp_province <- get_cansim_vector(vector_gdp[i]) 
+  tail =  tail(gdp_province$Date,n=1)
+  
+    gdp_province <- 
+      gdp_province  %>% 
+        mutate(y_o_y = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+        filter(Date==tail) %>% 
+        select(y_o_y) %>% bind_cols(province_vector[i]) 
+    
+    colnames(gdp_province)[2] <- "provinces"
+    
+    gdp_province <- 
+      gdp_province %>% 
+          select(provinces,y_o_y)
+    
+    dataframe_gdp <- 
+      dataframe_gdp %>% 
+        bind_rows(gdp_province)
+  
+}
+
+dataframe_gdp <- 
+  dataframe_gdp %>% 
+    rename(GDP = y_o_y)
+
+tail =  tail(manufacturing$Date,n=1)
+
+manufacturing_canada <- 
+  manufacturing %>% 
+       mutate(m_o_m = ((manufacturing / lag(manufacturing, n=1))-1)*100) %>% 
+  filter(Date==tail) %>% 
+  select(m_o_m)
+  
+
+vector_manuf <- c("v803786",
+                "v804246",
+                "v804706",
+                "v805166",
+                "v805626",
+                "v806086",
+                "v806546",
+                "v807006",
+                "v807466",
+                "v807928")
+
+
+province_vector <- c("Newfoundland and Labrador",
+                     "Prince Edward Island",
+                     "Nova Scotia",
+                     "New Brunswick",
+                     "Quebec",
+                     "Ontario",
+                     "Manitoba",
+                     "Saskatchewan",
+                     "Alberta",
+                     "British Colombia")
+
+
+for (i in 1:length(vector_manuf)) {
+  
+  manuf_province <- get_cansim_vector(vector_manuf[i]) 
+  tail =  tail(manuf_province$Date,n=1)
+  
+  manuf_province <- 
+    manuf_province  %>% 
+    mutate(m_o_m = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+    filter(Date==tail) %>% 
+    select(m_o_m) %>% bind_cols(province_vector[i]) 
+  
+   colnames(manuf_province)[2] <- "provinces"
+  
+ manuf_province <- 
+     manuf_province %>% 
+     select(provinces,m_o_m)
+   
+   manufacturing_canada <- 
+     manufacturing_canada %>% 
+     bind_rows(manuf_province)
+  
+}
+
+manufacturing_canada[1,2] <- "Canada"
+
+manufacturing_canada <- 
+  manufacturing_canada %>% 
+  rename(Manufacturing_Sales = m_o_m)
+
+
+
+vector_export <- c("v1001819785",
+                     "v1001820916",
+                     "v1001809606",
+                     "v1001817523",
+                     "v1001814130",
+                     "v1001810737",
+                     "v1001812999",
+                     "v1001816392",
+                     "v1001811868",
+                     "v1001815261",
+                     "v1001818654")
+
+province_vector <- c("Alberta",
+                          "British Colombia",
+                          "Canada",
+                          "Manitoba",
+                          "New Brunswick",
+                          "Newfoundland and Labrador",
+                          "Nova Scotia",
+                          "Ontario",
+                          "Prince Edward Island",
+                          "Quebec",
+                          "Saskatchewan")
+
+dataframe_export <- data.frame()
+
+for (i in 1:length(vector_export)) {
+  
+  export <- get_cansim_vector(vector_export[i]) 
+  tail =  tail(export$Date,n=1)
+  
+  export <- 
+    export  %>% 
+    mutate(m_o_m = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+    filter(Date==tail) %>% 
+    select(m_o_m) %>% bind_cols(province_vector[i]) 
+  
+  colnames(export)[2] <- "provinces"
+  
+  export <- 
+    export %>% 
+    select(provinces,m_o_m)
+  
+  
+  dataframe_export <- 
+    dataframe_export %>% 
+    bind_rows(export)
+  
+}
+
+dataframe_export <- 
+  dataframe_export %>% 
+  rename(Export = m_o_m)
+
+
+
+vector_retail <- c("v52367097",
+                   "v52367394",
+                   "v52367424",
+                   "v52367454",
+                   "v52367484",
+                   "v52367514",
+                   "v52367573",
+                   "v52367155",
+                   "v52367185",
+                   "v52367215",
+                   "v52367245")
+
+province_vector <- c("Canada",
+                     "Newfoundland and Labrador",
+                     "Prince Edward Island",
+                     "Nova Scotia",
+                     "New Brunswick",
+                     "Quebec",
+                     "Ontario",
+                     "Manitoba",
+                     "Saskatchewan",
+                     "Alberta",
+                     "British Colombia")
+
+dataframe_retail <- data.frame()
+
+for (i in 1:length(vector_retail)) {
+  
+  retail <- get_cansim_vector(vector_retail[i]) 
+  tail =  tail(retail$Date,n=1)
+  
+  retail <- 
+    retail  %>% 
+    mutate(m_o_m = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+    filter(Date==tail) %>% 
+    select(m_o_m) %>% bind_cols(province_vector[i]) 
+  
+  colnames(retail)[2] <- "provinces"
+  
+  retail <- 
+    retail %>% 
+    select(provinces,m_o_m)
+  
+  
+  dataframe_retail <- 
+    dataframe_retail %>% 
+    bind_rows(retail)
+  
+}
+
+dataframe_retail <- 
+  dataframe_retail %>% 
+  rename(Retail = m_o_m)
+
+
+
+
+vector_business <- c("v1203704156",
+                   "v1203704232",
+                   "v1203704384",
+                   "v1203704460",
+                   "v1203704612",
+                   "v1203704840",
+                   "v1203705296",
+                   "v1203706588",
+                   "v1203706740",
+                   "v1203706968",
+                   "v1203707272")
+
+province_vector <- c("Canada",
+                     "Newfoundland and Labrador",
+                     "Prince Edward Island",
+                     "Nova Scotia",
+                     "New Brunswick",
+                     "Quebec",
+                     "Ontario",
+                     "Manitoba",
+                     "Saskatchewan",
+                     "Alberta",
+                     "British Colombia")
+
+dataframe_business <- data.frame()
+
+for (i in 1:length(vector_business)) {
+  
+ business <- get_cansim_vector(vector_business[i]) 
+  tail =  tail(business$Date,n=1)
+  
+  business <- 
+    business  %>% 
+    mutate(m_o_m = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+    filter(Date==tail) %>% 
+    select(m_o_m) %>% bind_cols(province_vector[i]) 
+  
+  colnames(business)[2] <- "provinces"
+  
+  business <- 
+    business %>% 
+    select(provinces,m_o_m)
+  
+  
+  dataframe_business <- 
+    dataframe_business %>% 
+    bind_rows(business)
+  
+}
+
+dataframe_business <- 
+  dataframe_business %>% 
+  rename(Active_Businesses = m_o_m)
+
+
+dataframe_economy <- merge(x=dataframe_gdp,y=manufacturing_canada, by = "provinces")
+dataframe_economy <- merge(x=dataframe_economy,y=dataframe_export, by = "provinces")
+dataframe_economy <- merge(x=dataframe_economy,y=dataframe_retail, by = "provinces")
+dataframe_economy <- merge(x=dataframe_economy,y=dataframe_business, by = "provinces")
+
+
+
+dataframe_economy <- 
+  dataframe_economy %>% 
+    mutate(ColorGDP = case_when(
+                      round(GDP,digits = 2) < 0  ~ "RED", 
+                      round(GDP,digits = 2) == 0  ~ "YELLOW",
+                      round(GDP,digits = 2) > 0  ~ "GREEN"),
+           ColorManuf = case_when(
+             round(Manufacturing_Sales,digits = 2) < 0  ~ "RED", 
+             round(Manufacturing_Sales,digits = 2) == 0  ~ "YELLOW",
+             round(Manufacturing_Sales,digits = 2) > 0  ~ "GREEN"), 
+           ColorExport= case_when(
+             round(Export,digits = 2) < 0  ~ "RED", 
+             round(Export,digits = 2) == 0  ~ "YELLOW",
+             round(Export,digits = 2) > 0  ~ "GREEN"), 
+           ColorRetail= case_when(
+             round(Retail,digits = 2) < 0  ~ "RED", 
+             round(Retail,digits = 2) == 0  ~ "YELLOW",
+             round(Retail,digits = 2) > 0  ~ "GREEN"),
+           ColorActiveBusiness= case_when(
+             round(Active_Businesses,digits = 2) < 0  ~ "RED", 
+             round(Active_Businesses,digits = 2) == 0  ~ "YELLOW",
+             round(Active_Businesses,digits = 2) > 0  ~ "GREEN")) %>% 
+  select(provinces, GDP, ColorGDP, Manufacturing_Sales,ColorManuf,Export,ColorExport,Retail,ColorRetail,Active_Businesses,ColorActiveBusiness)
+
+
+write.csv(x = dataframe_economy, file="data/table_economy.csv")
+
