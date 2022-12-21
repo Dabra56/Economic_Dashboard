@@ -425,6 +425,20 @@ dataframe_economy <- merge(x=dataframe_economy,y=dataframe_export, by = "provinc
 dataframe_economy <- merge(x=dataframe_economy,y=dataframe_retail, by = "provinces")
 dataframe_economy <- merge(x=dataframe_economy,y=dataframe_business, by = "provinces")
 
+dataframe_economy <- 
+  dataframe_economy %>%
+  arrange(factor(provinces,levels=c("Canada",
+                                    "Alberta",
+                                    "British Colombia",
+                                    "Manitoba",
+                                    "New Brunswick",
+                                    "Newfoundland and Labrador",
+                                    "Nova Scotia",
+                                    "Ontario",
+                                    "Prince Edward Island",
+                                    "Quebec",
+                                    "Saskatchewan")))
+
 
 
 dataframe_economy <- 
@@ -737,10 +751,23 @@ colnames(dataframe_vacancy)[2] <- "Job vacancy rate"
 
 # MERGE
 
-
 dataframe_labor <- merge(x=dataframe_jobs,y=dataframe_unemployment, by = "provinces")
 dataframe_labor <- merge(x=dataframe_labor,y=dataframe_employment, by = "provinces")
 dataframe_labor <- merge(x=dataframe_labor,y=dataframe_vacancy, by = "provinces")
+
+dataframe_labor <- 
+  dataframe_labor %>%
+    arrange(factor(provinces,levels=c("Canada",
+                                      "Alberta",
+                                      "British Colombia",
+                                      "Manitoba",
+                                      "New Brunswick",
+                                      "Newfoundland and Labrador",
+                                      "Nova Scotia",
+                                      "Ontario",
+                                      "Prince Edward Island",
+                                      "Quebec",
+                                      "Saskatchewan")))
 
 
 write.csv(x = dataframe_labor, file="data/table_labor.csv")
