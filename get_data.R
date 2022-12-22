@@ -1191,7 +1191,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
   business_province <- 
     business_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
-           value = paste0(val_norm,""),
+           value =  value = paste0(round(val_norm/1000,digits=0)," K"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
            indicators = "Active businesses^Total number^",
@@ -1288,7 +1288,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
  
   # Job vacancies 
   
-  vacancy_rate_province <- get_cansim_vector(vector_vacancy_rate[1]) 
+  vacancy_rate_province <- get_cansim_vector(vector_vacancy_rate[i]) 
   tail =  tail(vacancy_rate_province$Date,n=1)
   
   vacancy_rate_province <- 
@@ -1380,7 +1380,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
   immigration_province <- 
     immigration_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
-           value = paste0(val_norm,""),
+           value = paste0(round(val_norm/1000,digits=1)," K"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^Q/Q^"),
            y_o_y = paste0(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1),"%","^Y/Y^"),
            indicators = "New immigrants ^Quarterly^",
@@ -1424,6 +1424,10 @@ colnames(labormarket_line) <- c("indicators","value","Date_mod","cont_canada","m
                               )
 
   colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
+  
+  
+  province_table[6,2] <- as.numeric(province_table[6,2])
+  
   
     file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
      write.csv(x = province_table, file=file_name)
