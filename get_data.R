@@ -1401,10 +1401,10 @@ retail_province <- get_cansim_vector(vector_retail[i])
   
   
   economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA,NA)   
-  colnames(economy_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
+  colnames(economy_line) <- c("indicators","value","Date_mod","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
   
 labormarket_line <- data.frame("Labor market",NA,NA,NA,NA,NA,NA,NA) 
-colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
+colnames(labormarket_line) <- c("indicators","value","Date_mod","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
 
 
   province_table <- bind_rows(economy_line,
@@ -1423,14 +1423,14 @@ colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m
                               immigration_province
                               )
 
-  colnames(province_table) <- c("Indicators","Date","Value","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
+  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
   
-   file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
-    write.csv(x = province_table, file=file_name)
-   
-  
+    file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
+     write.csv(x = province_table, file=file_name)
+    
+    
    #assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
-  # 
+  
 }
 
 
