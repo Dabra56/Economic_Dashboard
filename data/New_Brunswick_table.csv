@@ -5,12 +5,12 @@
 "3","Manufacturing sales ^Monthly^","$2.1^Billion^","2022-10","2.8%","-0.4%^M/M^","RED","29.1%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$1.2^Billion^","2022-10","2%","4.2%^M/M^","GREEN","35.4%^Y/Y^","GREEN"
 "5","Retail sales ^monthly^","$1.4^Billion^","2022-10","2.3%","3.2%^M/M^","GREEN","10.5%^Y/Y^","GREEN"
-"6","Active businesses^Total number^","17232","2022-09","1.9%","-0.2%^M/M^","RED","0.9%^Y/Y^","GREEN"
+"6","Active businesses^Total number^",NA,"2022-09","1.9%","-0.2%^M/M^","RED","0.9%^Y/Y^","GREEN"
 "7","Labor market",NA,NA,NA,NA,NA,NA,NA
 "8","Total employed ^Population with a job^","0.4^Million jobs^","2022-11","1.9%","-0.4%^M/M^","RED","2.4%^Y/Y^","GREEN"
 "9","Unemployment rate ^% of active workforce unemployed^","7.3%","2022-11","5.1%^in Canada^","0.6 p.p.^M/M^","RED","-1.1 p.p.^Y/Y^","GREEN"
 "10","Employment rate ^% of total population holding a job (25 - 54 years old)^","82.7%","2022-11","84.7%^in Canada^","0.7 p.p.^M/M^","GREEN","1.1 p.p.^Y/Y^","GREEN"
-"11","Job vacancies ^Number of unfilled positions^","15 K^5 % of payroll employees^","2022-10","1.6%","-2.4%^M/M^","GREEN","6%^Y/Y^","RED"
+"11","Job vacancies ^Number of unfilled positions^","15 K^4.2 % of payroll employees^","2022-10","1.6%","-2.4%^M/M^","GREEN","6%^Y/Y^","RED"
 "12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1223","2022-11","$1394^in Canada^","1.5%^M/M^","GREEN","10.6%^Y/Y^","GREEN"
 "13","Inflation ^Consumer price index (CPI) variations^","7.8%^Y/Y^","2022-11","6.8%^in Canada^","1%^M/M^","RED",NA,NA
-"14","New immigrants ^Quarterly^","3315","2022-07","2.7%","26.8%^Q/Q^","GREEN","92%^Y/Y^","GREEN"
+"14","New immigrants ^Quarterly^","3.3 K","2022-07","2.7%","26.8%^Q/Q^","GREEN","92%^Y/Y^","GREEN"
