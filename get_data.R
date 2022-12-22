@@ -1091,12 +1091,17 @@ for (i in 2:length(vector_vacancy)) {
       mutate(Date_mod=format(Date, "%Y"),
               value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
              m_o_m = NA,
+             color_mom = NA,
              y_o_y = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^Y/Y^"),
+             color_yoy = case_when(
+               round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+               round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+               round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
             indicators = "Real gross domestic product (GDP)
 ^Annual adjusted for inflation^")%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/gdp_canada_last_value*100,digits=1),"%")) %>% 
-  select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+  select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
 
   
 # Manufacturing 
@@ -1111,10 +1116,18 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Manufacturing sales ^Monthly^") %>% 
+           indicators = "Manufacturing sales ^Monthly^",
+            color_mom = case_when(
+              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+            color_yoy = case_when(
+              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/manuf_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
 
   
   # Export 
@@ -1129,10 +1142,18 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Exports ^Monthly^") %>% 
+           indicators = "Exports ^Monthly^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/export_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   # Retail trade 
   
@@ -1147,10 +1168,18 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Retail sales ^monthly^") %>% 
+           indicators = "Retail sales ^monthly^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/retail_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   #Business 
@@ -1165,10 +1194,18 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0(val_norm,""),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Active businesses^Total number^") %>% 
+           indicators = "Active businesses^Total number^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))  %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/business_canada_last_value*100,digits=1),"%")) %>%  
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   # Total jobs 
@@ -1183,10 +1220,18 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0(round(val_norm/1000000,digits=1),"^Million jobs^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Total employed ^Population with a job^") %>% 
+           indicators = "Total employed ^Population with a job^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/jobs_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
  
    
   # Unemployment rate 
@@ -1200,11 +1245,19 @@ retail_province <- get_cansim_vector(vector_retail[i])
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(round(val_norm,digits=1),"%"),
            m_o_m = paste0(round((((val_norm - lag(val_norm, n=1)))),digits=1)," p.p.","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12)))),digits=1)," p.p.","^Y/Y^"),
-           indicators = "Unemployment rate ^% of active workforce unemployed^") %>% 
+           y_o_y =  paste0(round((((val_norm - lag(val_norm, n=12)))),digits=1)," p.p.","^Y/Y^"),
+           indicators = "Unemployment rate ^% of active workforce unemployed^",
+           color_mom = case_when(
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) > 0  ~ "RED", 
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) < 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) > 0  ~ "RED", 
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(unemployment_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
  
   
   # Employment rate 
@@ -1218,11 +1271,20 @@ retail_province <- get_cansim_vector(vector_retail[i])
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(round(val_norm,digits=1),"%"),
            m_o_m = paste0(round((((val_norm - lag(val_norm, n=1)))),digits=1)," p.p.","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12)))),digits=1)," p.p.","^Y/Y^"),
-           indicators = "Employment rate ^% of total population holding a job (25 - 54 years old)^") %>% 
+           y_o_y =  paste0(round((((val_norm - lag(val_norm, n=12)))),digits=1)," p.p.","^Y/Y^"),
+           indicators = "Employment rate ^% of total population holding a job (25 - 54 years old)^",
+           color_mom = case_when(
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) < 0  ~ "RED", 
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm - lag(val_norm, n=1)))),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) < 0  ~ "RED", 
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm - lag(val_norm, n=12)))),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(employment_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y)
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+  
   
  
   # Job vacancies 
@@ -1246,10 +1308,18 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0(round(val_norm/1000,digits=0)," K","^",vacancy_rate_province," % of payroll employees^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Job vacancies ^Number of unfilled positions^") %>% 
+           indicators = "Job vacancies ^Number of unfilled positions^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/vacancy_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y) 
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   # Weekly earnings 
@@ -1264,10 +1334,19 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0("$",round(val_norm,digits=0)),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Average weekly earnings ^Full-time workers (25 - 54 years old)^") %>% 
+           indicators = "Average weekly earnings ^Full-time workers (25 - 54 years old)^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0("$",round(wages_canada_last_value,digits=0),"^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y) 
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+  
   
   
   # Inflation
@@ -1282,10 +1361,16 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y = NA ,
-           indicators = "Inflation ^Consumer price index (CPI) variations^") %>% 
+           indicators = "Inflation ^Consumer price index (CPI) variations^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+           color_yoy = NA )%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(inflation_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y) 
+      select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    
   
   
   # New immigrants
@@ -1299,20 +1384,29 @@ retail_province <- get_cansim_vector(vector_retail[i])
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(val_norm,""),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^Q/Q^"),
-           y_o_y = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "New immigrants ^Quarterly^") %>% 
+           y_o_y = paste0(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1),"%","^Y/Y^"),
+           indicators = "New immigrants ^Quarterly^",
+           color_mom = case_when(
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+           color_yoy = case_when(
+             round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) < 0  ~ "RED", 
+             round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) == 0  ~ "YELLOW",
+             round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) > 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/immigration_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,y_o_y) 
+    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   
   
-  economy_line <- data.frame("Economy",NA,NA,NA,NA,NA)   
-  colnames(economy_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","y_o_y")
   
-labormarket_line <- data.frame("Labor market",NA,NA,NA,NA,NA) 
-colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","y_o_y")
+  economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA,NA)   
+  colnames(economy_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
+  
+labormarket_line <- data.frame("Labor market",NA,NA,NA,NA,NA,NA,NA) 
+colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
 
 
   province_table <- bind_rows(economy_line,
@@ -1331,13 +1425,13 @@ colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m
                               immigration_province
                               )
 
-  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","") 
+  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","","","") 
   
    file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
-   write.csv(x = province_table, file=file_name)
+    write.csv(x = province_table, file=file_name)
    
   
-  # assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
+   #assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
   # 
 }
 
