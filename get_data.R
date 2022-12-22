@@ -1333,12 +1333,12 @@ colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m
 
   colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","") 
   
-  # file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
-  #  write.csv(x = province_table, file=file_name)
+   file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
+   write.csv(x = province_table, file=file_name)
+   
+  
+  # assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
   # 
-  
-  assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
-  
 }
 
 
