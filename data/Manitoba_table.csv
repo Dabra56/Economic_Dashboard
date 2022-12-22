@@ -1,4 +1,4 @@
-"","indicators","Date_mod","value","cont_canada","m_o_m","y_o_y"
+"","Indicators","Value","Date","Contribution to Canada","Recent variations",""
 "1","Economy",NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP)
 ^Annual adjusted for inflation^","2021","$66.9^Billion^","3.2%",NA,"1.8%^Y/Y^"
@@ -10,7 +10,7 @@
 "8","Total employed ^Population with a job^","2022-11","0.7^Million jobs^","3.4%","-0.8%^M/M^","1.3%^Y/Y^"
 "9","Unemployment rate ^% of active workforce unemployed^","2022-11","4.4%","5.1%^in Canada^","-0.2 p.p.^M/M^","0.9 p.p.^Y/Y^"
 "10","Employment rate ^% of total population holding a job (25 - 54 years old)^","2022-11","84.9%","84.7%^in Canada^","-1 p.p.^M/M^","1 p.p.^Y/Y^"
-"11","Job vacancies ^Number of unfilled positions^","2022-09","30 K^5.7 % of payroll employees^","3%","-1.8%^M/M^","14.3%^Y/Y^"
+"11","Job vacancies ^Number of unfilled positions^","2022-10","28 K^5 % of payroll employees^","3.1%","-5.3%^M/M^","8.9%^Y/Y^"
 "12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","2022-11","$1271","$1394^in Canada^","1.8%^M/M^","6%^Y/Y^"
 "13","Inflation ^Consumer price index (CPI) variations^","2022-11","8.5%^Y/Y^","6.8%^in Canada^","0.2%^M/M^",NA
 "14","New immigrants ^Quarterly^","2022-07","6384","5.2%","13.1%^Q/Q^","3.9%^Y/Y^"
