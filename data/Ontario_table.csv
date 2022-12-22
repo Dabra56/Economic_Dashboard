@@ -1,16 +1,16 @@
-"","Indicators","Value","Date","Contribution to Canada","Recent variations",""
-"1","Economy",NA,NA,NA,NA,NA
+"","Indicators","Value","Date","Contribution to Canada","Recent variations","","",""
+"1","Economy",NA,NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP)
-^Annual adjusted for inflation^","2021","$805.8^Billion^","38.3%",NA,"5.2%^Y/Y^"
-"3","Manufacturing sales ^Monthly^","2022-10","$31.1^Billion^","42.9%","1.7%^M/M^","12.9%^Y/Y^"
-"4","Exports ^Monthly^","2022-10","$19.1^Billion^","30.3%","-2.2%^M/M^","11.8%^Y/Y^"
-"5","Retail sales ^monthly^","2022-10","$22.5^Billion^","36.3%","-0.3%^M/M^","6.3%^Y/Y^"
-"6","Active businesses^Total number^","2022-09","356167","38.5%","-0.3%^M/M^","2.9%^Y/Y^"
-"7","Labor market",NA,NA,NA,NA,NA
-"8","Total employed ^Population with a job^","2022-11","7.7^Million jobs^","39.2%","0.3%^M/M^","1.5%^Y/Y^"
-"9","Unemployment rate ^% of active workforce unemployed^","2022-11","5.5%","5.1%^in Canada^","-0.4 p.p.^M/M^","0.8 p.p.^Y/Y^"
-"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","2022-11","83.7%","84.7%^in Canada^","0.3 p.p.^M/M^","1 p.p.^Y/Y^"
-"11","Job vacancies ^Number of unfilled positions^","2022-10","337 K^5 % of payroll employees^","37.3%","-9.8%^M/M^","-10.5%^Y/Y^"
-"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","2022-11","$1441","$1394^in Canada^","0.4%^M/M^","6.7%^Y/Y^"
-"13","Inflation ^Consumer price index (CPI) variations^","2022-11","6.4%^Y/Y^","6.8%^in Canada^","0.1%^M/M^",NA
-"14","New immigrants ^Quarterly^","2022-07","50124","41%","-1.1%^Q/Q^","9.1%^Y/Y^"
+^Annual adjusted for inflation^","2021","$805.8^Billion^","38.3%",NA,NA,"5.2%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","2022-10","$31.1^Billion^","42.9%","1.7%^M/M^","GREEN","12.9%^Y/Y^","GREEN"
+"4","Exports ^Monthly^","2022-10","$19.1^Billion^","30.3%","-2.2%^M/M^","RED","11.8%^Y/Y^","GREEN"
+"5","Retail sales ^monthly^","2022-10","$22.5^Billion^","36.3%","-0.3%^M/M^","RED","6.3%^Y/Y^","GREEN"
+"6","Active businesses^Total number^","2022-09","356167","38.5%","-0.3%^M/M^","RED","2.9%^Y/Y^","GREEN"
+"7","Labor market",NA,NA,NA,NA,NA,NA,NA
+"8","Total employed ^Population with a job^","2022-11","7.7^Million jobs^","39.2%","0.3%^M/M^","GREEN","1.5%^Y/Y^","GREEN"
+"9","Unemployment rate ^% of active workforce unemployed^","2022-11","5.5%","5.1%^in Canada^","-0.4 p.p.^M/M^","GREEN","-1 p.p.^Y/Y^","GREEN"
+"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","2022-11","83.7%","84.7%^in Canada^","0.3 p.p.^M/M^","GREEN","0.6 p.p.^Y/Y^","GREEN"
+"11","Job vacancies ^Number of unfilled positions^","2022-10","337 K^5 % of payroll employees^","37.3%","-9.8%^M/M^","GREEN","-10.5%^Y/Y^","GREEN"
+"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","2022-11","$1441","$1394^in Canada^","0.4%^M/M^","GREEN","6.7%^Y/Y^","GREEN"
+"13","Inflation ^Consumer price index (CPI) variations^","2022-11","6.4%^Y/Y^","6.8%^in Canada^","0.1%^M/M^","RED",NA,NA
+"14","New immigrants ^Quarterly^","2022-07","50124","41%","-1.1%^Q/Q^","RED","-15%^Y/Y^","RED"
