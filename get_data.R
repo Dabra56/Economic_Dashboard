@@ -1425,7 +1425,7 @@ colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m
                               immigration_province
                               )
 
-  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","","","") 
+  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
   
    file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
     write.csv(x = province_table, file=file_name)
