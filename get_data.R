@@ -1101,7 +1101,7 @@ for (i in 2:length(vector_vacancy)) {
 ^Annual adjusted for inflation^")%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/gdp_canada_last_value*100,digits=1),"%")) %>% 
-  select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
 
   
 # Manufacturing 
@@ -1127,7 +1127,7 @@ for (i in 2:length(vector_vacancy)) {
               round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/manuf_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
 
   
   # Export 
@@ -1153,7 +1153,7 @@ for (i in 2:length(vector_vacancy)) {
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/export_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   # Retail trade 
   
@@ -1179,7 +1179,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/retail_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   #Business 
@@ -1205,8 +1205,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))  %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/business_canada_last_value*100,digits=1),"%")) %>%  
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
-  
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   # Total jobs 
 
@@ -1231,7 +1230,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/jobs_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
  
    
   # Unemployment rate 
@@ -1257,7 +1256,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm - lag(val_norm, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(unemployment_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
  
   
   # Employment rate 
@@ -1283,7 +1282,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm - lag(val_norm, n=12)))),digits=1) > 0  ~ "GREEN")) %>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(employment_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
  
@@ -1319,8 +1318,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/vacancy_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
-  
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   # Weekly earnings 
   
@@ -1345,7 +1343,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0("$",round(wages_canada_last_value,digits=0),"^in Canada^")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   
@@ -1369,7 +1367,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
            color_yoy = NA )%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(inflation_canada_last_value,digits=1),"%","^in Canada^")) %>% 
-      select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
     
   
   
@@ -1396,7 +1394,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
              round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) > 0  ~ "GREEN"))%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(round(val_norm/immigration_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,Date_mod,value,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
   
   
@@ -1425,7 +1423,7 @@ colnames(labormarket_line) <- c("indicators","Date_mod","value","cont_canada","m
                               immigration_province
                               )
 
-  colnames(province_table) <- c("Indicators","Value","Date","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
+  colnames(province_table) <- c("Indicators","Date","Value","Contribution to Canada","Recent variations","ColorMoM","","ColorYoY") 
   
    file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
     write.csv(x = province_table, file=file_name)
