@@ -1472,7 +1472,7 @@ for (i in 2:length(vector_vacancy)) {
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
            indicators = "Produit intérieur brut (PIB) réel
-^Sur une base annuelle ajustée pour l'inflation^")%>% 
+^Sur une base annuelle et ajusté en fonction de l'inflation^")%>% 
     filter(Date==tail) %>% 
     mutate(cont_canada = paste0(format(round(val_norm/gdp_canada_last_value*100,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %")) %>% 
     select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
@@ -1733,7 +1733,7 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
            y_o_y = NA ,
-           indicators = "Inflation ^Variations de l'Ince des prix à la consommation (IPC)^",
+           indicators = "Inflation ^Variations de l'Indice des prix à la consommation (IPC)^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -1757,7 +1757,7 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0(format(round(val_norm/1000,digits=1),decimal.mark=",")," K"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^T/T^"),
            y_o_y = paste0(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1)," %","^A/A^"),
-           indicators = "Nouveaux immigrants ^Quarterly^",
+           indicators = "Nouveaux immigrants ^Données trimestrielles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -2238,4 +2238,127 @@ employment_gap_indigenous <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+# Wealth disparity 
 
+vector_wealth <- c("v1277968976",
+                   "v1277969009",
+                   "v1277969042",
+                   "v1277969075",
+                   "v1277969108")
+
+wealth_df <-  wealth_quintile <- 
+  get_cansim_vector("v1277968976") %>% 
+  select(Date,val_norm) %>% 
+  drop_na() %>% 
+  rename(wealth_1_quintile=val_norm)
+
+for (i in 2:length(vector_wealth)) {
+  
+  new_names = c("Date", paste0("wealth_",i,"_quintile"))
+  
+  wealth_quintile <- 
+    get_cansim_vector(vector_wealth[i]) %>% 
+    select(Date,val_norm) %>% 
+    drop_na()
+
+colnames(wealth_quintile) <- new_names
+  
+ wealth_df <- merge(wealth_df,wealth_quintile,by="Date")
+
+}
+
+
+wealth_df <- 
+  wealth_df %>% 
+    mutate(wealth_bottom_60 = wealth_1_quintile+wealth_2_quintile+wealth_3_quintile)
+
+tail =  tail(wealth_df$Date,n=1)
+
+wealth_df <- 
+  wealth_df %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"), 
+         value = paste0(round(wealth_bottom_60,digits=1),"%","^of total wealth^"),
+         m_o_m = paste0(round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1),"%","^Q/Q^"),
+         y_o_y = paste0(round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1),"%","^Y/Y^"),
+         indicators = "Wealth distribution ^Wealth of bottom 60%^",
+         color_mom = case_when(
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+
+
+files <- c("lfs/pub1121.csv","lfs/pub1022.csv","lfs/pub1122.csv") # Change for last month, last year
+
+NSNE_Young_People <- data.frame()
+
+for(i in files) {  
+  
+  Labor_Force <- read.csv(i) # CHANGE DATE
+  
+  Young_People <- Labor_Force %>% 
+    drop_na(AGE_12) %>% 
+    filter(AGE_12 == 1 | 
+             AGE_12 == 2 | 
+             AGE_12 == 3)
+  
+  Young_People_Weight <- Young_People %>% 
+    summarise(Young_People_Weight=sum(FINALWT))
+  
+  
+  Non_Student_Weight <- Young_People %>% 
+    drop_na(SCHOOLN) %>% 
+    filter(SCHOOLN=="1") %>% 
+    summarise(Young_Non_Student_Weight=sum(FINALWT))
+  
+  Non_Student_Non_Employed_Weight <-  Young_People %>% 
+    drop_na(SCHOOLN) %>% 
+    filter(SCHOOLN=="1") %>%
+    filter(LFSSTAT=="3" |
+             LFSSTAT=="4") %>% 
+    summarise(Young_Non_Student_Non_Employed_Weight=sum(FINALWT))   
+  
+  
+  Young_Not_student_Not_employed <- cbind(unique(Labor_Force$SURVYEAR),unique(Labor_Force$SURVMNTH),Young_People_Weight,Non_Student_Weight,Non_Student_Non_Employed_Weight)
+  
+  NSNE_Young_People <- rbind(NSNE_Young_People,Young_Not_student_Not_employed)
+  
+} 
+
+colnames(NSNE_Young_People)[1] <- "year"
+colnames(NSNE_Young_People)[2] <- "month"
+
+NSNE_Young_People <- 
+  NSNE_Young_People %>% 
+  mutate(nsne = (Young_Non_Student_Non_Employed_Weight/Young_People_Weight)*100, 
+         Date=paste(year,"-",month) ) 
+
+tail =  tail(NSNE_Young_People$Date,n=1)
+
+NSNE_Young_People <- 
+  NSNE_Young_People %>% 
+  mutate(Date_mod=Date,
+         value = paste0(round(nsne,digits=1),"%","^",format(round(Young_Non_Student_Non_Employed_Weight,digits = -3),big.mark = " "),"^"),
+         m_o_m = paste0(round((((nsne / lag(nsne, n=1))-1)*100),digits=1),"%","^Q/Q^"),
+         y_o_y = paste0(round((((nsne / lag(nsne, n=2))-1)*100),digits=1),"%","^Y/Y^"),
+         indicators = "Unactive youth ^Not employed, not studying or training (15-29)^",
+         color_mom = case_when(
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+# RENDU A FAIRE LE WAGE GAP
