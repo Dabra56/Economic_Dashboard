@@ -651,11 +651,10 @@ for (i in 2:length(vector_vacancy)) {
   # province_table[6,2] <- as.numeric(province_table[6,2])
   # 
   
-  # file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
-  # write.csv(x = province_table, file=file_name)
-  # 
-  
-  assign(x=paste0(cansim_gdp_province[i],"_table"),value=province_table,envir = .GlobalEnv)
+  file_name = paste0("data/",cansim_gdp_province[i],"_table.csv")
+   write.csv(x = province_table, file=file_name)
+   
+
   
 }
 
