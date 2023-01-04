@@ -1681,7 +1681,7 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0(round(val_norm/1000,digits=0)," K","^",format(vacancy_rate_province[[1]],decimal.mark=",")," % des employés^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
-           indicators = "Postes vacants ^Nombre de postes ouverts non-comblés^",
+           indicators = "Postes vacants ^Nombre de postes non-comblés^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -1827,7 +1827,7 @@ for (i in 2:length(vector_vacancy)) {
 gdp_canada <- get_cansim_vector("v65201210") 
 tail =  tail(gdp_canada$Date,n=1)
 
-gdp_canada <- 
+gdp_canada_final <- 
   gdp_canada %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
@@ -1845,6 +1845,23 @@ gdp_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_gdp_canada <- 
+  gdp_canada %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ",decimal.mark=",", scientific=FALSE),"^Milliards de dollars^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^") ,
+         indicators = "Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy =  case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 
@@ -1853,7 +1870,7 @@ gdp_canada <-
 
 tail =  tail(manuf_canada$Date,n=1)
 
-manuf_canada <- 
+manuf_canada_final <- 
   manuf_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
@@ -1871,12 +1888,30 @@ manuf_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_manuf_canada <- 
+  manuf_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000000000,digits=1),decimal.mark=","),"^Milliards de dollars^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Ventes manufacturières ^Données mensuelles^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 # Export 
 
 tail =  tail(export_canada$Date,n=1)
 
-export_canada <- 
+export_canada_final <- 
   export_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
@@ -1894,12 +1929,30 @@ export_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_export_canada <- 
+  export_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000000000,digits=1),decimal.mark=","),"^Milliards de dollars^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Exportations^Données mensuelles^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 # Retail trade 
 
 tail =  tail(retail_canada$Date,n=1)
 
 
-retail_canada <- 
+retail_canada_final <- 
   retail_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
@@ -1917,13 +1970,31 @@ retail_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_retail_canada <- 
+  retail_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000000000,digits=1),decimal.mark=","),"^Milliards de dollars^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Ventes au détail ^Données mensuelles^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 #Business 
 
 tail =  tail(business_canada$Date,n=1)
 
 
-business_canada <- 
+business_canada_final <- 
   business_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0(round(val_norm/1000,digits=0)," K"),
@@ -1941,6 +2012,25 @@ business_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_business_canada <- 
+  business_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000,digits=0),big.mark=" ", decimal.mark=",", scientific=FALSE)," K"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Entreprises actives",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))  %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
 # --------- LABOR MARKET ----------------
 
 # Total jobs 
@@ -1948,7 +2038,7 @@ business_canada <-
 tail =  tail(jobs_canada$Date,n=1)
 
 
-jobs_canada <- 
+jobs_canada_final <- 
   jobs_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0(round(val_norm/1000000,digits=1),"^Million jobs^"),
@@ -1966,12 +2056,30 @@ jobs_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_jobs_canada <- 
+  jobs_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000000,digits=1),decimal.mark=","),"^Millions d'emplois^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Emplois totaux ^Population avec un emploi^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 # Unemployment rate 
  
 tail =  tail(unemployment_canada$Date,n=1)
 
-unemployment_canada <- 
+unemployment_canada_final <- 
   unemployment_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0(round(val_norm,digits=1),"%"),
@@ -1990,11 +2098,30 @@ unemployment_canada <-
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
+fr_unemployment_canada <- 
+  unemployment_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm,digits=1),decimal.mark=",")," %"),
+         m_o_m = paste0(format(round((((val_norm - lag(val_norm, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm - lag(val_norm, n=12)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
+         indicators = "Taux de chômage ^% de la population active sans emploi^",
+         color_mom = case_when(
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) > 0  ~ "RED", 
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
 # Employment rate 
 
 tail =  tail(employment_canada$Date,n=1)
 
-employment_canada <- 
+employment_canada_final <- 
   employment_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0(round(val_norm,digits=1),"%"),
@@ -2012,6 +2139,23 @@ employment_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_employment_canada <- 
+  employment_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm,digits=1),decimal.mark=",")," %"),
+         m_o_m = paste0(format(round((((val_norm - lag(val_norm, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm - lag(val_norm, n=12)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
+         indicators = "Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^",
+         color_mom = case_when(
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) < 0  ~ "RED", 
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm - lag(val_norm, n=1)))),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) < 0  ~ "RED", 
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm - lag(val_norm, n=12)))),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 # Job vacancies 
@@ -2027,11 +2171,11 @@ vacancy_rate_canada <-
 tail =  tail(vacancy_canada$Date,n=1)
 
 
-vacancy_canada <- 
+vacancy_canada_final <- 
   vacancy_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
-         value = paste0(round(val_norm/1000,digits=0)," K","^",vacancy_rate_canada," % of payroll employees^"),
-         m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
+         value = paste0(round(val_norm/1000,digits=0)," K","^",vacancy_rate_canada,"% of payroll employees^"),
+         m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
          y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
          indicators = "Job vacancies ^Number of unfilled positions^",
          color_mom = case_when(
@@ -2045,9 +2189,28 @@ vacancy_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_vacancy_canada <- 
+  vacancy_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm/1000,digits=0),decimal.mark=",")," K","^",format(vacancy_rate_canada[[1]],decimal.mark=",")," % des employés^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Postes vacants ^Nombre de postes non-comblés^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "GREEN"))%>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 # Weekly earnings 
 
-wages_canada <- 
+tail =  tail(wages_canada$Date,n=1)
+
+wages_canada_final <- 
   wages_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0("$",round(val_norm,digits=0)),
@@ -2065,6 +2228,23 @@ wages_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_wages_canada <- 
+  wages_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(val_norm,digits=0),big.mark=" ", decimal.mark=",",scientific=FALSE),"$"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN"))%>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 # --------- FINANCE  ----------------
@@ -2082,6 +2262,25 @@ household_debt <-
          m_o_m = paste0(round((((Household - lag(Household, n=1)))),digits=1)," p.p.","^Q/Q^"),
          y_o_y =  paste0(round((((Household - lag(Household, n=4)))),digits=1)," p.p.","^Y/Y^"),
          indicators = "Household debt ^Weight on the economy^",
+         color_mom = case_when(
+           round((((Household - lag(Household, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((Household - lag(Household, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((Household - lag(Household, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((Household - lag(Household, n=4)))),digits=1) > 0  ~ "RED", 
+           round((((Household - lag(Household, n=4)))),digits=1) == 0  ~ "YELLOW",
+           round((((Household - lag(Household, n=4)))),digits=1) < 0  ~ "GREEN"))%>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+fr_household_debt <- 
+  household_gvm_debt_gdp  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(Household,digits=1),decimal.mark=",")," %"),
+         m_o_m = paste0(format(round((((Household - lag(Household, n=1)))),digits=1),decimal.mark=",")," p.p.","^T/T^"),
+         y_o_y =  paste0(format(round((((Household - lag(Household, n=4)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
+         indicators = "Dette des ménages ^Poids sur l'économie^",
          color_mom = case_when(
            round((((Household - lag(Household, n=1)))),digits=1) > 0  ~ "RED", 
            round((((Household - lag(Household, n=1)))),digits=1) == 0  ~ "YELLOW",
@@ -2114,11 +2313,30 @@ government_debt <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_government_debt <- 
+  household_gvm_debt_gdp  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round(Government,digits=1),decimal.mark=",")," %"),
+         m_o_m = paste0(format(round((((Government - lag(Government, n=1)))),digits=1),decimal.mark=",")," p.p.","^T/T^"),
+         y_o_y =  paste0(format(round((((Government - lag(Government, n=4)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
+         indicators = "Dette des gouvernements ^Poids sur l'économie^",
+         color_mom = case_when(
+           round((((Government - lag(Government, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((Government - lag(Government, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((Government - lag(Government, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((Government - lag(Government, n=4)))),digits=1) > 0  ~ "RED", 
+           round((((Government - lag(Government, n=4)))),digits=1) == 0  ~ "YELLOW",
+           round((((Government - lag(Government, n=4)))),digits=1) < 0  ~ "GREEN"))%>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
 # INFLATION
 
 tail =  tail(inflation_canada$Date,n=1)
 
-inflation_canada <- 
+inflation_canada_final <- 
   inflation_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          value = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
@@ -2132,6 +2350,23 @@ inflation_canada <-
          color_yoy = NA )%>% 
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+fr_inflation_canada <- 
+  inflation_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         value = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y = NA ,
+         indicators = "Inflation ^Variations de l'Indice des prix à la consommation (IPC)^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+         color_yoy = NA )%>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 
 # -------------------- Demography and social --------------------
@@ -2151,7 +2386,7 @@ population_canada_last_value <-
 
 tail =  tail(immigration_canada$Date,n=1)
 
-immigration_canada <- 
+immigration_canada_final <- 
   immigration_canada  %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^Q/Q^"),
@@ -2166,8 +2401,27 @@ immigration_canada <-
            round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) == 0  ~ "YELLOW",
            round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
   filter(Date==tail) %>% 
-  mutate( value = paste0(round(val_norm/1000,digits=1)," K","^Equivalent to ",round((val_norm*4)/population_canada_last_value*100,digits=1)," % of population annually")) %>% 
+  mutate( value = paste0(round(val_norm/1000,digits=1)," K","^Equivalent to ",round((val_norm*4)/population_canada_last_value*100,digits=1),"% of population annually^")) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+fr_immigration_canada <- 
+  immigration_canada  %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^T/T^"),
+         y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Nouveaux immigrants ^Donnéees trimestrielles^",
+         color_mom = case_when(
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  mutate( value = paste0(format(round(val_norm/1000,digits=1),decimal.mark=",")," K","^Equivalent à ",format(round((val_norm*4)/population_canada_last_value*100,digits=1),decimal.mark=",")," % de la population annuellement^")) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 # Immigration - employment gap
 
@@ -2184,7 +2438,7 @@ employment_gap_immigration <- inner_join(x=employment_rate_born_canada_female,y=
 tail =  tail(employment_gap_immigration$Date,n=1)
 
 
-employment_gap_immigration <- 
+employment_gap_immigration_final <- 
   employment_gap_immigration %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          difference = employment_rate_born_canada_female - employment_rate_immigrant_female, 
@@ -2192,6 +2446,25 @@ employment_gap_immigration <-
          m_o_m = paste0(round((((difference - lag(difference, n=1)))),digits=1)," p.p.","^M/M^"),
          y_o_y = paste0(round((((difference - lag(difference, n=12)))),digits=1)," p.p.","^Y/Y^"),
          indicators = "Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^",
+         color_mom = case_when(
+           round((((difference - lag(difference, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((difference - lag(difference, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((difference - lag(difference, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((difference - lag(difference, n=12)))),digits=1) > 0  ~ "RED", 
+           round((((difference - lag(difference, n=12)))),digits=1) == 0  ~ "YELLOW",
+           round((((difference - lag(difference, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+fr_employment_gap_immigration <- 
+  employment_gap_immigration %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         difference = employment_rate_born_canada_female - employment_rate_immigrant_female, 
+         value = paste0(format(round(difference,digits=1),digital.mark=",")," p.p."),
+         m_o_m = paste0(format(round((((difference - lag(difference, n=1)))),digits=1),digital.mark=",")," p.p.","^M/M^"),
+         y_o_y = paste0(format(round((((difference - lag(difference, n=12)))),digits=1),digital.mark=",")," p.p.","^A/A^"),
+         indicators = "Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^",
          color_mom = case_when(
            round((((difference - lag(difference, n=1)))),digits=1) > 0  ~ "RED", 
            round((((difference - lag(difference, n=1)))),digits=1) == 0  ~ "YELLOW",
@@ -2219,7 +2492,7 @@ employment_gap_indigenous <- inner_join(x=employment_rate_non_indigenous,y=emplo
 
 tail =  tail(employment_gap_indigenous$Date,n=1)
 
-employment_gap_indigenous <- 
+employment_gap_indigenous_final <- 
   employment_gap_indigenous %>% 
   mutate(Date_mod=format(Date, "%Y-%m"),
          difference = employment_rate_non_indigenous - employment_rate_indigenous, 
@@ -2237,6 +2510,26 @@ employment_gap_indigenous <-
            round((((difference - lag(difference, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+fr_employment_gap_indigenous <- 
+  employment_gap_indigenous %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"),
+         difference = employment_rate_non_indigenous - employment_rate_indigenous, 
+         value = paste0(format(round(difference,digits=1),decimal.mark=",")," p.p."),
+         m_o_m = paste0(format(round((((difference - lag(difference, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
+         y_o_y = paste0(format(round((((difference - lag(difference, n=12)))),digits=1),decimal.mark=",")," p.p.","^A/A"),
+         indicators = "Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^",
+         color_mom = case_when(
+           round((((difference - lag(difference, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((difference - lag(difference, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((difference - lag(difference, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((difference - lag(difference, n=12)))),digits=1) > 0  ~ "RED", 
+           round((((difference - lag(difference, n=12)))),digits=1) == 0  ~ "YELLOW",
+           round((((difference - lag(difference, n=12)))),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 
 # Wealth disparity 
 
@@ -2274,7 +2567,7 @@ wealth_df <-
 
 tail =  tail(wealth_df$Date,n=1)
 
-wealth_df <- 
+wealth_df_final <- 
   wealth_df %>% 
   mutate(Date_mod=format(Date, "%Y-%m"), 
          value = paste0(round(wealth_bottom_60,digits=1),"%","^of total wealth^"),
@@ -2292,6 +2585,23 @@ wealth_df <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_wealth_df <- 
+  wealth_df %>% 
+  mutate(Date_mod=format(Date, "%Y-%m"), 
+         value = paste0(format(round(wealth_bottom_60,digits=1),decimal.mark=",")," %","^de la richesse totale^"),
+         m_o_m = paste0(format(round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1),decimal.mark=",")," %","^T/T^"),
+         y_o_y = paste0(format(round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Distribution de la richesse ^Richesse des 60 % les moins riches^",
+         color_mom = case_when(
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((wealth_bottom_60 / lag(wealth_bottom_60, n=4))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 
@@ -2342,13 +2652,32 @@ NSNE_Young_People <-
 
 tail =  tail(NSNE_Young_People$Date,n=1)
 
-NSNE_Young_People <- 
+NSNE_Young_People_final <- 
   NSNE_Young_People %>% 
   mutate(Date_mod=Date,
          value = paste0(round(nsne,digits=1),"%","^",format(round(Young_Non_Student_Non_Employed_Weight,digits = -3),big.mark = " "),"^"),
-         m_o_m = paste0(round((((nsne / lag(nsne, n=1))-1)*100),digits=1),"%","^Q/Q^"),
+         m_o_m = paste0(round((((nsne / lag(nsne, n=1))-1)*100),digits=1),"%","^M/M^"),
          y_o_y = paste0(round((((nsne / lag(nsne, n=2))-1)*100),digits=1),"%","^Y/Y^"),
          indicators = "Unactive youth ^Not employed, not studying or training (15-29)^",
+         color_mom = case_when(
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((nsne / lag(nsne, n=1))-1)*100),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((nsne / lag(nsne, n=2))-1)*100),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+fr_NSNE_Young_People <- 
+  NSNE_Young_People %>% 
+  mutate(Date_mod=Date,
+         value = paste0(format(round(nsne,digits=1),decimal.mark=","),"%","^",format(round(Young_Non_Student_Non_Employed_Weight,digits = -3),big.mark = " "),"^"),
+         m_o_m = paste0(format(round((((nsne / lag(nsne, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
+         y_o_y = paste0(format(round((((nsne / lag(nsne, n=2))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
+         indicators = "Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^",
          color_mom = case_when(
            round((((nsne / lag(nsne, n=1))-1)*100),digits=1) >  0  ~ "RED", 
            round((((nsne / lag(nsne, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -2440,7 +2769,7 @@ wage_difference_women <-
          value = paste0(round(wage_difference_percent,digits=1),"%"),
          m_o_m = paste0(round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1)," p.p.","^M/M^"),
          y_o_y = paste0(round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1)," p.p.","^Y/Y^"),
-         indicators = "Women wage gap ^% of diffenrence with men (adjusted by industry)^",
+         indicators = "Women wage gap ^% of difference with men (adjusted by industry)^",
          color_mom = case_when(
            round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) > 0  ~ "RED", 
            round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) == 0  ~ "YELLOW",
@@ -2453,15 +2782,42 @@ wage_difference_women <-
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
+fr_wage_difference_women <- 
+  Wage_Difference_Loop %>% 
+  mutate(wage_difference_percent = -Wage_Difference / Average_Wage_Women * 100, 
+         Date=paste(year,"-",month))%>% 
+  mutate(Date_mod=Date,
+         value = paste0(format(round(wage_difference_percent,digits=1),decimal.mark=",")," %"),
+         m_o_m = paste0(format(round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
+         y_o_y = paste0(format(round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
+         indicators = "Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^",
+         color_mom = case_when(
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) > 0  ~ "RED", 
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) == 0  ~ "YELLOW",
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
 # Impute lines by hand for environmental components
 
 ghg_population <- data.frame("Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN")
 colnames(ghg_population) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 
-non_ghg_electricity <- data.frame("Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. % ^Since 2016","GREEN")
+non_ghg_electricity <- data.frame("Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN")
 colnames(non_ghg_electricity) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
+
+fr_ghg_population <- data.frame("Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN")
+colnames(fr_ghg_population) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+fr_non_ghg_electricity <- data.frame("Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN")
+colnames(fr_non_ghg_electricity) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 # Energy demand
 
@@ -2483,13 +2839,13 @@ energy_use_gdp <-
 
 tail =  tail(energy_use_gdp$Date,n=1)
 
-energy_use_gdp <- 
+energy_use_gdp_final <- 
   energy_use_gdp %>% 
   mutate(Date_mod=format(Date, "%Y"),
-         value = paste0(round(energy_use_gdp,digits=1),"^Terajouler per million $ of real GDP^"),
+         value = paste0(round(energy_use_gdp,digits=1),"^Terajoules per million $ of real GDP^"),
          m_o_m = NA,
          y_o_y = paste0(round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1),"%","^Y/Y^") ,
-         indicators = "Hybrid and electric vehicles",
+         indicators = "Energy use ^Intensity in the economy^",
          color_mom = NA,
          color_yoy = case_when(
            round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) >  0  ~ "RED", 
@@ -2498,6 +2854,20 @@ energy_use_gdp <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+fr_energy_use_gdp <- 
+  energy_use_gdp %>% 
+  mutate(Date_mod=format(Date, "%Y"),
+         value = paste0(format(round(energy_use_gdp,digits=1),decimal.mark=","),"^Terajoules par million de $ de PIB réel^"),
+         m_o_m = NA,
+         y_o_y = paste0(format(round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1),decimal_mark=",")," %","^A/YA") ,
+         indicators = "Utilisation d'énergie ^Intensité dans l'économie^",
+         color_mom = NA,
+         color_yoy = case_when(
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 
@@ -2531,7 +2901,7 @@ for (i in 1:length(vector_cars)) {
 
 tail =  tail(cars_fuel$Date,n=1)
 
-cars_fuel <- 
+cars_fuel_final <- 
   cars_fuel %>% 
   mutate(hybrid_electric = (fueltype_1+fueltype_2+fueltype_3)/all_fuel_type*100) %>% 
   mutate(Date_mod=format(Date, "%Y"),
@@ -2546,6 +2916,24 @@ cars_fuel <-
            round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) > 0  ~ "GREEN")) %>% 
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+fr_cars_fuel <- 
+  cars_fuel %>% 
+  mutate(hybrid_electric = (fueltype_1+fueltype_2+fueltype_3)/all_fuel_type*100) %>% 
+  mutate(Date_mod=format(Date, "%Y"),
+         value = paste0(format(round(hybrid_electric,digits=1),decimal.mark=","),"%","^des nouvelles immatriculations^"),
+         m_o_m = NA,
+         y_o_y = paste0(format(round(hybrid_electric - lag(hybrid_electric, n=1),digits=1),decimal.mark=",")," p.p.","^A/A") ,
+         indicators = "Hybrid and electric vehicles",
+         color_mom = NA,
+         color_yoy =  case_when(
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) < 0  ~ "RED", 
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) == 0  ~ "YELLOW",
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
 
 
 economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA)   
@@ -2567,39 +2955,94 @@ colnames(sustainability_line) <- c("indicators","value","Date_mod","m_o_m","colo
 
 
 
+fr_economy_line <- data.frame("Economie",NA,NA,NA,NA,NA,NA)   
+colnames(fr_economy_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+fr_labor_line <- data.frame("Marché de l'emploi",NA,NA,NA,NA,NA,NA)   
+colnames(fr_labor_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+fr_finance_line <- data.frame("Finance",NA,NA,NA,NA,NA,NA)   
+colnames(fr_finance_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+fr_demography_social_line <- data.frame("Demographie et société",NA,NA,NA,NA,NA,NA)   
+colnames(fr_demography_social_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+fr_sustainability_line <- data.frame("Environnement",NA,NA,NA,NA,NA,NA)   
+colnames(fr_sustainability_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
 
 canada_table <- bind_rows(economy_line,
-                          gdp_canada,
-                          manuf_canada,
-                          export_canada,
-                          retail_canada,
-                          business_canada,
+                          gdp_canada_final,
+                          manuf_canada_final,
+                          export_canada_final,
+                          retail_canada_final,
+                          business_canada_final,
                           labor_line,
-                          jobs_canada,
-                          unemployment_canada,
-                          employment_canada,
-                          vacancy_canada,
-                          wages_canada,
+                          jobs_canada_final,
+                          unemployment_canada_final,
+                          employment_canada_final,
+                          vacancy_canada_final,
+                          wages_canada_final,
                           finance_line,
                           household_debt,
                           government_debt,
-                          inflation_canada,
+                          inflation_canada_final,
                           demography_social_line,
-                          immigration_canada,
-                          employment_gap_immigration,
-                          employment_gap_indigenous,
-                          wealth_df,
-                          NSNE_Young_People,
+                          immigration_canada_final,
+                          employment_gap_immigration_final,
+                          employment_gap_indigenous_final,
+                          wealth_df_final,
+                          NSNE_Young_People_final,
                           wage_difference_women,
                           sustainability_line,
                           ghg_population,
                           non_ghg_electricity,
-                          energy_use_gdp,
-                          cars_fuel
+                          energy_use_gdp_final,
+                          cars_fuel_final
 )
 
 colnames(canada_table) <- c("Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY") 
 
 write.csv(x = canada_table, file="data/canada_table.csv")
+
+
+
+
+fr_canada_table <- bind_rows(fr_economy_line,
+                          fr_gdp_canada,
+                          fr_manuf_canada,
+                          fr_export_canada,
+                          fr_retail_canada,
+                          fr_business_canada,
+                          fr_labor_line,
+                          fr_jobs_canada,
+                          fr_unemployment_canada,
+                          fr_employment_canada,
+                          fr_vacancy_canada,
+                          fr_wages_canada,
+                          fr_finance_line,
+                          fr_household_debt,
+                          fr_government_debt,
+                          fr_inflation_canada,
+                          fr_demography_social_line,
+                          fr_immigration_canada,
+                          fr_employment_gap_immigration,
+                          fr_employment_gap_indigenous,
+                          fr_wealth_df,
+                          fr_NSNE_Young_People,
+                          fr_wage_difference_women,
+                          fr_sustainability_line,
+                          fr_ghg_population,
+                          fr_non_ghg_electricity,
+                          fr_energy_use_gdp,
+                          fr_cars_fuel)
+
+colnames(fr_canada_table) <- c("Indicateurs","Valeur","Date","Variations récentes","ColorMoM","","ColorYoY") 
+
+write.csv(x = fr_canada_table, file="data/fr_canada_table.csv")
+
+
 
 
