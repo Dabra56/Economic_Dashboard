@@ -2600,5 +2600,6 @@ canada_table <- bind_rows(economy_line,
 
 colnames(canada_table) <- c("Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY") 
 
+write.csv(x = canada_table, file="data/canada_table.csv")
 
 
