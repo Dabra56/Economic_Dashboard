@@ -2360,5 +2360,245 @@ NSNE_Young_People <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
+# WAGE GAP - WOMEN VS MEN
 
-# RENDU A FAIRE LE WAGE GAP
+
+Wage_Difference_Loop <- data.frame()
+
+for(i in files) {  
+  
+  Labor_Force <- read.csv(i) # CHANGE DATE
+  
+  Wages_People_25_54 <- Labor_Force %>% 
+    drop_na(AGE_12,LFSSTAT,HRLYEARN) %>% 
+    filter(AGE_12 == 3 | 
+             AGE_12 == 4 | 
+             AGE_12 == 5 | 
+             AGE_12 == 6 |
+             AGE_12 == 7 |
+             AGE_12 == 8 ) %>% 
+    filter(LFSSTAT == 1 | 
+             LFSSTAT==2)
+  
+  Wage_Men_Industry <- Wages_People_25_54 %>% 
+    drop_na(NAICS_21) %>% 
+    filter(SEX==1) %>% 
+    group_by(NAICS_21) %>% 
+    summarise(Average_Wage = weighted.mean(HRLYEARN,FINALWT) )
+  
+  Weight_Men_Industry <- Wages_People_25_54 %>% 
+    drop_na(NAICS_21) %>% 
+    filter(SEX==1) %>% 
+    group_by(NAICS_21) %>% 
+    summarise(Weight = sum(FINALWT) )
+  
+  Men_Wage_Average <- merge(Wage_Men_Industry,Weight_Men_Industry, by="NAICS_21") 
+  
+  
+  Wage_Women_Industry <- Wages_People_25_54 %>% 
+    drop_na(NAICS_21) %>% 
+    filter(SEX==2) %>% 
+    group_by(NAICS_21) %>% 
+    summarise(Average_Wage_Women = weighted.mean(HRLYEARN,FINALWT) )
+  
+  Weight_Women_Industry <- Wages_People_25_54 %>% 
+    drop_na(NAICS_21) %>% 
+    filter(SEX==2) %>% 
+    group_by(NAICS_21) %>% 
+    summarise(Weight_Women = sum(FINALWT) )
+  
+  Women_Wage_Average <- merge(Wage_Women_Industry,Weight_Women_Industry, by="NAICS_21") 
+  
+  Wage_Difference <- merge(Men_Wage_Average, Women_Wage_Average, by="NAICS_21") %>% 
+    mutate(Wage_Difference_Industry=Average_Wage_Women - Average_Wage) %>% 
+    summarise(Wage_Difference = weighted.mean(Wage_Difference_Industry,Weight_Women))
+  
+  Average_Wage_Women <-  Women_Wage_Average %>% 
+    summarise(Average_Wage_Women = weighted.mean(Average_Wage_Women,Weight_Women))
+  
+  Final_Wage_Difference <-   cbind(unique(Labor_Force$SURVYEAR),unique(Labor_Force$SURVMNTH),Average_Wage_Women,Wage_Difference)
+  
+  
+  Wage_Difference_Loop <- rbind( Wage_Difference_Loop , Final_Wage_Difference)
+  
+} 
+
+colnames(Wage_Difference_Loop)[1] <- "year"
+colnames(Wage_Difference_Loop)[2] <- "month"
+
+wage_difference_women <- 
+  Wage_Difference_Loop %>% 
+    mutate(wage_difference_percent = -Wage_Difference / Average_Wage_Women * 100, 
+           Date=paste(year,"-",month))
+
+
+tail =  tail(wage_difference_women$Date,n=1)
+
+wage_difference_women <- 
+  wage_difference_women %>% 
+  mutate(Date_mod=Date,
+         value = paste0(round(wage_difference_percent,digits=1),"%"),
+         m_o_m = paste0(round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1)," p.p.","^M/M^"),
+         y_o_y = paste0(round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1)," p.p.","^Y/Y^"),
+         indicators = "Women wage gap ^% of diffenrence with men (adjusted by industry)^",
+         color_mom = case_when(
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) > 0  ~ "RED", 
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) == 0  ~ "YELLOW",
+           round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1) < 0  ~ "GREEN"),
+         color_yoy = case_when(
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) > 0  ~ "RED", 
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) == 0  ~ "YELLOW",
+           round((((wage_difference_percent - lag(wage_difference_percent, n=2)))),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+# Impute lines by hand for environmental components
+
+ghg_population <- data.frame("Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN")
+colnames(ghg_population) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+non_ghg_electricity <- data.frame("Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. % ^Since 2016","GREEN")
+colnames(non_ghg_electricity) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+# Energy demand
+
+
+energy_use <- get_cansim_vector("v54272321") %>% 
+  select(Date,val_norm) %>% 
+  rename(energy_demand_tj = val_norm)
+
+
+gdp_annual<- get_cansim_vector("v62787277") %>% 
+  select(Date,val_norm) %>% 
+  rename(gdp = val_norm)
+
+energy_use_gdp <- merge(energy_use,gdp_annual,by="Date")
+
+energy_use_gdp <- 
+  energy_use_gdp %>% 
+    mutate(energy_use_gdp=energy_demand_tj/(gdp/1000000))
+
+tail =  tail(energy_use_gdp$Date,n=1)
+
+energy_use_gdp <- 
+  energy_use_gdp %>% 
+  mutate(Date_mod=format(Date, "%Y"),
+         value = paste0(round(energy_use_gdp,digits=1),"^Terajouler per million $ of real GDP^"),
+         m_o_m = NA,
+         y_o_y = paste0(round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1),"%","^Y/Y^") ,
+         indicators = "Hybrid and electric vehicles",
+         color_mom = NA,
+         color_yoy = case_when(
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) >  0  ~ "RED", 
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1) < 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+
+
+# Hybrid and electric cars
+
+
+vector_cars<- c("v1079014835",
+                   "v1079014836",
+                   "v1079014837") # Vectors of the battery, hybrid and plug-in hybrid vehicles respectively
+
+cars_fuel <- get_cansim_vector("v1079014832") %>% 
+  select(Date,val_norm) %>% 
+  rename(all_fuel_type = val_norm)
+
+
+for (i in 1:length(vector_cars)) {
+  
+  new_names = c("Date", paste0("fueltype_",i))
+  
+  cars_fuel_type <- 
+    get_cansim_vector(vector_cars[i]) %>% 
+    select(Date,val_norm) %>% 
+    drop_na()
+  
+  colnames(cars_fuel_type) <- new_names
+  
+  cars_fuel <- merge(cars_fuel,cars_fuel_type,all=TRUE)
+  
+}
+
+
+tail =  tail(cars_fuel$Date,n=1)
+
+cars_fuel <- 
+  cars_fuel %>% 
+  mutate(hybrid_electric = (fueltype_1+fueltype_2+fueltype_3)/all_fuel_type*100) %>% 
+  mutate(Date_mod=format(Date, "%Y"),
+         value = paste0(round(hybrid_electric,digits=1),"%","^of new registrations^"),
+         m_o_m = NA,
+         y_o_y = paste0(round(hybrid_electric - lag(hybrid_electric, n=1),digits=1)," p.p.","^Y/Y^") ,
+         indicators = "Hybrid and electric vehicles",
+         color_mom = NA,
+         color_yoy =  case_when(
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) < 0  ~ "RED", 
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) == 0  ~ "YELLOW",
+           round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) > 0  ~ "GREEN")) %>% 
+  filter(Date==tail) %>% 
+  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
+
+
+economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA)   
+colnames(economy_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+labor_line <- data.frame("Labor market",NA,NA,NA,NA,NA,NA)   
+colnames(labor_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+finance_line <- data.frame("Finance",NA,NA,NA,NA,NA,NA)   
+colnames(finance_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+demography_social_line <- data.frame("Demography and social",NA,NA,NA,NA,NA,NA)   
+colnames(demography_social_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+sustainability_line <- data.frame("Sustainability",NA,NA,NA,NA,NA,NA)   
+colnames(sustainability_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
+
+
+
+
+canada_table <- bind_rows(economy_line,
+                          gdp_canada,
+                          manuf_canada,
+                          export_canada,
+                          retail_canada,
+                          business_canada,
+                          labor_line,
+                          jobs_canada,
+                          unemployment_canada,
+                          employment_canada,
+                          vacancy_canada,
+                          wages_canada,
+                          finance_line,
+                          household_debt,
+                          government_debt,
+                          inflation_canada,
+                          demography_social_line,
+                          immigration_canada,
+                          employment_gap_immigration,
+                          employment_gap_indigenous,
+                          wealth_df,
+                          NSNE_Young_People,
+                          wage_difference_women,
+                          sustainability_line,
+                          ghg_population,
+                          non_ghg_electricity,
+                          energy_use_gdp,
+                          cars_fuel
+)
+
+colnames(canada_table) <- c("Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY") 
+
+
+
