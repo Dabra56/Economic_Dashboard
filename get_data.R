@@ -465,15 +465,81 @@ dataframe_economy <-
              round(Active_Businesses,digits = 2) > 0  ~ "GREEN")) %>% 
   select(provinces, GDP, ColorGDP, Manufacturing_Sales,ColorManuf,Export,ColorExport,Retail,ColorRetail,Active_Businesses,ColorActiveBusiness)
 
+# Extracting the last date to use in column names 
+
+tail_manufacturing <-
+  tail(manufacturing$Date,n=1) %>% 
+    format("%Y-%m")
+
+retail_date <- get_cansim_vector("v52367097") 
+
+tail_retail <-
+  tail(retail_date$Date,n=1) %>% 
+  format("%Y-%m")
+
+export_date <- get_cansim_vector("v1001819785") 
+
+tail_export <-
+  tail(export_date$Date,n=1) %>% 
+  format("%Y-%m")
+
+tail_business <-
+  tail(businesses$Date,n=1) %>% 
+  format("%Y-%m")
+
+
+colnames(dataframe_economy) <- c("Provinces", 
+                                "GDP ^Y/Y^", 
+                                "ColorGDP",
+                                paste0("Manufacturing sales","^",tail_manufacturing,"^"),
+                                "ColorManuf",
+                                paste0("Export","^",tail_export,"^"),
+                                "ColorExport",
+                                paste0("Retail sales","^",tail_retail,"^"),
+                                "ColorRetail",
+                                paste0("Active businesses","^",tail_business,"^"),
+                                "ColorBusinesses")
+
+fr_dataframe_economy <- 
+  dataframe_economy 
+    
+  fr_dataframe_economy[3,1] <- "Colombie-Britannique"
+  fr_dataframe_economy[5,1] <- "Nouveau-Brunswick"
+  fr_dataframe_economy[6,1] <- "Terre-Neuve-et-Labrador"
+  fr_dataframe_economy[7,1] <- "Nouvelle-Écosse"
+  fr_dataframe_economy[9,1] <- "Île-du-Prince-Édouard"
+  fr_dataframe_economy[10,1] <- "Québec"
+  
+
+colnames(fr_dataframe_economy) <- c("Provinces", 
+                                 "PIB ^A/YA", 
+                                 "ColorGDP",
+                                 paste0("Ventes manufacturières","^",tail_manufacturing,"^"),
+                                 "ColorManuf",
+                                 paste0("Exportations","^",tail_export,"^"),
+                                 "ColorExport",
+                                 paste0("Ventes au détail","^",tail_retail,"^"),
+                                 "ColorRetail",
+                                 paste0("Entreprises actives","^",tail_business,"^"),
+                                 "ColorBusinesses")
+
+
 
 write.csv(x = dataframe_economy, file="data/table_economy.csv")
-
+write.csv(x = fr_dataframe_economy, file="data/fr_table_economy.csv")
 
 # ---------------------------- INFLATION TABLE -----------------------------
 
 cpi_all_items  <- get_cansim_vector("v41690973")
 
 tail =  tail(cpi_all_items$Date,n=1)
+
+last_date <- 
+  cpi_all_items %>% 
+  filter(Date==tail) %>% 
+  select(Date) %>% 
+  mutate(Date=format(format(Date, "%Y-%m")))
+
 
 cpi_all_items <- 
   cpi_all_items %>% 
@@ -482,6 +548,7 @@ cpi_all_items <-
              component = "Consumer price index (CPI)") %>% 
       filter(Date==tail) %>% 
       select(component, y_o_y,m_o_m)
+
 
 cpi_no_energy <- get_cansim_vector("v41691238")%>% 
   mutate(y_o_y = ((val_norm / lag(val_norm, n=12))-1)*100,
@@ -525,9 +592,17 @@ cpi_services<- get_cansim_vector("v41691230")%>%
   filter(Date==tail) %>% 
   select(component, y_o_y,m_o_m)
 
+
 inflation_table <- bind_rows(cpi_all_items,cpi_no_energy,cpi_food, cpi_shelter,cpi_transport, cpi_good,cpi_services)
 
-colnames(inflation_table) <- c("","Year/Year","Month/Month")
+inflation_table <- 
+  inflation_table %>% 
+    bind_cols(last_date) %>% 
+      select(component,Date,y_o_y,m_o_m)
+
+colnames(inflation_table) <- c("","Date","Year/Year","Month/Month")
+
+
 
 write.csv(x = inflation_table, file="data/table_inflation.csv")
 
@@ -769,6 +844,30 @@ dataframe_labor <-
                                       "Quebec",
                                       "Saskatchewan")))
 
+
+employment_date <- get_cansim_vector("v2062952") 
+
+tail_employment <-
+  tail(employment_date$Date,n=1) %>% 
+  format("%Y-%m") 
+
+vacancy_date <- get_cansim_vector("v1212389365") 
+
+tail_vacancy <-
+  tail(vacancy_date$Date,n=1) %>% 
+  format("%Y-%m")
+
+dataframe_labor <- 
+  dataframe_labor %>% 
+    bind_cols(tail_employment,tail_vacancy) %>% 
+    select(provinces,
+           `Job variations ^M/M^`,
+           `Job variations ^Y/Y^`,
+           ...7,
+           `Unemployment rate`,
+           `Employment rate ^25-54 years old^`,
+           `Job vacancy rate`,
+           ...8)
 
 write.csv(x = dataframe_labor, file="data/table_labor.csv")
 
@@ -1403,7 +1502,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
   economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA,NA)   
   colnames(economy_line) <- c("indicators","value","Date_mod","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
   
-labormarket_line <- data.frame("Labor market",NA,NA,NA,NA,NA,NA,NA) 
+labormarket_line <- data.frame("Labour market",NA,NA,NA,NA,NA,NA,NA) 
 colnames(labormarket_line) <- c("indicators","value","Date_mod","cont_canada","m_o_m","color_mom","y_o_y","color_yoy")
 
 
@@ -2924,7 +3023,7 @@ fr_cars_fuel <-
          value = paste0(format(round(hybrid_electric,digits=1),decimal.mark=","),"%","^des nouvelles immatriculations^"),
          m_o_m = NA,
          y_o_y = paste0(format(round(hybrid_electric - lag(hybrid_electric, n=1),digits=1),decimal.mark=",")," p.p.","^A/A") ,
-         indicators = "Hybrid and electric vehicles",
+         indicators = "Véhicules hybrides et électriques",
          color_mom = NA,
          color_yoy =  case_when(
            round(hybrid_electric - lag(hybrid_electric, n=1),digits=1) < 0  ~ "RED", 
@@ -2939,7 +3038,7 @@ fr_cars_fuel <-
 economy_line <- data.frame("Economy",NA,NA,NA,NA,NA,NA)   
 colnames(economy_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
-labor_line <- data.frame("Labor market",NA,NA,NA,NA,NA,NA)   
+labor_line <- data.frame("Labour market",NA,NA,NA,NA,NA,NA)   
 colnames(labor_line) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 
