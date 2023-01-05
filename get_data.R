@@ -857,17 +857,8 @@ tail_vacancy <-
   tail(vacancy_date$Date,n=1) %>% 
   format("%Y-%m")
 
-dataframe_labor <- 
-  dataframe_labor %>% 
-    bind_cols(tail_employment,tail_vacancy) %>% 
-    select(provinces,
-           `Job variations ^M/M^`,
-           `Job variations ^Y/Y^`,
-           ...7,
-           `Unemployment rate`,
-           `Employment rate ^25-54 years old^`,
-           `Job vacancy rate`,
-           ...8)
+colnames(dataframe_labor)[4] <- paste0("Unemployment rate","^",tail_employment,"^")
+colnames(dataframe_labor)[6] <- paste0("Job vacancy rate","^",tail_vacancy,"^")
 
 write.csv(x = dataframe_labor, file="data/table_labor.csv")
 
