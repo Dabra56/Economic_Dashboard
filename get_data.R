@@ -512,7 +512,7 @@ fr_dataframe_economy <-
   
 
 colnames(fr_dataframe_economy) <- c("Provinces", 
-                                 "PIB ^A/YA", 
+                                 "PIB ^A/A^", 
                                  "ColorGDP",
                                  paste0("Ventes manufacturières","^",tail_manufacturing,"^"),
                                  "ColorManuf",
