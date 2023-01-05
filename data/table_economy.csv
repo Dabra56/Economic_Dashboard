@@ -1,4 +1,4 @@
-"","provinces","GDP","ColorGDP","Manufacturing_Sales","ColorManuf","Export","ColorExport","Retail","ColorRetail","Active_Businesses","ColorActiveBusiness"
+"","Provinces","GDP ^Y/Y^","ColorGDP","Manufacturing sales^2022-10^","ColorManuf","Export^2022-11^","ColorExport","Retail sales^2022-10^","ColorRetail","Active businesses^2022-09^","ColorBusinesses"
 "1","Canada",5.01177529041306,"GREEN",2.7679342816006,"GREEN",-4.45587074510462,"RED",1.35812867945606,"GREEN",-0.265880535041418,"RED"
 "2","Alberta",4.76050727126274,"GREEN",7.30266150460681,"GREEN",-6.09197525687775,"RED",1.52211702190068,"GREEN",-0.371574154012833,"RED"
 "3","British Colombia",6.12419168569505,"GREEN",-1.19880076409951,"RED",-14.6870972614644,"RED",1.27234540090155,"GREEN",-0.407105371475613,"RED"
