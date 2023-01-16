@@ -2,7 +2,7 @@
 "1","Economy",NA,NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP)
 ^Annual adjusted for inflation^","$82.5^Billion^","2021","3.9%",NA,NA,"-0.9%^Y/Y^","RED"
-"3","Manufacturing sales ^Monthly^","$2.4^Billion^","2022-10","3.3%","7.4%^M/M^","GREEN","27.3%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","$2.3^Billion^","2022-11","3.2%","-2.5%^M/M^","RED","27%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$5.1^Billion^","2022-11","8.5%","-5.8%^M/M^","RED","44.5%^Y/Y^","GREEN"
 "5","Retail sales ^monthly^","$2.2^Billion^","2022-10","3.5%","3.7%^M/M^","GREEN","9%^Y/Y^","GREEN"
 "6","Active businesses^Total number^","25 K","2022-09","2.7%","-0.6%^M/M^","RED","0.1%^Y/Y^","GREEN"
