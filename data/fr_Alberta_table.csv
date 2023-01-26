@@ -10,7 +10,7 @@
 "8","Emplois totaux ^Population avec un emploi^","2,4^Millions d'emplois^","2022-12","12,1 %","1 %^M/M^","GREEN","3.9 %^A/A^","GREEN"
 "9","Taux de chômage ^% de la population active sans emploi^"," 5,8 %","2022-12","5 %^au Canada^","0 p.p.^M/M^","YELLOW","-1.7 p.p.^A/A^","GREEN"
 "10","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,3 %","2022-12","84,6 %^au Canada^","0 p.p.^M/M^","YELLOW","1 p.p.^A/A^","GREEN"
-"11","Postes vacants ^Nombre de postes non-comblés^","108 K^5,1 % des employés^","2022-10","12 %","4.2 %^M/M^","RED","14.4 %^A/A^","RED"
+"11","Postes vacants ^Nombre de postes non-comblés^","96 K^4,6 % des employés^","2022-11","11,7 %","-10.8 %^M/M^","GREEN","7.5 %^A/A^","RED"
 "12","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 493$","2022-12","1 396 $^au Canada^","0.2 %^M/M^","GREEN","1 %^A/A^","GREEN"
 "13","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 6,0 %^A/A^","2022-12","6,3 %^au Canada^","-0.5 %^M/M^","GREEN",NA,NA
 "14","Nouveaux immigrants ^Données trimestrielles^","12,6 K","2022-07","10,3 %","-11.4 %^T/T^","RED","9.7 %^A/A^","GREEN"
