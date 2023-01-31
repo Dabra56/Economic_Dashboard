@@ -1,24 +1,24 @@
 "","Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY"
 "1","Economy",NA,NA,NA,NA,NA,NA
-"2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2073.6^Billion^","2022-10","0.1%^M/M^","GREEN","3.1%^Y/Y^","GREEN"
+"2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2077.2^Billion^","2022-11","0.1%^M/M^","GREEN","2.8%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$72.3^Billion^","2022-11","0%^M/M^","YELLOW","12.8%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$59.7^Billion^","2022-11","-4.5%^M/M^","RED","10.8%^Y/Y^","GREEN"
 "5","Retail sales ^monthly^","$61.8^Billion^","2022-11","-0.1%^M/M^","RED","5.2%^Y/Y^","GREEN"
-"6","Active businesses^Total number^","924 K","2022-09","-0.3%^M/M^","RED","2%^Y/Y^","GREEN"
+"6","Active businesses^Total number^","925 K","2022-10","-0.3%^M/M^","RED","1.7%^Y/Y^","GREEN"
 "7","Labour market",NA,NA,NA,NA,NA,NA
-"8","Total employed ^Population with a job^","19.8^Million jobs^","2022-12","0.5%^M/M^","GREEN","2%^Y/Y^","GREEN"
+"8","Total employed ^Population with a job^","19.9^Million jobs^","2022-12","0.3%^M/M^","GREEN","2.1%^Y/Y^","GREEN"
 "9","Unemployment rate ^% of active workforce unemployed^","5%","2022-12","-0.1 p.p.^M/M^","GREEN","-1 p.p.^Y/Y^","GREEN"
-"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.6%","2022-12","-0.1 p.p.^M/M^","RED","0.4 p.p.^Y/Y^","GREEN"
+"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.8%","2022-12","0 p.p.^M/M^","YELLOW","0.4 p.p.^Y/Y^","GREEN"
 "11","Job vacancies ^Number of unfilled positions^","823 K^4.6% of payroll employees^","2022-11","-8.8 %^M/M^","GREEN","-7.9%^Y/Y^","GREEN"
-"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1396","2022-12","0.1%^M/M^","GREEN","5.5%^Y/Y^","GREEN"
+"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1419","2022-12","-0.1%^M/M^","RED","5.1%^Y/Y^","GREEN"
 "13","Finance",NA,NA,NA,NA,NA,NA
 "14","Household debt ^Weight on the economy^","98.6%","2022-07","2.3 p.p.^Q/Q^","RED","-2.9 p.p.^Y/Y^","GREEN"
 "15","Government debt ^Weight on the economy^","81.1%","2022-07","1 p.p.^Q/Q^","RED","-16.7 p.p.^Y/Y^","GREEN"
 "16","Inflation ^Consumer price index (CPI) variations^","6.3%^Y/Y^","2022-12","-0.6%^M/M^","GREEN",NA,NA
 "17","Demography and social",NA,NA,NA,NA,NA,NA
 "18","New immigrants ^Quarterly^","122.1 K^Equivalent to 1.2% of population annually^","2022-07","3.4%^Q/Q^","GREEN","-0.6%^Y/Y^","RED"
-"19","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.6 p.p.","2022-12","-0.3 p.p.^M/M^","GREEN","-0.3 p.p.^Y/Y^","GREEN"
-"20","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","8 p.p.","2022-12","0.3 p.p.^M/M^","RED","-0.7 p.p.^Y/Y^","GREEN"
+"19","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.9 p.p.","2022-12","-0.4 p.p.^M/M^","GREEN","0 p.p.^Y/Y^","YELLOW"
+"20","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","7.8 p.p.","2022-12","0.5 p.p.^M/M^","RED","-0.3 p.p.^Y/Y^","GREEN"
 "21","Wealth distribution ^Wealth of bottom 60%^","11.9%^of total wealth^","2022-07","-2.5%^Q/Q^","RED","-2.5%^Y/Y^","RED"
 "22","Unactive youth ^Not employed, not studying or training (15-29)^","9%^640 000^","2022 - 12","-2.8%^M/M^","GREEN","-4%^Y/Y^","GREEN"
 "23","Women wage gap ^% of difference with men (adjusted by industry)^","13.5%","2022 - 12","1.5 p.p.^M/M^","RED","1 p.p.^Y/Y^","RED"

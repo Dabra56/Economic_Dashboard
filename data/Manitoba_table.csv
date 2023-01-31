@@ -5,12 +5,12 @@
 "3","Manufacturing sales ^Monthly^","$2.1^Billion^","2022-11","2.9%","-5.8%^M/M^","RED","18.1%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$2.1^Billion^","2022-11","3.6%","-5.1%^M/M^","RED","45.3%^Y/Y^","GREEN"
 "5","Retail sales ^monthly^","$2.2^Billion^","2022-11","3.6%","1.4%^M/M^","GREEN","12%^Y/Y^","GREEN"
-"6","Active businesses^Total number^","28 K","2022-09","3.1%","-0.2%^M/M^","RED","0.9%^Y/Y^","GREEN"
+"6","Active businesses^Total number^","28 K","2022-10","3.1%","-0.2%^M/M^","RED","0.9%^Y/Y^","GREEN"
 "7","Labour market",NA,NA,NA,NA,NA,NA,NA
-"8","Total employed ^Population with a job^","0.7^Million jobs^","2022-12","3.4%","1%^M/M^","GREEN","1.7%^Y/Y^","GREEN"
-"9","Unemployment rate ^% of active workforce unemployed^","4.4%","2022-12","5%^in Canada^","0 p.p.^M/M^","YELLOW","-0.9 p.p.^Y/Y^","GREEN"
-"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","85.4%","2022-12","84.6%^in Canada^","0.5 p.p.^M/M^","GREEN","1.3 p.p.^Y/Y^","GREEN"
+"8","Total employed ^Population with a job^","0.7^Million jobs^","2022-12","3.4%","0%^M/M^","YELLOW","1.7%^Y/Y^","GREEN"
+"9","Unemployment rate ^% of active workforce unemployed^","4.3%","2022-12","5%^in Canada^","0.1 p.p.^M/M^","RED","-0.8 p.p.^Y/Y^","GREEN"
+"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","85.6%","2022-12","84.8%^in Canada^","-0.5 p.p.^M/M^","RED","1.2 p.p.^Y/Y^","GREEN"
 "11","Job vacancies ^Number of unfilled positions^","21 K^3.3 % of payroll employees^","2022-11","2.5%","-26.5%^M/M^","GREEN","-23%^Y/Y^","GREEN"
-"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1259","2022-12","$1396^in Canada^","-1%^M/M^","RED","5.2%^Y/Y^","GREEN"
+"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1271","2022-12","$1419^in Canada^","0.1%^M/M^","GREEN","5.7%^Y/Y^","GREEN"
 "13","Inflation ^Consumer price index (CPI) variations^","8%^Y/Y^","2022-12","6.3%^in Canada^","-1%^M/M^","GREEN",NA,NA
 "14","New immigrants ^Quarterly^","6.4 K","2022-07","5.2%","13.1%^Q/Q^","GREEN","36.5%^Y/Y^","GREEN"
