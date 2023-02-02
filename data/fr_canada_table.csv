@@ -1,4 +1,4 @@
-"","Indicateurs","Valeur","Date","Variations récentes","ColorMoM","","ColorYoY"
+"","Indicateurs","Valeur","Dernières données","Variations récentes","ColorMoM","","ColorYoY"
 "1","Economie",NA,NA,NA,NA,NA,NA
 "2","Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^","2 077,2^Milliards de dollars^","2022-11","  0,1 %^M/M^","GREEN","  2,8 %^A/A^","GREEN"
 "3","Ventes manufacturières ^Données mensuelles^","72,3^Milliards de dollars^","2022-11","  0,0 %^M/M^","YELLOW"," 12,8 %^A/A^","GREEN"
@@ -18,7 +18,7 @@
 "17","Demographie et société",NA,NA,NA,NA,NA,NA
 "18","Nouveaux immigrants ^Donnéees trimestrielles^","122,1 K^Equivalent à 1,2 % de la population annuellement^","2022-07","  3,4 %^T/T^","GREEN"," -0,6 %^A/A^","RED"
 "19","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.9 p.p.","2022-12","-0.4 p.p.^M/M^","GREEN"," 0.0 p.p.^A/A^","YELLOW"
-"20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^"," 7,8 p.p.","2022-12"," 0,5 p.p.^M/M^","RED","-0,3 p.p.^A/A","GREEN"
+"20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^"," 7,8 p.p.","2022-12"," 0,5 p.p.^M/M^","RED","-0,3 p.p.^A/A^","GREEN"
 "21","Distribution de la richesse ^Richesse des 60 % les moins riches^","11,9 %^de la richesse totale^","2022-07","-2,5 %^T/T^","RED","-2,5 %^A/A^","RED"
 "22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","9,0%^640 000^","2022 - 12","-2,8 %^M/M^","GREEN","-4 %^A/A^","GREEN"
 "23","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,5 %","2022 - 12"," 1,5 p.p.^M/M^","RED"," 1 p.p.^A/A^","RED"
