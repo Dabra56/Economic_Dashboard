@@ -1795,7 +1795,7 @@ for (i in 2:length(vector_vacancy)) {
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm,digits=0),big.mark=" "),"$"),
            m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
-           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),big.mark=" ", decimal.mark=",",scientific=FALSE),digits=1)," %","^A/A^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
