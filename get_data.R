@@ -816,7 +816,7 @@ for (i in 1:length(vector_vacancy)) {
   
 }
 
-colnames(dataframe_vacancy)[2] <- NA
+colnames(dataframe_vacancy)[2] <- "provinces"
 dataframe_vacancy <- 
   dataframe_vacancy %>% 
   select(provinces,val_norm) 
