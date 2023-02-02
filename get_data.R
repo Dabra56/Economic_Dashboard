@@ -2607,7 +2607,7 @@ fr_employment_gap_indigenous <-
          difference = employment_rate_non_indigenous - employment_rate_indigenous, 
          value = paste0(format(round(difference,digits=1),decimal.mark=",")," p.p."),
          m_o_m = paste0(format(round((((difference - lag(difference, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
-         y_o_y = paste0(format(round((((difference - lag(difference, n=12)))),digits=1),decimal.mark=",")," p.p.","^A/A"),
+         y_o_y = paste0(format(round((((difference - lag(difference, n=12)))),digits=1),decimal.mark=",")," p.p.","^A/A^"),
          indicators = "Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^",
          color_mom = case_when(
            round((((difference - lag(difference, n=1)))),digits=1) > 0  ~ "RED", 
@@ -3129,7 +3129,7 @@ fr_canada_table <- bind_rows(fr_economy_line,
                           fr_energy_use_gdp,
                           fr_cars_fuel)
 
-colnames(fr_canada_table) <- c("Indicateurs","Valeur","Date","Variations récentes","ColorMoM","","ColorYoY") 
+colnames(fr_canada_table) <- c("Indicateurs","Valeur","Dernières données","Variations récentes","ColorMoM","","ColorYoY") 
 
 write.csv(x = fr_canada_table, file="data/fr_canada_table.csv")
 
