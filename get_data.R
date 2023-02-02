@@ -1556,7 +1556,7 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
            m_o_m = NA,
            color_mom = NA,
-           y_o_y = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^A/A^"),
+           y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            color_yoy = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -1578,8 +1578,8 @@ for (i in 2:length(vector_vacancy)) {
     manuf_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Ventes manufacturières ^Données mensuelles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1604,8 +1604,8 @@ for (i in 2:length(vector_vacancy)) {
     export_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y = paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Exportations ^Données mensuelles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1630,8 +1630,8 @@ for (i in 2:length(vector_vacancy)) {
     retail_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Ventes au détail ^Données mensuelles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1656,8 +1656,8 @@ for (i in 2:length(vector_vacancy)) {
     business_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000,digits=0),big.mark=" ")," K"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Entreprises actives",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1681,8 +1681,8 @@ for (i in 2:length(vector_vacancy)) {
     job_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000000,digits=1),decimal.mark=","),"^Millions d'emplois^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Emplois totaux ^Population avec un emploi^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1707,8 +1707,8 @@ for (i in 2:length(vector_vacancy)) {
     unemployment_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %"),
-           m_o_m = paste0(round((((val_norm - lag(val_norm, n=1)))),digits=1)," p.p.","^M/M^"),
-           y_o_y =  paste0(round((((val_norm - lag(val_norm, n=12)))),digits=1)," p.p.","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm - lag(val_norm, n=1)))),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," p.p.","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm - lag(val_norm, n=12)))),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," p.p.","^A/A^"),
            indicators = "Taux de chômage ^% de la population active sans emploi^",
            color_mom = case_when(
              round((((val_norm - lag(val_norm, n=1)))),digits=1) > 0  ~ "RED", 
@@ -1733,8 +1733,8 @@ for (i in 2:length(vector_vacancy)) {
     employment_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %"),
-           m_o_m = paste0(round((((val_norm - lag(val_norm, n=1)))),digits=1)," p.p.","^M/M^"),
-           y_o_y =  paste0(round((((val_norm - lag(val_norm, n=12)))),digits=1)," p.p.","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm - lag(val_norm, n=1)))),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," p.p.","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm - lag(val_norm, n=12)))),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," p.p.","^A/A^"),
            indicators = "Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^",
            color_mom = case_when(
              round((((val_norm - lag(val_norm, n=1)))),digits=1) < 0  ~ "RED", 
@@ -1769,8 +1769,8 @@ for (i in 2:length(vector_vacancy)) {
     vacancy_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(round(val_norm/1000,digits=0)," K","^",format(vacancy_rate_province[[1]],decimal.mark=",")," % des employés^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Postes vacants ^Nombre de postes non-comblés^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "RED", 
@@ -1794,8 +1794,8 @@ for (i in 2:length(vector_vacancy)) {
     wages_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm,digits=0),big.mark=" "),"$"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
+           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),big.mark=" ", decimal.mark=",",scientific=FALSE),digits=1)," %","^A/A^"),
            indicators = "Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
@@ -1821,7 +1821,7 @@ for (i in 2:length(vector_vacancy)) {
     inflation_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^M/M^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
            y_o_y = NA ,
            indicators = "Inflation ^Variations de l'Indice des prix à la consommation (IPC)^",
            color_mom = case_when(
@@ -1845,8 +1845,8 @@ for (i in 2:length(vector_vacancy)) {
     immigration_province  %>% 
     mutate(Date_mod=format(Date, "%Y-%m"),
            value = paste0(format(round(val_norm/1000,digits=1),decimal.mark=",")," K"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1)," %","^T/T^"),
-           y_o_y = paste0(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1)," %","^A/A^"),
+           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^T/T^"),
+           y_o_y = paste0(format(round((((val_norm / lag(val_norm, n=4))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
            indicators = "Nouveaux immigrants ^Données trimestrielles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
