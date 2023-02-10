@@ -2949,7 +2949,7 @@ fr_energy_use_gdp <-
   mutate(Date_mod=format(Date, "%Y"),
          value = paste0(format(round(energy_use_gdp,digits=1),decimal.mark=","),"^Terajoules par million de $ de PIB réel^"),
          m_o_m = NA,
-         y_o_y = paste0(format(round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1),decimal_mark=",")," %","^A/YA") ,
+         y_o_y = paste0(format(round((((energy_use_gdp / lag(energy_use_gdp, n=1))-1)*100),digits=1),decimal_mark=",")," %","^A/A^") ,
          indicators = "Utilisation d'énergie ^Intensité dans l'économie^",
          color_mom = NA,
          color_yoy = case_when(
@@ -3013,7 +3013,7 @@ fr_cars_fuel <-
   mutate(Date_mod=format(Date, "%Y"),
          value = paste0(format(round(hybrid_electric,digits=1),decimal.mark=","),"%","^des nouvelles immatriculations^"),
          m_o_m = NA,
-         y_o_y = paste0(format(round(hybrid_electric - lag(hybrid_electric, n=1),digits=1),decimal.mark=",")," p.p.","^A/A") ,
+         y_o_y = paste0(format(round(hybrid_electric - lag(hybrid_electric, n=1),digits=1),decimal.mark=",")," p.p.","^A/A^") ,
          indicators = "Véhicules hybrides et électriques",
          color_mom = NA,
          color_yoy =  case_when(
