@@ -6,22 +6,22 @@
 "5","Ventes au détail ^Données mensuelles^","61,8^Milliards de dollars^","2022-11"," -0,1 %^M/M^","RED","  5,2 %^A/A^","GREEN"
 "6","Entreprises actives","925 K","2022-10","-0,3 %^M/M^","RED","  1,7 %^A/A^","GREEN"
 "7","Marché de l'emploi",NA,NA,NA,NA,NA,NA
-"8","Emplois totaux ^Population avec un emploi^","19,9^Millions d'emplois^","2022-12","  0,3 %^M/M^","GREEN","  2,1 %^A/A^","GREEN"
-"9","Taux de chômage ^% de la population active sans emploi^"," 5,0 %","2022-12","-0,1 p.p.^M/M^","GREEN","-1,0 p.p.^A/A^","GREEN"
-"10","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,8 %","2022-12"," 0,0 p.p.^M/M^","YELLOW","  0,4 p.p.^A/A^","GREEN"
+"8","Emplois totaux ^Population avec un emploi^","20,0^Millions d'emplois^","2023-01","  0,8 %^M/M^","GREEN","  3,9 %^A/A^","GREEN"
+"9","Taux de chômage ^% de la population active sans emploi^"," 5,0 %","2023-01"," 0,0 p.p.^M/M^","YELLOW","-1,5 p.p.^A/A^","GREEN"
+"10","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","85,3 %","2023-01"," 0,5 p.p.^M/M^","GREEN","  1,5 p.p.^A/A^","GREEN"
 "11","Postes vacants ^Nombre de postes non-comblés^"," 823 K^4,6 % des employés^","2022-11"," -8,8 %^M/M^","GREEN"," -7,9 %^A/A^","GREEN"
-"12","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 419$","2022-12","-0,1 %^M/M^","RED","5,1 %^A/A^","GREEN"
+"12","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 426$","2023-01"," 0,5 %^M/M^","GREEN","4,4 %^A/A^","GREEN"
 "13","Finance",NA,NA,NA,NA,NA,NA
 "14","Dette des ménages ^Poids sur l'économie^"," 98,6 %","2022-07","  2,3 p.p.^T/T^","RED"," -2,9 p.p.^A/A^","GREEN"
 "15","Dette des gouvernements ^Poids sur l'économie^"," 81,1 %","2022-07","  1,0 p.p.^T/T^","RED","-16,7 p.p.^A/A^","GREEN"
 "16","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^","  6,3 %^A/A^","2022-12","-0,6 %^M/M^","GREEN",NA,NA
 "17","Demographie et société",NA,NA,NA,NA,NA,NA
 "18","Nouveaux immigrants ^Donnéees trimestrielles^","122,1 K^Equivalent à 1,2 % de la population annuellement^","2022-07","  3,4 %^T/T^","GREEN"," -0,6 %^A/A^","RED"
-"19","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.9 p.p.","2022-12","-0.4 p.p.^M/M^","GREEN"," 0.0 p.p.^A/A^","YELLOW"
-"20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^"," 7,8 p.p.","2022-12"," 0,5 p.p.^M/M^","RED","-0,3 p.p.^A/A^","GREEN"
+"19","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.9 p.p.","2023-01"," 0.0 p.p.^M/M^","YELLOW","-0.1 p.p.^A/A^","GREEN"
+"20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^"," 8,5 p.p.","2023-01"," 0,7 p.p.^M/M^","RED"," 0,9 p.p.^A/A^","RED"
 "21","Distribution de la richesse ^Richesse des 60 % les moins riches^","11,9 %^de la richesse totale^","2022-07","-2,5 %^T/T^","RED","-2,5 %^A/A^","RED"
-"22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","9,0%^640 000^","2022 - 12","-2,8 %^M/M^","GREEN","-4 %^A/A^","GREEN"
-"23","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,5 %","2022 - 12"," 1,5 p.p.^M/M^","RED"," 1 p.p.^A/A^","RED"
+"22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^"," 9,9%^705 000^","2023 - 1","  9,8 %^M/M^","RED","-17,5 %^A/A^","GREEN"
+"23","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","14,7 %","2023 - 1","1,2 p.p.^M/M^","RED","2,6 p.p.^A/A^","RED"
 "24","Environnement",NA,NA,NA,NA,NA,NA
 "25","Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN"
 "26","Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN"

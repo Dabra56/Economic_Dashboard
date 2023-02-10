@@ -7,10 +7,10 @@
 "5","Retail sales ^monthly^","$1.4^Billion^","2022-11","2.2%","-2%^M/M^","RED","5%^Y/Y^","GREEN"
 "6","Active businesses^Total number^","17 K","2022-10","1.9%","-0.5%^M/M^","RED","0.3%^Y/Y^","GREEN"
 "7","Labour market",NA,NA,NA,NA,NA,NA,NA
-"8","Total employed ^Population with a job^","0.4^Million jobs^","2022-12","1.9%","0.7%^M/M^","GREEN","3.6%^Y/Y^","GREEN"
-"9","Unemployment rate ^% of active workforce unemployed^","7.8%","2022-12","5%^in Canada^","0.6 p.p.^M/M^","RED","0 p.p.^Y/Y^","YELLOW"
-"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","82.6%","2022-12","84.8%^in Canada^","0 p.p.^M/M^","YELLOW","-0.3 p.p.^Y/Y^","RED"
+"8","Total employed ^Population with a job^","0.4^Million jobs^","2023-01","1.9%","-0.2%^M/M^","RED","4.8%^Y/Y^","GREEN"
+"9","Unemployment rate ^% of active workforce unemployed^","7.5%","2023-01","5%^in Canada^","-0.3 p.p.^M/M^","GREEN","-1.1 p.p.^Y/Y^","GREEN"
+"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","81.9%","2023-01","85.3%^in Canada^","-0.7 p.p.^M/M^","RED","0.1 p.p.^Y/Y^","GREEN"
 "11","Job vacancies ^Number of unfilled positions^","12 K^3.6 % of payroll employees^","2022-11","1.4%","-21.8%^M/M^","GREEN","-12%^Y/Y^","GREEN"
-"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1227","2022-12","$1419^in Canada^","0.7%^M/M^","GREEN","6.9%^Y/Y^","GREEN"
+"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1225","2023-01","$1426^in Canada^","-0.1%^M/M^","RED","5.9%^Y/Y^","GREEN"
 "13","Inflation ^Consumer price index (CPI) variations^","6.3%^Y/Y^","2022-12","6.3%^in Canada^","-1.6%^M/M^","GREEN",NA,NA
 "14","New immigrants ^Quarterly^","3.3 K","2022-07","2.7%","26.8%^Q/Q^","GREEN","92%^Y/Y^","GREEN"
