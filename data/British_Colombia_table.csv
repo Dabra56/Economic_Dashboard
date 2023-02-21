@@ -4,7 +4,7 @@
 ^Annual adjusted for inflation^","$282.1^Billion^","2021","13.4%",NA,NA,"6.1%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$5.5^Billion^","2022-12","7.7%","-3.6%^M/M^","RED","3.7%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$4.6^Billion^","2022-12","7.8%","2.8%^M/M^","GREEN","1.5%^Y/Y^","GREEN"
-"5","Retail sales ^monthly^","$8.6^Billion^","2022-11","13.9%","0.9%^M/M^","GREEN","4.4%^Y/Y^","GREEN"
+"5","Retail sales ^monthly^","$8.4^Billion^","2022-12","13.5%","-1.1%^M/M^","RED","4%^Y/Y^","GREEN"
 "6","Active businesses^Total number^","154 K","2022-11","16.7%","-0.5%^M/M^","RED","0.8%^Y/Y^","GREEN"
 "7","Labour market",NA,NA,NA,NA,NA,NA,NA
 "8","Total employed ^Population with a job^","2.8^Million jobs^","2023-01","13.8%","0.3%^M/M^","GREEN","2.2%^Y/Y^","GREEN"
@@ -12,5 +12,5 @@
 "10","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.8%","2023-01","85.3%^in Canada^","0.3 p.p.^M/M^","GREEN","0.9 p.p.^Y/Y^","GREEN"
 "11","Job vacancies ^Number of unfilled positions^","134 K^5.3 % of payroll employees^","2022-11","16.3%","-1%^M/M^","GREEN","-4.2%^Y/Y^","GREEN"
 "12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1493","2023-01","$1426^in Canada^","2.1%^M/M^","GREEN","4.7%^Y/Y^","GREEN"
-"13","Inflation ^Consumer price index (CPI) variations^","6.6%^Y/Y^","2022-12","6.3%^in Canada^","-0.7%^M/M^","GREEN",NA,NA
+"13","Inflation ^Consumer price index (CPI) variations^","6.2%^Y/Y^","2023-01","5.9%^in Canada^","0.7%^M/M^","RED",NA,NA
 "14","New immigrants ^Quarterly^","16.1 K","2022-07","13.2%","0.7%^Q/Q^","GREEN","-30.4%^Y/Y^","RED"

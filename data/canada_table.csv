@@ -3,7 +3,7 @@
 "2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2077.2^Billion^","2022-11","0.1%^M/M^","GREEN","2.8%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$71^Billion^","2022-12","-1.5%^M/M^","RED","9.3%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$58.7^Billion^","2022-12","-2%^M/M^","RED","10.1%^Y/Y^","GREEN"
-"5","Retail sales ^monthly^","$61.8^Billion^","2022-11","-0.1%^M/M^","RED","5.2%^Y/Y^","GREEN"
+"5","Retail sales ^monthly^","$62.1^Billion^","2022-12","0.5%^M/M^","GREEN","7.3%^Y/Y^","GREEN"
 "6","Active businesses^Total number^","921 K","2022-11","-0.4%^M/M^","RED","1%^Y/Y^","GREEN"
 "7","Labour market",NA,NA,NA,NA,NA,NA
 "8","Total employed ^Population with a job^","20^Million jobs^","2023-01","0.8%^M/M^","GREEN","3.9%^Y/Y^","GREEN"
@@ -14,7 +14,7 @@
 "13","Finance",NA,NA,NA,NA,NA,NA
 "14","Household debt ^Weight on the economy^","98.6%","2022-07","2.3 p.p.^Q/Q^","RED","-2.9 p.p.^Y/Y^","GREEN"
 "15","Government debt ^Weight on the economy^","81.1%","2022-07","1 p.p.^Q/Q^","RED","-16.7 p.p.^Y/Y^","GREEN"
-"16","Inflation ^Consumer price index (CPI) variations^","6.3%^Y/Y^","2022-12","-0.6%^M/M^","GREEN",NA,NA
+"16","Inflation ^Consumer price index (CPI) variations^","5.9%^Y/Y^","2023-01","0.5%^M/M^","RED",NA,NA
 "17","Demography and social",NA,NA,NA,NA,NA,NA
 "18","New immigrants ^Quarterly^","122.1 K^Equivalent to 1.2% of population annually^","2022-07","3.4%^Q/Q^","GREEN","-0.6%^Y/Y^","RED"
 "19","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.9 p.p.","2023-01","0 p.p.^M/M^","YELLOW","-0.1 p.p.^Y/Y^","GREEN"
