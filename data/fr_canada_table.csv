@@ -20,10 +20,12 @@
 "19","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.8 p.p.","2023-02","-0.1 p.p.^M/M^","GREEN","-0.4 p.p.^A/A^","GREEN"
 "20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^"," 9,6 p.p.","2023-02"," 1,1 p.p.^M/M^","RED"," 2,3 p.p.^A/A^","RED"
 "21","Distribution de la richesse ^Richesse des 60 % les moins riches^","11,9 %^de la richesse totale^","2022-07","-2,5 %^T/T^","RED","-2,5 %^A/A^","RED"
-"22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^"," 9,9%^705 000^","2023 - 1","  9,8 %^M/M^","RED","-17,5 %^A/A^","GREEN"
-"23","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","14,7 %","2023 - 1","1,2 p.p.^M/M^","RED","2,6 p.p.^A/A^","RED"
-"24","Environnement",NA,NA,NA,NA,NA,NA
-"25","Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN"
-"26","Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN"
-"27","Utilisation d'énergie ^Intensité dans l'économie^","3,9^Terajoules par million de $ de PIB réel^","2021",NA,NA,"-2.1 %^A/A^","GREEN"
-"28","Véhicules hybrides et électriques","10,0%^des nouvelles immatriculations^","2021",NA,NA," 3,8 p.p.^A/A^","GREEN"
+"22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","9,6%^687 000^","2023 - 2","  NA %^M/M^",NA,"NA %^A/A^",NA
+"23","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","9,6%^687 000^","2023 - 2","-2,7 %^M/M^","GREEN"," 0 %^A/A^","YELLOW"
+"24","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","14,9 %","2023 - 2","  NA p.p.^M/M^",NA,"NA p.p.^A/A^",NA
+"25","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","14,9 %","2023 - 2"," 0,2 p.p.^M/M^","RED"," 0 p.p.^A/A^","YELLOW"
+"26","Environnement",NA,NA,NA,NA,NA,NA
+"27","Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN"
+"28","Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN"
+"29","Utilisation d'énergie ^Intensité dans l'économie^","3,9^Terajoules par million de $ de PIB réel^","2021",NA,NA,"-2.1 %^A/A^","GREEN"
+"30","Véhicules hybrides et électriques","10,0%^des nouvelles immatriculations^","2021",NA,NA," 3,8 p.p.^A/A^","GREEN"

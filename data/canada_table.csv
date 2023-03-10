@@ -20,10 +20,12 @@
 "19","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.8 p.p.","2023-02","-0.1 p.p.^M/M^","GREEN","-0.4 p.p.^Y/Y^","GREEN"
 "20","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","9.6 p.p.","2023-02","1.1 p.p.^M/M^","RED","2.3 p.p.^Y/Y^","RED"
 "21","Wealth distribution ^Wealth of bottom 60%^","11.9%^of total wealth^","2022-07","-2.5%^Q/Q^","RED","-2.5%^Y/Y^","RED"
-"22","Unactive youth ^Not employed, not studying or training (15-29)^","9.9%^705 000^","2023 - 1","9.8%^M/M^","RED","-17.5%^Y/Y^","GREEN"
-"23","Women wage gap ^% of difference with men (adjusted by industry)^","14.7%","2023 - 1","1.2 p.p.^M/M^","RED","2.6 p.p.^Y/Y^","RED"
-"24","Sustainability",NA,NA,NA,NA,NA,NA
-"25","Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN"
-"26","Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN"
-"27","Energy use ^Intensity in the economy^","3.9^Terajoules per million $ of real GDP^","2021",NA,NA,"-2.1%^Y/Y^","GREEN"
-"28","Hybrid and electric vehicles","10%^of new registrations^","2021",NA,NA,"3.8 p.p.^Y/Y^","GREEN"
+"22","Unactive youth ^Not employed, not studying or training (15-29)^","9.6%^687 000^","2023 - 2","NA%^M/M^",NA,"NA%^Y/Y^",NA
+"23","Unactive youth ^Not employed, not studying or training (15-29)^","9.6%^687 000^","2023 - 2","-2.7%^M/M^","GREEN","0%^Y/Y^","YELLOW"
+"24","Women wage gap ^% of difference with men (adjusted by industry)^","14.9%","2023 - 2","NA p.p.^M/M^",NA,"NA p.p.^Y/Y^",NA
+"25","Women wage gap ^% of difference with men (adjusted by industry)^","14.9%","2023 - 2","0.2 p.p.^M/M^","RED","0 p.p.^Y/Y^","YELLOW"
+"26","Sustainability",NA,NA,NA,NA,NA,NA
+"27","Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN"
+"28","Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN"
+"29","Energy use ^Intensity in the economy^","3.9^Terajoules per million $ of real GDP^","2021",NA,NA,"-2.1%^Y/Y^","GREEN"
+"30","Hybrid and electric vehicles","10%^of new registrations^","2021",NA,NA,"3.8 p.p.^Y/Y^","GREEN"
