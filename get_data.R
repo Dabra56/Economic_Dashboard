@@ -1929,9 +1929,9 @@ gdp_canada_final <-
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
          color_yoy =  case_when(
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
@@ -1947,9 +1947,9 @@ fr_gdp_canada <-
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
          color_yoy =  case_when(
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
+           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
