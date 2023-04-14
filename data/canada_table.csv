@@ -1,7 +1,7 @@
 "","Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY"
 "1","Economy",NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2078.7^Billion^","2023-01","0.5%^M/M^","GREEN","3%^Y/Y^","GREEN"
-"3","Manufacturing sales ^Monthly^","$73.9^Billion^","2023-01","4.1%^M/M^","GREEN","13.3%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","$71.5^Billion^","2023-02","-3.6%^M/M^","RED","3.8%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$55.2^Billion^","2023-02","-7.9%^M/M^","RED","9%^Y/Y^","GREEN"
 "5","Retail sales ^monthly^","$62.1^Billion^","2022-12","0.5%^M/M^","GREEN","7.3%^Y/Y^","GREEN"
 "6","Active businesses^Total number^","923 K","2022-12","-0.3%^M/M^","RED","1%^Y/Y^","GREEN"
