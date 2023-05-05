@@ -2738,7 +2738,8 @@ colnames(NSNE_Young_People)[2] <- "month"
 NSNE_Young_People <- 
   NSNE_Young_People %>% 
   mutate(nsne = (Young_Non_Student_Non_Employed_Weight/Young_People_Weight)*100, 
-         Date=paste(year,"-",month) ) 
+         Date=paste(year,"-",month) ) %>% 
+  arrange(Date)
 
 tail =  tail(NSNE_Young_People$Date,n=1)
 
@@ -2848,7 +2849,8 @@ colnames(Wage_Difference_Loop)[2] <- "month"
 wage_difference_women <- 
   Wage_Difference_Loop %>% 
     mutate(wage_difference_percent = -Wage_Difference / Average_Wage_Women * 100, 
-           Date=paste(year,"-",month))
+           Date=paste(year,"-",month)) %>% 
+  arrange(Date)
 
 
 tail =  tail(wage_difference_women$Date,n=1)
