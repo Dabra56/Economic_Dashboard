@@ -34,7 +34,7 @@ write.csv(x = export, file="data/export.csv")
 
 
 
-retail <- get_cansim_vector("v52367097",
+retail <- get_cansim_vector("v52367637",
                             start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(retail = val_norm)
@@ -308,17 +308,17 @@ dataframe_export <-
 
 
 
-vector_retail <- c("v52367097",
-                   "v52367394",
-                   "v52367424",
-                   "v52367454",
-                   "v52367484",
-                   "v52367514",
-                   "v52367573",
-                   "v52367155",
-                   "v52367185",
-                   "v52367215",
-                   "v52367245")
+vector_retail <- c("v52367637",
+                   "v52367873",
+                   "v52367907",
+                   "v52367941",
+                   "v52367975",
+                   "v52368009",
+                   "v52368043",
+                   "v52368077",
+                   "v52368111",
+                   "v52367703",
+                   "v52367737")
 
 province_vector <- c("Canada",
                      "Newfoundland and Labrador",
@@ -471,7 +471,7 @@ tail_manufacturing <-
   tail(manufacturing$Date,n=1) %>% 
     format("%Y-%m")
 
-retail_date <- get_cansim_vector("v52367097") 
+retail_date <- get_cansim_vector("v52367637") 
 
 tail_retail <-
   tail(retail_date$Date,n=1) %>% 
@@ -495,7 +495,7 @@ colnames(dataframe_economy) <- c("Provinces",
                                 "ColorManuf",
                                 paste0("Export","^",tail_export,"^"),
                                 "ColorExport",
-                                paste0("Retail sales","^",tail_retail,"^"),
+                                paste0("Wholesale trade sales","^",tail_retail,"^"),
                                 "ColorRetail",
                                 paste0("Active businesses","^",tail_business,"^"),
                                 "ColorBusinesses")
@@ -518,7 +518,7 @@ colnames(fr_dataframe_economy) <- c("Provinces",
                                  "ColorManuf",
                                  paste0("Exportations","^",tail_export,"^"),
                                  "ColorExport",
-                                 paste0("Ventes au détail","^",tail_retail,"^"),
+                                 paste0("Ventes du commerce de gros","^",tail_retail,"^"),
                                  "ColorRetail",
                                  paste0("Entreprises actives","^",tail_business,"^"),
                                  "ColorBusinesses")
@@ -920,19 +920,17 @@ vector_export <- c("v1001809606",
                    "v1001819785",
                    "v1001820916")
 
-
-
-vector_retail <- c("v52367097",
-                   "v52367394",
-                   "v52367424",
-                   "v52367454",
-                   "v52367484",
-                   "v52367514",
-                   "v52367573",
-                   "v52367155",
-                   "v52367185",
-                   "v52367215",
-                   "v52367245")
+vector_retail <- c("v52367637",
+                   "v52367873",
+                   "v52367907",
+                   "v52367941",
+                   "v52367975",
+                   "v52368009",
+                   "v52368043",
+                   "v52368077",
+                   "v52368111",
+                   "v52367703",
+                   "v52367737")
 
 
 
@@ -1258,7 +1256,7 @@ retail_province <- get_cansim_vector(vector_retail[i])
            value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
            m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
            y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Retail sales ^monthly^",
+           indicators = "Wholesale trade sales ^monthly^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -1632,7 +1630,7 @@ for (i in 2:length(vector_vacancy)) {
            value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
            m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
            y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
-           indicators = "Ventes au détail ^Données mensuelles^",
+           indicators = "Ventes du commerce de gros ^Données mensuelles^",
            color_mom = case_when(
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
              round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -2048,7 +2046,7 @@ retail_canada_final <-
          value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
          m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
          y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-         indicators = "Retail sales ^monthly^",
+         indicators = "Wholesale trade sales ^monthly^",
          color_mom = case_when(
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
@@ -2066,7 +2064,7 @@ fr_retail_canada <-
          value = paste0(format(round(val_norm/1000000000,digits=1),decimal.mark=","),"^Milliards de dollars^"),
          m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
          y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
-         indicators = "Ventes au détail ^Données mensuelles^",
+         indicators = "Ventes du commerce de gros ^Données mensuelles^",
          color_mom = case_when(
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
            round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
