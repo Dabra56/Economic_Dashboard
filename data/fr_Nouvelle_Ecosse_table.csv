@@ -10,7 +10,7 @@
 "8","Emplois totaux ^Population avec un emploi^","0,5^Millions d'emplois^","2023-04","2,5 %"," 0,3 %^M/M^","GREEN","  2,0 %^A/A^","GREEN"
 "9","Taux de chômage ^% de la population active sans emploi^"," 6,3 %","2023-04","5 %^au Canada^"," 0,6 p.p.^M/M^","RED"," 0,3 p.p.^A/A^","RED"
 "10","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","83,1 %","2023-04","84,7 %^au Canada^","-0,3 p.p.^M/M^","RED"," 0,5 p.p.^A/A^","GREEN"
-"11","Postes vacants ^Nombre de postes non-comblés^","17 K^3,7 % des employés^","2023-02","2,3 %"," -1,2 %^M/M^","GREEN","  3,7 %^A/A^","RED"
+"11","Postes vacants ^Nombre de postes non-comblés^","19 K^4,3 % des employés^","2023-03","2,4 %","  9,6 %^M/M^","RED","-16,6 %^A/A^","GREEN"
 "12","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 266$","2023-04","1 450 $^au Canada^","-0,7 %^M/M^","RED"," 6,0 %^A/A^","GREEN"
 "13","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 4,5 %^A/A^","2023-04","4,4 %^au Canada^"," 0,6 %^M/M^","RED",NA,NA
 "14","Nouveaux immigrants ^Données trimestrielles^","2,0 K","2022-10","2,4 %","-49,8 %^T/T^","RED","-50,7 %^A/A^","RED"
