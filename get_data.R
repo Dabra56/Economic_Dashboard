@@ -34,13 +34,6 @@ write.csv(x = export, file="data/export.csv")
 
 
 
-retail <- get_cansim_vector("v52367637",
-                            start_time = "2000-01-01") %>% 
-  select(Date,val_norm) %>% 
-  rename(retail = val_norm)
-
-write.csv(x = retail, file="data/retail.csv")
-
 # --------------------- LABOUR -------------------------  # 
 
 employment<- get_cansim_vector("v2062811",
@@ -308,17 +301,7 @@ dataframe_export <-
 
 
 
-vector_retail <- c("v52367637",
-                   "v52367873",
-                   "v52367907",
-                   "v52367941",
-                   "v52367975",
-                   "v52368009",
-                   "v52368043",
-                   "v52368077",
-                   "v52368111",
-                   "v52367703",
-                   "v52367737")
+
 
 province_vector <- c("Canada",
                      "Newfoundland and Labrador",
@@ -332,35 +315,6 @@ province_vector <- c("Canada",
                      "Alberta",
                      "British Colombia")
 
-dataframe_retail <- data.frame()
-
-for (i in 1:length(vector_retail)) {
-  
-  retail <- get_cansim_vector(vector_retail[i]) 
-  tail =  tail(retail$Date,n=1)
-  
-  retail <- 
-    retail  %>% 
-    mutate(m_o_m = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
-    filter(Date==tail) %>% 
-    select(m_o_m) %>% bind_cols(province_vector[i]) 
-  
-  colnames(retail)[2] <- "provinces"
-  
-  retail <- 
-    retail %>% 
-    select(provinces,m_o_m)
-  
-  
-  dataframe_retail <- 
-    dataframe_retail %>% 
-    bind_rows(retail)
-  
-}
-
-dataframe_retail <- 
-  dataframe_retail %>% 
-  rename(Retail = m_o_m)
 
 
 
@@ -422,7 +376,6 @@ dataframe_business <-
 
 dataframe_economy <- merge(x=dataframe_gdp,y=manufacturing_canada, by = "provinces")
 dataframe_economy <- merge(x=dataframe_economy,y=dataframe_export, by = "provinces")
-dataframe_economy <- merge(x=dataframe_economy,y=dataframe_retail, by = "provinces")
 dataframe_economy <- merge(x=dataframe_economy,y=dataframe_business, by = "provinces")
 
 dataframe_economy <- 
@@ -454,16 +407,12 @@ dataframe_economy <-
            ColorExport= case_when(
              round(Export,digits = 2) < 0  ~ "RED", 
              round(Export,digits = 2) == 0  ~ "YELLOW",
-             round(Export,digits = 2) > 0  ~ "GREEN"), 
-           ColorRetail= case_when(
-             round(Retail,digits = 2) < 0  ~ "RED", 
-             round(Retail,digits = 2) == 0  ~ "YELLOW",
-             round(Retail,digits = 2) > 0  ~ "GREEN"),
+             round(Export,digits = 2) > 0  ~ "GREEN"),
            ColorActiveBusiness= case_when(
              round(Active_Businesses,digits = 2) < 0  ~ "RED", 
              round(Active_Businesses,digits = 2) == 0  ~ "YELLOW",
              round(Active_Businesses,digits = 2) > 0  ~ "GREEN")) %>% 
-  select(provinces, GDP, ColorGDP, Manufacturing_Sales,ColorManuf,Export,ColorExport,Retail,ColorRetail,Active_Businesses,ColorActiveBusiness)
+  select(provinces, GDP, ColorGDP, Manufacturing_Sales,ColorManuf,Export,ColorExport,Active_Businesses,ColorActiveBusiness)
 
 # Extracting the last date to use in column names 
 
@@ -471,11 +420,6 @@ tail_manufacturing <-
   tail(manufacturing$Date,n=1) %>% 
     format("%Y-%m")
 
-retail_date <- get_cansim_vector("v52367637") 
-
-tail_retail <-
-  tail(retail_date$Date,n=1) %>% 
-  format("%Y-%m")
 
 export_date <- get_cansim_vector("v1001819785") 
 
@@ -495,8 +439,6 @@ colnames(dataframe_economy) <- c("Provinces",
                                 "ColorManuf",
                                 paste0("Export","^",tail_export,"^"),
                                 "ColorExport",
-                                paste0("Wholesale trade sales","^",tail_retail,"^"),
-                                "ColorRetail",
                                 paste0("Active businesses","^",tail_business,"^"),
                                 "ColorBusinesses")
 
@@ -518,8 +460,6 @@ colnames(fr_dataframe_economy) <- c("Provinces",
                                  "ColorManuf",
                                  paste0("Exportations","^",tail_export,"^"),
                                  "ColorExport",
-                                 paste0("Ventes du commerce de gros","^",tail_retail,"^"),
-                                 "ColorRetail",
                                  paste0("Entreprises actives","^",tail_business,"^"),
                                  "ColorBusinesses")
 
@@ -920,18 +860,6 @@ vector_export <- c("v1001809606",
                    "v1001819785",
                    "v1001820916")
 
-vector_retail <- c("v52367637",
-                   "v52367873",
-                   "v52367907",
-                   "v52367941",
-                   "v52367975",
-                   "v52368009",
-                   "v52368043",
-                   "v52368077",
-                   "v52368111",
-                   "v52367703",
-                   "v52367737")
-
 
 
 vector_business <- c("v1203704156",
@@ -1081,13 +1009,7 @@ export_canada_last_value <-
   select(val_norm)
 
 #--------------------------------------
-retail_canada <- get_cansim_vector(vector_retail[1]) 
-tail =  tail(retail_canada$Date,n=1)
 
-retail_canada_last_value <- 
-  retail_canada %>% 
-  filter(Date==tail) %>% 
-  select(val_norm)
 
 #--------------------------------------
 business_canada <- get_cansim_vector(vector_business[1]) 
@@ -1243,31 +1165,7 @@ for (i in 2:length(vector_vacancy)) {
     mutate(cont_canada = paste0(round(val_norm/export_canada_last_value*100,digits=1),"%")) %>% 
     select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
-  # Retail trade 
-  
-  
-retail_province <- get_cansim_vector(vector_retail[i]) 
-  tail =  tail(retail_province$Date,n=1)
-  
-  
-  retail_province <- 
-    retail_province  %>% 
-    mutate(Date_mod=format(Date, "%Y-%m"),
-           value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
-           m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
-           y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-           indicators = "Wholesale trade sales ^monthly^",
-           color_mom = case_when(
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
-           color_yoy = case_when(
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
-    filter(Date==tail) %>% 
-    mutate(cont_canada = paste0(round(val_norm/retail_canada_last_value*100,digits=1),"%")) %>% 
-    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+
   
   
   #Business 
@@ -1499,7 +1397,6 @@ colnames(labormarket_line) <- c("indicators","value","Date_mod","cont_canada","m
                               gdp_province,
                               manuf_province,
                               export_province,
-                              retail_province,
                               business_province,
                               labormarket_line,
                               job_province,
@@ -1617,31 +1514,7 @@ for (i in 2:length(vector_vacancy)) {
     mutate(cont_canada = paste0(format(round(val_norm/export_canada_last_value*100,digits=1),decimal.mark=",")," %")) %>% 
     select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
   
-  # Retail trade 
-  
-  
-  retail_province <- get_cansim_vector(vector_retail[i]) 
-  tail =  tail(retail_province$Date,n=1)
-  
-  
-  retail_province <- 
-    retail_province  %>% 
-    mutate(Date_mod=format(Date, "%Y-%m"),
-           value = paste0(format(round(val_norm/1000000000,digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE),"^Milliards de $^"),
-           m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^M/M^"),
-           y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),big.mark=" ", decimal.mark=",",scientific=FALSE)," %","^A/A^"),
-           indicators = "Ventes du commerce de gros ^Données mensuelles^",
-           color_mom = case_when(
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-             round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
-           color_yoy = case_when(
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
-             round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
-    filter(Date==tail) %>% 
-    mutate(cont_canada = paste0(format(round(val_norm/retail_canada_last_value*100,digits=1),decimal.mark=",")," %")) %>% 
-    select(indicators,value, Date_mod,cont_canada,m_o_m,color_mom,y_o_y,color_yoy)
+
   
   
   #Business 
@@ -1873,7 +1746,6 @@ for (i in 2:length(vector_vacancy)) {
                               gdp_province,
                               manuf_province,
                               export_province,
-                              retail_province,
                               business_province,
                               labormarket_line,
                               job_province,
@@ -2035,46 +1907,6 @@ fr_export_canada <-
   filter(Date==tail) %>% 
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
-# Retail trade 
-
-tail =  tail(retail_canada$Date,n=1)
-
-
-retail_canada_final <- 
-  retail_canada  %>% 
-  mutate(Date_mod=format(Date, "%Y-%m"),
-         value = paste0("$",round(val_norm/1000000000,digits=1),"^Billion^"),
-         m_o_m = paste0(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),"%","^M/M^"),
-         y_o_y =  paste0(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),"%","^Y/Y^"),
-         indicators = "Wholesale trade sales ^monthly^",
-         color_mom = case_when(
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
-         color_yoy = case_when(
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
-  filter(Date==tail) %>% 
-  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
-
-fr_retail_canada <- 
-  retail_canada  %>% 
-  mutate(Date_mod=format(Date, "%Y-%m"),
-         value = paste0(format(round(val_norm/1000000000,digits=1),decimal.mark=","),"^Milliards de dollars^"),
-         m_o_m = paste0(format(round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1),decimal.mark=",")," %","^M/M^"),
-         y_o_y =  paste0(format(round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1),decimal.mark=",")," %","^A/A^"),
-         indicators = "Ventes du commerce de gros ^Données mensuelles^",
-         color_mom = case_when(
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=1))-1)*100),digits=1) > 0  ~ "GREEN"),
-         color_yoy = case_when(
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) < 0  ~ "RED", 
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) == 0  ~ "YELLOW",
-           round((((val_norm / lag(val_norm, n=12))-1)*100),digits=1) > 0  ~ "GREEN")) %>% 
-  filter(Date==tail) %>% 
-  select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
 #Business 
@@ -3067,7 +2899,6 @@ canada_table <- bind_rows(economy_line,
                           gdp_canada_final,
                           manuf_canada_final,
                           export_canada_final,
-                          retail_canada_final,
                           business_canada_final,
                           labor_line,
                           jobs_canada_final,
@@ -3104,7 +2935,6 @@ fr_canada_table <- bind_rows(fr_economy_line,
                           fr_gdp_canada,
                           fr_manuf_canada,
                           fr_export_canada,
-                          fr_retail_canada,
                           fr_business_canada,
                           fr_labor_line,
                           fr_jobs_canada,
