@@ -2705,9 +2705,7 @@ wage_difference_women <-
 
 
 fr_wage_difference_women <- 
-  Wage_Difference_Loop %>% 
-  mutate(wage_difference_percent = -Wage_Difference / Average_Wage_Women * 100, 
-         Date=paste(year,"-",month))%>% 
+  wage_difference_women %>%  
   mutate(Date_mod=Date,
          value = paste0(format(round(wage_difference_percent,digits=1),decimal.mark=",")," %"),
          m_o_m = paste0(format(round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
