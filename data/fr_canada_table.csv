@@ -3,27 +3,26 @@
 "2","Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^","2 082,7^Milliards de dollars^","2023-03","  0,0 %^M/M^","YELLOW","  1,7 %^A/A^","GREEN"
 "3","Ventes manufacturières ^Données mensuelles^","72,3^Milliards de dollars^","2023-04","  0,3 %^M/M^","GREEN"," -1,6 %^A/A^","RED"
 "4","Exportations^Données mensuelles^","58,0^Milliards de dollars^","2023-04","-10,8 %^M/M^","RED"," -2,8 %^A/A^","RED"
-"5","Ventes du commerce de gros ^Données mensuelles^","123,4^Milliards de dollars^","2023-04","  0,4 %^M/M^","GREEN"," 54,7 %^A/A^","GREEN"
-"6","Entreprises actives","932 K","2023-03","-0,2 %^M/M^","RED","  1,0 %^A/A^","GREEN"
-"7","Marché de l'emploi",NA,NA,NA,NA,NA,NA
-"8","Emplois totaux ^Population avec un emploi^","20,1^Millions d'emplois^","2023-05"," -0,1 %^M/M^","RED","  1,8 %^A/A^","GREEN"
-"9","Taux de chômage ^% de la population active sans emploi^"," 5,2 %","2023-05"," 0,2 p.p.^M/M^","RED"," 0,0 p.p.^A/A^","YELLOW"
-"10","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,9 %","2023-05"," 0,2 p.p.^M/M^","GREEN"," -0,1 p.p.^A/A^","RED"
-"11","Postes vacants ^Nombre de postes non-comblés^"," 791 K^4,5 % des employés^","2023-03","  8,1 %^M/M^","RED","-19,1 %^A/A^","GREEN"
-"12","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 449$","2023-05","-0,1 %^M/M^","RED","5,0 %^A/A^","GREEN"
-"13","Finance",NA,NA,NA,NA,NA,NA
-"14","Dette des ménages ^Poids sur l'économie^","100,6 %","2023-01"," -0,2 p.p.^T/T^","GREEN","  2,2 p.p.^A/A^","RED"
-"15","Dette des gouvernements ^Poids sur l'économie^"," 81,8 %","2023-01","  0,5 p.p.^T/T^","RED"," -5,4 p.p.^A/A^","GREEN"
-"16","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^","  3,4 %^A/A^","2023-05"," 0,4 %^M/M^","RED",NA,NA
-"17","Demographie et société",NA,NA,NA,NA,NA,NA
-"18","Nouveaux immigrants ^Donnéees trimestrielles^","83,2 K^Equivalent à 0,8 % de la population annuellement^","2022-10","-31,9 %^T/T^","RED","-39,8 %^A/A^","RED"
-"19","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.8 p.p.","2023-05"," 0.1 p.p.^M/M^","RED","-1.1 p.p.^A/A^","GREEN"
-"20","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^","12,1 p.p.","2023-05"," 0,4 p.p.^M/M^","RED"," 4,6 p.p.^A/A^","RED"
-"21","Distribution de la richesse ^Richesse des 60 % les moins riches^","11,8 %^de la richesse totale^","2022-10"," 0,0 %^T/T^","YELLOW","-4,8 %^A/A^","RED"
-"22","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^"," 9,4%^677 000^","2023 - 4","-5,8 %^M/M^","GREEN","0,3 %^A/A^","RED"
-"23","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,2 %","2023 - 4","  NA p.p.^M/M^",NA,"  NA p.p.^A/A^",NA
-"24","Environnement",NA,NA,NA,NA,NA,NA
-"25","Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN"
-"26","Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN"
-"27","Utilisation d'énergie ^Intensité dans l'économie^","3,9^Terajoules par million de $ de PIB réel^","2021",NA,NA,"-2.1 %^A/A^","GREEN"
-"28","Véhicules hybrides et électriques","10,0%^des nouvelles immatriculations^","2021",NA,NA," 3,8 p.p.^A/A^","GREEN"
+"5","Entreprises actives","932 K","2023-03","-0,2 %^M/M^","RED","  1,0 %^A/A^","GREEN"
+"6","Marché de l'emploi",NA,NA,NA,NA,NA,NA
+"7","Emplois totaux ^Population avec un emploi^","20,1^Millions d'emplois^","2023-05"," -0,1 %^M/M^","RED","  1,8 %^A/A^","GREEN"
+"8","Taux de chômage ^% de la population active sans emploi^"," 5,2 %","2023-05"," 0,2 p.p.^M/M^","RED"," 0,0 p.p.^A/A^","YELLOW"
+"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,9 %","2023-05"," 0,2 p.p.^M/M^","GREEN"," -0,1 p.p.^A/A^","RED"
+"10","Postes vacants ^Nombre de postes non-comblés^"," 791 K^4,5 % des employés^","2023-03","  8,1 %^M/M^","RED","-19,1 %^A/A^","GREEN"
+"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 449$","2023-05","-0,1 %^M/M^","RED","5,0 %^A/A^","GREEN"
+"12","Finance",NA,NA,NA,NA,NA,NA
+"13","Dette des ménages ^Poids sur l'économie^","100,6 %","2023-01"," -0,2 p.p.^T/T^","GREEN","  2,2 p.p.^A/A^","RED"
+"14","Dette des gouvernements ^Poids sur l'économie^"," 81,8 %","2023-01","  0,5 p.p.^T/T^","RED"," -5,4 p.p.^A/A^","GREEN"
+"15","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^","  3,4 %^A/A^","2023-05"," 0,4 %^M/M^","RED",NA,NA
+"16","Demographie et société",NA,NA,NA,NA,NA,NA
+"17","Nouveaux immigrants ^Donnéees trimestrielles^","83,2 K^Equivalent à 0,8 % de la population annuellement^","2022-10","-31,9 %^T/T^","RED","-39,8 %^A/A^","RED"
+"18","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 7.8 p.p.","2023-05"," 0.1 p.p.^M/M^","RED","-1.1 p.p.^A/A^","GREEN"
+"19","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^","12,1 p.p.","2023-05"," 0,4 p.p.^M/M^","RED"," 4,6 p.p.^A/A^","RED"
+"20","Distribution de la richesse ^Richesse des 60 % les moins riches^","11,8 %^de la richesse totale^","2022-10"," 0,0 %^T/T^","YELLOW","-4,8 %^A/A^","RED"
+"21","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^"," 9,4%^677 000^","2023 - 4","-5,8 %^M/M^","GREEN","0,3 %^A/A^","RED"
+"22","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,2 %","2023 - 4","  NA p.p.^M/M^",NA,"  NA p.p.^A/A^",NA
+"23","Environnement",NA,NA,NA,NA,NA,NA
+"24","Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN"
+"25","Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN"
+"26","Utilisation d'énergie ^Intensité dans l'économie^","3,9^Terajoules par million de $ de PIB réel^","2021",NA,NA,"-2.1 %^A/A^","GREEN"
+"27","Véhicules hybrides et électriques","10,0%^des nouvelles immatriculations^","2021",NA,NA," 3,8 p.p.^A/A^","GREEN"

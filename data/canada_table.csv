@@ -3,27 +3,26 @@
 "2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2082.7^Billion^","2023-03","0%^M/M^","YELLOW","1.7%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$72.3^Billion^","2023-04","0.3%^M/M^","GREEN","-1.6%^Y/Y^","RED"
 "4","Exports ^Monthly^","$58^Billion^","2023-04","-10.8%^M/M^","RED","-2.8%^Y/Y^","RED"
-"5","Wholesale trade sales ^monthly^","$123.4^Billion^","2023-04","0.4%^M/M^","GREEN","54.7%^Y/Y^","GREEN"
-"6","Active businesses^Total number^","932 K","2023-03","-0.2%^M/M^","RED","1%^Y/Y^","GREEN"
-"7","Labour market",NA,NA,NA,NA,NA,NA
-"8","Total employed ^Population with a job^","20.1^Million jobs^","2023-05","-0.1%^M/M^","RED","1.8%^Y/Y^","GREEN"
-"9","Unemployment rate ^% of active workforce unemployed^","5.2%","2023-05","0.2 p.p.^M/M^","RED","0 p.p.^Y/Y^","YELLOW"
-"10","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.9%","2023-05","0.2 p.p.^M/M^","GREEN","-0.1 p.p.^Y/Y^","RED"
-"11","Job vacancies ^Number of unfilled positions^","791 K^4.5% of payroll employees^","2023-03","8.1 %^M/M^","RED","-19.1%^Y/Y^","GREEN"
-"12","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1449","2023-05","-0.1%^M/M^","RED","5%^Y/Y^","GREEN"
-"13","Finance",NA,NA,NA,NA,NA,NA
-"14","Household debt ^Weight on the economy^","100.6%","2023-01","-0.2 p.p.^Q/Q^","GREEN","2.2 p.p.^Y/Y^","RED"
-"15","Government debt ^Weight on the economy^","81.8%","2023-01","0.5 p.p.^Q/Q^","RED","-5.4 p.p.^Y/Y^","GREEN"
-"16","Inflation ^Consumer price index (CPI) variations^","3.4%^Y/Y^","2023-05","0.4%^M/M^","RED",NA,NA
-"17","Demography and social",NA,NA,NA,NA,NA,NA
-"18","New immigrants ^Quarterly^","83.2 K^Equivalent to 0.8% of population annually^","2022-10","-31.9%^Q/Q^","RED","-39.8%^Y/Y^","RED"
-"19","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.8 p.p.","2023-05","0.1 p.p.^M/M^","RED","-1.1 p.p.^Y/Y^","GREEN"
-"20","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","12.1 p.p.","2023-05","0.4 p.p.^M/M^","RED","4.6 p.p.^Y/Y^","RED"
-"21","Wealth distribution ^Wealth of bottom 60%^","11.8%^of total wealth^","2022-10","0%^Q/Q^","YELLOW","-4.8%^Y/Y^","RED"
-"22","Unactive youth ^Not employed, not studying or training (15-29)^","9.4%^677 000^","2023 - 4","-5.8%^M/M^","GREEN","0.3%^Y/Y^","RED"
-"23","Women wage gap ^% of difference with men (adjusted by industry)^","13.2%","2023 - 4","-1.4 p.p.^M/M^","GREEN","0.8 p.p.^Y/Y^","RED"
-"24","Sustainability",NA,NA,NA,NA,NA,NA
-"25","Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN"
-"26","Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN"
-"27","Energy use ^Intensity in the economy^","3.9^Terajoules per million $ of real GDP^","2021",NA,NA,"-2.1%^Y/Y^","GREEN"
-"28","Hybrid and electric vehicles","10%^of new registrations^","2021",NA,NA,"3.8 p.p.^Y/Y^","GREEN"
+"5","Active businesses^Total number^","932 K","2023-03","-0.2%^M/M^","RED","1%^Y/Y^","GREEN"
+"6","Labour market",NA,NA,NA,NA,NA,NA
+"7","Total employed ^Population with a job^","20.1^Million jobs^","2023-05","-0.1%^M/M^","RED","1.8%^Y/Y^","GREEN"
+"8","Unemployment rate ^% of active workforce unemployed^","5.2%","2023-05","0.2 p.p.^M/M^","RED","0 p.p.^Y/Y^","YELLOW"
+"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.9%","2023-05","0.2 p.p.^M/M^","GREEN","-0.1 p.p.^Y/Y^","RED"
+"10","Job vacancies ^Number of unfilled positions^","791 K^4.5% of payroll employees^","2023-03","8.1 %^M/M^","RED","-19.1%^Y/Y^","GREEN"
+"11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1449","2023-05","-0.1%^M/M^","RED","5%^Y/Y^","GREEN"
+"12","Finance",NA,NA,NA,NA,NA,NA
+"13","Household debt ^Weight on the economy^","100.6%","2023-01","-0.2 p.p.^Q/Q^","GREEN","2.2 p.p.^Y/Y^","RED"
+"14","Government debt ^Weight on the economy^","81.8%","2023-01","0.5 p.p.^Q/Q^","RED","-5.4 p.p.^Y/Y^","GREEN"
+"15","Inflation ^Consumer price index (CPI) variations^","3.4%^Y/Y^","2023-05","0.4%^M/M^","RED",NA,NA
+"16","Demography and social",NA,NA,NA,NA,NA,NA
+"17","New immigrants ^Quarterly^","83.2 K^Equivalent to 0.8% of population annually^","2022-10","-31.9%^Q/Q^","RED","-39.8%^Y/Y^","RED"
+"18","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","7.8 p.p.","2023-05","0.1 p.p.^M/M^","RED","-1.1 p.p.^Y/Y^","GREEN"
+"19","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","12.1 p.p.","2023-05","0.4 p.p.^M/M^","RED","4.6 p.p.^Y/Y^","RED"
+"20","Wealth distribution ^Wealth of bottom 60%^","11.8%^of total wealth^","2022-10","0%^Q/Q^","YELLOW","-4.8%^Y/Y^","RED"
+"21","Unactive youth ^Not employed, not studying or training (15-29)^","9.4%^677 000^","2023 - 4","-5.8%^M/M^","GREEN","0.3%^Y/Y^","RED"
+"22","Women wage gap ^% of difference with men (adjusted by industry)^","13.2%","2023 - 4","-1.4 p.p.^M/M^","GREEN","0.8 p.p.^Y/Y^","RED"
+"23","Sustainability",NA,NA,NA,NA,NA,NA
+"24","Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN"
+"25","Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN"
+"26","Energy use ^Intensity in the economy^","3.9^Terajoules per million $ of real GDP^","2021",NA,NA,"-2.1%^Y/Y^","GREEN"
+"27","Hybrid and electric vehicles","10%^of new registrations^","2021",NA,NA,"3.8 p.p.^Y/Y^","GREEN"
