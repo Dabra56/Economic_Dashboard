@@ -2682,6 +2682,12 @@ wage_difference_women <-
            Date=paste(year,"-",month)) %>% 
   arrange(Date)
 
+wage_difference_women_fr <- 
+  Wage_Difference_Loop %>% 
+    mutate(wage_difference_percent = -Wage_Difference / Average_Wage_Women * 100, 
+           Date=paste(year,"-",month)) %>% 
+  arrange(Date)
+
 
 tail =  tail(wage_difference_women$Date,n=1)
 
@@ -2704,8 +2710,10 @@ wage_difference_women <-
   select(indicators,value, Date_mod,m_o_m,color_mom,y_o_y,color_yoy)
 
 
+tail =  tail(wage_difference_women_fr$Date,n=1)
+
 fr_wage_difference_women <- 
-  wage_difference_women %>%  
+  wage_difference_women_fr %>%  
   mutate(Date_mod=Date,
          value = paste0(format(round(wage_difference_percent,digits=1),decimal.mark=",")," %"),
          m_o_m = paste0(format(round((((wage_difference_percent - lag(wage_difference_percent, n=1)))),digits=1),decimal.mark=",")," p.p.","^M/M^"),
