@@ -433,7 +433,7 @@ tail_business <-
 
 
 colnames(dataframe_economy) <- c("Provinces", 
-                                "GDP ^Y/Y^", 
+                                "GDP ^Y/Y - 2020 to 2021^", 
                                 "ColorGDP",
                                 paste0("Manufacturing sales","^",tail_manufacturing,"^"),
                                 "ColorManuf",
@@ -454,7 +454,7 @@ fr_dataframe_economy <-
   
 
 colnames(fr_dataframe_economy) <- c("Provinces", 
-                                 "PIB ^A/A^", 
+                                 "PIB ^A/A - 2020 à 2021^", 
                                  "ColorGDP",
                                  paste0("Ventes manufacturières","^",tail_manufacturing,"^"),
                                  "ColorManuf",
