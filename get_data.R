@@ -2732,19 +2732,19 @@ fr_wage_difference_women <-
 
 # Impute lines by hand for environmental components
 
-ghg_population <- data.frame("Greenhouse gas ^Intensity of emissions^","17.7 ^Tons of CO2 per capita^","2020",NA,NA,"-9.9 % ^Y/Y^","GREEN")
+ghg_population <- data.frame("Greenhouse gas ^Intensity of emissions^","17.5 ^Tons of CO2 per capita^","2021",NA,NA,"-1 % ^Y/Y^","GREEN")
 colnames(ghg_population) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 
-non_ghg_electricity <- data.frame("Non-GHG Electricity production","82.6% ^of total electricity^","2019",NA,NA,"2 p.p. ^Since 2016^","GREEN")
+non_ghg_electricity <- data.frame("Non-GHG Electricity production","82.5% ^of total electricity^","2019",NA,NA,"-0.1 p.p. ^Since 2016^","RED")
 colnames(non_ghg_electricity) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 
-fr_ghg_population <- data.frame("Gas à effet de serre ^Intensité des émissions^","17,7 ^Tonnes de CO2 par capita^","2020",NA,NA,"-9,9 % ^A/A^","GREEN")
+fr_ghg_population <- data.frame("Gas à effet de serre ^Intensité des émissions^","17,5 ^Tonnes de CO2 par capita^","2021",NA,NA,"-1 % ^A/A^","GREEN")
 colnames(fr_ghg_population) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 
-fr_non_ghg_electricity <- data.frame("Électricité produite sans GES","82,6% ^de l'électricité totale^","2019",NA,NA,"2 p.p. ^Depuis 2016^","GREEN")
+fr_non_ghg_electricity <- data.frame("Électricité produite sans GES","82,5% ^de l'électricité totale^","2019",NA,NA,"-0,1 p.p. ^Depuis 2016^","RED")
 colnames(fr_non_ghg_electricity) <- c("indicators","value","Date_mod","m_o_m","color_mom","y_o_y","color_yoy")
 
 # Energy demand
