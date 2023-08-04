@@ -6,10 +6,10 @@
 "4","Exportations ^Données mensuelles^","22,5^Milliards de $^","2023-05","36,9 %","  6,5 %^M/M^","GREEN"," 16,0 %^A/A^","GREEN"
 "5","Entreprises actives","359 K","2023-04","38,6 %"," 0,2 %^M/M^","GREEN","  0,9 %^A/A^","GREEN"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA,NA
-"7","Emplois totaux ^Population avec un emploi^","8,0^Millions d'emplois^","2023-06","39,4 %","  0,7 %^M/M^","GREEN","  2,8 %^A/A^","GREEN"
-"8","Taux de chômage ^% de la population active sans emploi^"," 5,7 %","2023-06","5,4 %^au Canada^"," 0,2 p.p.^M/M^","RED"," 0,5 p.p.^A/A^","RED"
-"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,6 %","2023-06","85 %^au Canada^"," 0,7 p.p.^M/M^","GREEN","  0,2 p.p.^A/A^","GREEN"
+"7","Emplois totaux ^Population avec un emploi^","7,9^Millions d'emplois^","2023-07","39,4 %","  0,0 %^M/M^","YELLOW","  2,3 %^A/A^","GREEN"
+"8","Taux de chômage ^% de la population active sans emploi^"," 5,6 %","2023-07","5,5 %^au Canada^","-0,1 p.p.^M/M^","GREEN"," 0,5 p.p.^A/A^","RED"
+"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,1 %","2023-07","84,5 %^au Canada^","-0,5 p.p.^M/M^","RED"," -0,1 p.p.^A/A^","RED"
 "10","Postes vacants ^Nombre de postes non-comblés^","264 K^3,8 % des employés^","2023-05","34,8 %"," -0,6 %^M/M^","GREEN","-29,6 %^A/A^","GREEN"
-"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 496$","2023-06","1 445 $^au Canada^","-1,0 %^M/M^","RED"," 3,9 %^A/A^","GREEN"
+"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 526$","2023-07","1 464 $^au Canada^"," 2,0 %^M/M^","GREEN"," 5,8 %^A/A^","GREEN"
 "12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 2,6 %^A/A^","2023-06","2,8 %^au Canada^","-0,1 %^M/M^","GREEN",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","60,8 K","2023-01","41,8 %"," 82,4 %^T/T^","GREEN"," 20,2 %^A/A^","GREEN"
