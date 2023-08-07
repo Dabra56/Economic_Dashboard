@@ -127,21 +127,18 @@ cpi <-
 write.csv(x = cpi, file="data/cpi.csv")
 
 # ----------------------- ECONOMY TABLE ------------------
+vector_gdp <- c("v62464519",
+                "v62464824",
+                "v62465129",
+                "v62465434",
+                "v62465739",
+                "v62466044",
+                "v62466349",
+                "v62466654",
+                "v62466959",
+                "v62467264")
 
-vector_gdp <- c("v62787277",
-                "v62787378",
-                "v62787495",
-                "v62787612",
-                "v62787729",
-                "v62787846",
-                "v62787963",
-                "v62788080",
-                "v62788197",
-                "v62788314",
-                "v62788431")
-
-province_vector <- c("Canada",
-                     "Newfoundland and Labrador",
+province_vector <- c("Newfoundland and Labrador",
                      "Prince Edward Island",
                      "Nova Scotia",
                      "New Brunswick",
@@ -153,33 +150,71 @@ province_vector <- c("Canada",
                      "British Colombia")
 
 dataframe_gdp <- data.frame()
-  
+dataframe_gdp_canada <- data.frame()
+
 for (i in 1:length(vector_gdp)) {
   
   gdp_province <- get_cansim_vector(vector_gdp[i]) 
   tail =  tail(gdp_province$Date,n=1)
+  tail_year = tail-years(1)
   
-    gdp_province <- 
-      gdp_province  %>% 
-        mutate(y_o_y = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
-        filter(Date==tail) %>% 
-        select(y_o_y) %>% bind_cols(province_vector[i]) 
+  
+  gdp_province <- get_cansim_vector(vector_gdp[i]) 
+
+  
+  gdp_province <- 
+    gdp_province  %>% 
+    mutate(y_o_y = ((val_norm / lag(val_norm, n=1))-1)*100) %>% 
+    filter(Date==tail) %>% 
+    select(y_o_y) %>% bind_cols(province_vector[i]) 
+  
+  colnames(gdp_province)[2] <- "provinces"
+  
+  gdp_province <- 
+    gdp_province %>% 
+    select(provinces,y_o_y)
+  
+  dataframe_gdp <- 
+    dataframe_gdp %>% 
+    bind_rows(gdp_province)
+
+  gdp_canada <- get_cansim_vector(vector_gdp[i])   
+   gdp_canada<- 
+     gdp_canada  %>% 
+     filter(Date== tail |
+              Date == tail_year) %>% 
+     select(val_norm,Date) %>% bind_cols(province_vector[i]) 
     
-    colnames(gdp_province)[2] <- "provinces"
-    
-    gdp_province <- 
-      gdp_province %>% 
-          select(provinces,y_o_y)
-    
-    dataframe_gdp <- 
-      dataframe_gdp %>% 
-        bind_rows(gdp_province)
+   colnames(gdp_canada)[2] <- "date"
+   colnames(gdp_canada)[3] <- "provinces"
+   
+   
+   dataframe_gdp_canada <- 
+     dataframe_gdp_canada %>% 
+     bind_rows(gdp_canada)
+
   
 }
 
+
 dataframe_gdp <- 
   dataframe_gdp %>% 
-    rename(GDP = y_o_y)
+  rename(GDP = y_o_y)
+
+dataframe_gdp_canada <- 
+  dataframe_gdp_canada %>% group_by(date) %>% summarise(total=sum(val_norm)) %>%   mutate(y_o_y = ((total / lag(total, n=1))-1)*100) %>% 
+  filter(date==tail) %>% 
+  select(y_o_y) %>%  
+  rename(GDP = y_o_y)
+
+
+dataframe_gdp_canada <- 
+  bind_cols(c("Canada"),dataframe_gdp_canada)
+
+colnames(dataframe_gdp_canada)[1] <- "provinces"
+
+dataframe_gdp <- 
+  bind_rows(dataframe_gdp_canada,dataframe_gdp)
 
 tail =  tail(manufacturing$Date,n=1)
 
@@ -433,7 +468,7 @@ tail_business <-
 
 
 colnames(dataframe_economy) <- c("Provinces", 
-                                "GDP ^Y/Y - 2020 to 2021^", 
+                                "GDP ^Y/Y - 2021 to 2022^", 
                                 "ColorGDP",
                                 paste0("Manufacturing sales","^",tail_manufacturing,"^"),
                                 "ColorManuf",
