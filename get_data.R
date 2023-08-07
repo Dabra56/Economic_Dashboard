@@ -489,7 +489,7 @@ fr_dataframe_economy <-
   
 
 colnames(fr_dataframe_economy) <- c("Provinces", 
-                                 "PIB ^A/A - 2020 à 2021^", 
+                                 "PIB ^A/A - 2021 à 2022^", 
                                  "ColorGDP",
                                  paste0("Ventes manufacturières","^",tail_manufacturing,"^"),
                                  "ColorManuf",
@@ -846,16 +846,16 @@ write.csv(x = dataframe_labor, file="data/table_labor.csv")
 #GDP 
 
 cansim_gdp_vector <- c("v62787277",
-                       "v62787378",
-                       "v62787495",
-                       "v62787612",
-                       "v62787729",
-                       "v62787846",
-                       "v62787963",
-                       "v62788080",
-                       "v62788197",
-                       "v62788314",
-                       "v62788431")
+                      "v62464519",
+                       "v62464824",
+                       "v62465129",
+                       "v62465434",
+                       "v62465739",
+                       "v62466044",
+                       "v62466349",
+                       "v62466654",
+                       "v62466959",
+                       "v62467264")
 
 cansim_gdp_province <-  c("Canada",
                           "Newfoundland_and_Labrador",
