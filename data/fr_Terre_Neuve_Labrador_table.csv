@@ -2,7 +2,7 @@
 "1","Economie",NA,NA,NA,NA,NA,NA,NA
 "2","Produit intérieur brut (PIB) réel
 ^Sur une base annuelle et ajusté en fonction de l'inflation^","30,2^Milliards de $^","2022","1,4 %",NA,NA,"-1,7 %^A/A^","RED"
-"3","Ventes manufacturières ^Données mensuelles^","0,2^Milliards de $^","2023-05","0,3 %","-24,8 %^M/M^","RED","-47,0 %^A/A^","RED"
+"3","Ventes manufacturières ^Données mensuelles^","0,3^Milliards de $^","2023-06","0,4 %"," 13,0 %^M/M^","GREEN","-19,7 %^A/A^","RED"
 "4","Exportations ^Données mensuelles^","1,1^Milliards de $^","2023-06","2 %","  3,0 %^M/M^","GREEN","-34,6 %^A/A^","RED"
 "5","Entreprises actives","13 K","2023-04","1,4 %"," 0,2 %^M/M^","GREEN","  0,0 %^A/A^","YELLOW"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA,NA
@@ -11,5 +11,5 @@
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","79,6 %","2023-07","84,5 %^au Canada^"," 0,0 p.p.^M/M^","YELLOW"," 0,1 p.p.^A/A^","GREEN"
 "10","Postes vacants ^Nombre de postes non-comblés^","7 K^3,5 % des employés^","2023-05","0,9 %"," 20,3 %^M/M^","RED","-17,8 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 396$","2023-07","1 464 $^au Canada^","-1,2 %^M/M^","RED"," 4,2 %^A/A^","GREEN"
-"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 1,7 %^A/A^","2023-06","2,8 %^au Canada^"," 0,3 %^M/M^","RED",NA,NA
+"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 2,5 %^A/A^","2023-07","3,3 %^au Canada^"," 0,6 %^M/M^","RED",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","2,0 K","2023-01","1,4 %"," 89,7 %^T/T^","GREEN","227,7 %^A/A^","GREEN"
