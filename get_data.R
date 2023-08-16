@@ -25,7 +25,7 @@ manufacturing <- get_cansim_vector("v800450") %>%
 
 write.csv(x = manufacturing, file="data/manufacturing.csv")
 
-export <- get_cansim_vector("v1001809606",
+export <- get_cansim_vector("v87008955",
                             start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(export = val_norm)
