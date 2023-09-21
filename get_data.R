@@ -94,7 +94,7 @@ household_debt<- get_cansim_vector("v1231415625") %>%
   rename(household_debt = val_norm)
 
 
-government_debt<- get_cansim_vector("v52531047") %>% 
+government_debt<- get_cansim_vector("v52531045") %>% 
   select(Date,val_norm) %>% 
   rename(government_debt = val_norm)
 
