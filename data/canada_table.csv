@@ -3,7 +3,7 @@
 "2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2080.5^Billion^","2023-06","-0.2%^M/M^","RED","1.1%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$71.9^Billion^","2023-07","1.6%^M/M^","GREEN","0%^Y/Y^","YELLOW"
 "4","Exports ^Monthly^","$53.9^Billion^","2023-07","-6.2%^M/M^","RED","-13.1%^Y/Y^","RED"
-"5","Active businesses^Total number^","932 K","2023-05","0.2%^M/M^","GREEN","0.5%^Y/Y^","GREEN"
+"5","Active businesses^Total number^","926 K","2023-06","-0.8%^M/M^","RED","-0.4%^Y/Y^","RED"
 "6","Labour market",NA,NA,NA,NA,NA,NA
 "7","Total employed ^Population with a job^","20.2^Million jobs^","2023-08","0.2%^M/M^","GREEN","2.5%^Y/Y^","GREEN"
 "8","Unemployment rate ^% of active workforce unemployed^","5.5%","2023-08","0 p.p.^M/M^","YELLOW","0.2 p.p.^Y/Y^","RED"
@@ -11,8 +11,8 @@
 "10","Job vacancies ^Number of unfilled positions^","753 K^4.2% of payroll employees^","2023-06","-1.2 %^M/M^","GREEN","-23.5%^Y/Y^","GREEN"
 "11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1470","2023-08","0.4%^M/M^","GREEN","5%^Y/Y^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
-"13","Household debt ^Weight on the economy^","100.8%","2023-01","0 p.p.^Q/Q^","YELLOW","2.4 p.p.^Y/Y^","RED"
-"14","Government debt ^Weight on the economy^","119.9%","2023-01","0 p.p.^Q/Q^","YELLOW","-7.4 p.p.^Y/Y^","GREEN"
+"13","Household debt ^Weight on the economy^","100.9%","2023-04","0.1 p.p.^Q/Q^","RED","4.3 p.p.^Y/Y^","RED"
+"14","Government debt ^Weight on the economy^","118.2%","2023-04","-1.7 p.p.^Q/Q^","GREEN","-0.1 p.p.^Y/Y^","GREEN"
 "15","Inflation ^Consumer price index (CPI) variations^","4%^Y/Y^","2023-08","0.4%^M/M^","RED",NA,NA
 "16","Demography and social",NA,NA,NA,NA,NA,NA
 "17","New immigrants ^Quarterly^","145.4 K^Equivalent to 1.5% of population annually^","2023-01","74.9%^Q/Q^","GREEN","27.8%^Y/Y^","GREEN"

@@ -3,7 +3,7 @@
 "2","Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^","2 080,5^Milliards de dollars^","2023-06"," -0,2 %^M/M^","RED","  1,1 %^A/A^","GREEN"
 "3","Ventes manufacturières ^Données mensuelles^","71,9^Milliards de dollars^","2023-07","  1,6 %^M/M^","GREEN","  0,0 %^A/A^","YELLOW"
 "4","Exportations^Données mensuelles^","53,9^Milliards de dollars^","2023-07"," -6,2 %^M/M^","RED","-13,1 %^A/A^","RED"
-"5","Entreprises actives","932 K","2023-05"," 0,2 %^M/M^","GREEN","  0,5 %^A/A^","GREEN"
+"5","Entreprises actives","926 K","2023-06","-0,8 %^M/M^","RED"," -0,4 %^A/A^","RED"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA
 "7","Emplois totaux ^Population avec un emploi^","20,2^Millions d'emplois^","2023-08","  0,2 %^M/M^","GREEN","  2,5 %^A/A^","GREEN"
 "8","Taux de chômage ^% de la population active sans emploi^"," 5,5 %","2023-08"," 0,0 p.p.^M/M^","YELLOW"," 0,2 p.p.^A/A^","RED"
@@ -11,8 +11,8 @@
 "10","Postes vacants ^Nombre de postes non-comblés^"," 753 K^4,2 % des employés^","2023-06"," -1,2 %^M/M^","GREEN","-23,5 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 470$","2023-08"," 0,4 %^M/M^","GREEN","5,0 %^A/A^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
-"13","Dette des ménages ^Poids sur l'économie^","100,8 %","2023-01","  0,0 p.p.^T/T^","YELLOW","  2,4 p.p.^A/A^","RED"
-"14","Dette des gouvernements ^Poids sur l'économie^","119,9 %","2023-01","  0,0 p.p.^T/T^","YELLOW"," -7,4 p.p.^A/A^","GREEN"
+"13","Dette des ménages ^Poids sur l'économie^","100,9 %","2023-04","  0,1 p.p.^T/T^","RED","  4,3 p.p.^A/A^","RED"
+"14","Dette des gouvernements ^Poids sur l'économie^","118,2 %","2023-04"," -1,7 p.p.^T/T^","GREEN"," -0,1 p.p.^A/A^","GREEN"
 "15","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^","  4,0 %^A/A^","2023-08"," 0,4 %^M/M^","RED",NA,NA
 "16","Demographie et société",NA,NA,NA,NA,NA,NA
 "17","Nouveaux immigrants ^Donnéees trimestrielles^","145,4 K^Equivalent à 1,5 % de la population annuellement^","2023-01"," 74,9 %^T/T^","GREEN"," 27,8 %^A/A^","GREEN"
