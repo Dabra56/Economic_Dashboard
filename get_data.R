@@ -835,13 +835,31 @@ tail_vacancy <-
 colnames(dataframe_labor)[4] <- paste0("Unemployment rate","^",tail_employment,"^")
 colnames(dataframe_labor)[6] <- paste0("Job vacancy rate","^",tail_vacancy,"^")
 
+
+
+fr_dataframe_labor <- 
+  dataframe_labor 
+    
+  fr_dataframe_labor[3,1] <- "Colombie-Britannique"
+  fr_dataframe_labor[5,1] <- "Nouveau-Brunswick"
+  fr_dataframe_labor[6,1] <- "Terre-Neuve-et-Labrador"
+  fr_dataframe_labor[7,1] <- "Nouvelle-Écosse"
+  fr_dataframe_labor[9,1] <- "Île-du-Prince-Édouard"
+  fr_dataframe_labor[10,1] <- "Québec"
+
+
+colnames(fr_dataframe_labor) <- c("Provinces", 
+                                 "Changements d'emplois ^M/M^", 
+                                 "Changements d'emplois ^A/A^ ",
+                                 paste0("Taux de chômage","^",tail_employment,"^"),
+                                "Taux d'emploi ^25-54 ans^ ",
+                                 paste0("Taux de postes vacants","^",tail_vacancy,"^"))
+
+
 write.csv(x = dataframe_labor, file="data/table_labor.csv")
-
-
+write.csv(x = fr_dataframe_labor, file="data/fr_table_labor.csv")
 
 # ----------------------------- PROVINCE SUMMARY TABLE ------------------------------------- # 
-
-
 
 #GDP 
 
