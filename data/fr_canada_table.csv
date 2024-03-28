@@ -1,6 +1,6 @@
 "","Indicateurs","Valeur","Dernières données","Variations récentes","ColorMoM","","ColorYoY"
 "1","Economie",NA,NA,NA,NA,NA,NA
-"2","Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^","2 205,2^Milliards de dollars^","2023-12","  0,0 %^M/M^","YELLOW","  1,1 %^A/A^","GREEN"
+"2","Produit intérieur brut (PIB) réel ^Sur une base annuelle et ajustée pour l'inflation^","2 217,5^Milliards de dollars^","2024-01","  0,6 %^M/M^","GREEN","  0,9 %^A/A^","GREEN"
 "3","Ventes manufacturières ^Données mensuelles^","71,1^Milliards de dollars^","2024-01","  0,2 %^M/M^","GREEN"," -4,3 %^A/A^","RED"
 "4","Exportations^Données mensuelles^","59,4^Milliards de dollars^","2023-09"," -0,8 %^M/M^","RED"," -3,9 %^A/A^","RED"
 "5","Entreprises actives","929 K","2023-12","-0,2 %^M/M^","RED"," -0,2 %^A/A^","RED"
@@ -8,7 +8,7 @@
 "7","Emplois totaux ^Population avec un emploi^","20,4^Millions d'emplois^","2024-02","  0,2 %^M/M^","GREEN","  1,8 %^A/A^","GREEN"
 "8","Taux de chômage ^% de la population active sans emploi^"," 5,8 %","2024-02"," 0,1 p.p.^M/M^","RED"," 0,7 p.p.^A/A^","RED"
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,3 %","2024-02"," 0,2 p.p.^M/M^","GREEN"," -0,7 p.p.^A/A^","RED"
-"10","Postes vacants ^Nombre de postes non-comblés^"," 637 K^3,6 % des employés^","2023-12"," -2,6 %^M/M^","GREEN","-24,7 %^A/A^","GREEN"
+"10","Postes vacants ^Nombre de postes non-comblés^"," 632 K^3,6 % des employés^","2024-01"," -0,9 %^M/M^","GREEN","-26,4 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 499$","2024-02","-0,4 %^M/M^","RED","4,2 %^A/A^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Dette des ménages ^Poids sur l'économie^"," 98,3 %","2023-10"," -0,7 p.p.^T/T^","GREEN"," -0,7 p.p.^A/A^","GREEN"
