@@ -5,19 +5,19 @@
 "4","Exportations^Données mensuelles^","59,4^Milliards de dollars^","2023-09"," -0,8 %^M/M^","RED"," -3,9 %^A/A^","RED"
 "5","Entreprises actives","936 K","2024-01"," 0,1 %^M/M^","GREEN","  0,2 %^A/A^","GREEN"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA
-"7","Emplois totaux ^Population avec un emploi^","20,4^Millions d'emplois^","2024-03","  0,0 %^M/M^","YELLOW","  1,6 %^A/A^","GREEN"
-"8","Taux de chômage ^% de la population active sans emploi^"," 6,1 %","2024-03"," 0,3 p.p.^M/M^","RED"," 1,0 p.p.^A/A^","RED"
-"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,2 %","2024-03","-0,1 p.p.^M/M^","RED"," -0,7 p.p.^A/A^","RED"
+"7","Emplois totaux ^Population avec un emploi^","20,5^Millions d'emplois^","2024-04","  0,4 %^M/M^","GREEN","  1,9 %^A/A^","GREEN"
+"8","Taux de chômage ^% de la population active sans emploi^"," 6,1 %","2024-04"," 0,0 p.p.^M/M^","YELLOW"," 1,0 p.p.^A/A^","RED"
+"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","84,4 %","2024-04"," 0,2 p.p.^M/M^","GREEN"," -0,4 p.p.^A/A^","RED"
 "10","Postes vacants ^Nombre de postes non-comblés^"," 657 K^3,7 % des employés^","2024-02","  3,4 %^M/M^","RED","-21,4 %^A/A^","GREEN"
-"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 507$","2024-03"," 0,5 %^M/M^","GREEN","4,4 %^A/A^","GREEN"
+"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 512$","2024-04"," 0,3 %^M/M^","GREEN","4,2 %^A/A^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Dette des ménages ^Poids sur l'économie^"," 98,2 %","2023-10"," -0,7 p.p.^T/T^","GREEN"," -0,7 p.p.^A/A^","GREEN"
 "14","Dette des gouvernements ^Poids sur l'économie^","118,4 %","2023-10","  4,1 p.p.^T/T^","RED"," -0,6 p.p.^A/A^","GREEN"
 "15","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^","  2,9 %^A/A^","2024-03"," 0,6 %^M/M^","RED",NA,NA
 "16","Demographie et société",NA,NA,NA,NA,NA,NA
 "17","Nouveaux immigrants ^Donnéees trimestrielles^","100,5 K^Equivalent à 1 % de la population annuellement^","2023-10"," -6,9 %^T/T^","RED"," 20,6 %^A/A^","GREEN"
-"18","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 8.6 p.p.","2024-03","-0.1 p.p.^M/M^","GREEN"," 0.8 p.p.^A/A^","RED"
-"19","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^","11,0 p.p.","2024-03"," 0,9 p.p.^M/M^","RED"," 0,2 p.p.^A/A^","RED"
+"18","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 9.1 p.p.","2024-04"," 0.5 p.p.^M/M^","RED"," 1.4 p.p.^A/A^","RED"
+"19","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^","11,2 p.p.","2024-04"," 0,2 p.p.^M/M^","RED","-0,5 p.p.^A/A^","GREEN"
 "20","Distribution de la richesse ^Richesse des 60 % les moins riches^","12,1 %^de la richesse totale^","2023-10","-0,8 %^T/T^","RED","-0,8 %^A/A^","RED"
 "21","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","11,1%^841 000^","2024 - 3","9,9 %^M/M^","RED","10,5 %^A/A^","RED"
 "22","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,4 %","2024 - 3"," 0,3 p.p.^M/M^","RED","-1,1 p.p.^A/A^","GREEN"
