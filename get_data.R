@@ -468,7 +468,7 @@ tail_business <-
 
 
 colnames(dataframe_economy) <- c("Provinces", 
-                                "GDP ^Y/Y - 2021 to 2022^", 
+                                "GDP ^Y/Y - 2022 to 2023^", 
                                 "ColorGDP",
                                 paste0("Manufacturing sales","^",tail_manufacturing,"^"),
                                 "ColorManuf",
