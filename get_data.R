@@ -489,7 +489,7 @@ fr_dataframe_economy <-
   
 
 colnames(fr_dataframe_economy) <- c("Provinces", 
-                                 "PIB ^A/A - 2021 à 2022^", 
+                                 "PIB ^A/A - 2022 à 2023^", 
                                  "ColorGDP",
                                  paste0("Ventes manufacturières","^",tail_manufacturing,"^"),
                                  "ColorManuf",
