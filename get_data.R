@@ -2578,7 +2578,7 @@ fr_wealth_df <-
 
 
 
-files <- c("lfs/pub0524.csv","lfs/pub0424.csv","lfs/pub0523.csv") # Change for last month, last year
+files <- c("lfs/pub0724.csv","lfs/pub0624.csv","lfs/pub0723.csv") # Change for last month, last year
 
 NSNE_Young_People <- data.frame()
 
