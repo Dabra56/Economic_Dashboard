@@ -25,7 +25,7 @@ manufacturing <- get_cansim_vector("v800450") %>%
 
 write.csv(x = manufacturing, file="data/manufacturing.csv")
 
-export <- get_cansim_vector("v87008955",
+export <- get_cansim_vector("v1567083280",
                             start_time = "2000-01-01") %>% 
   select(Date,val_norm) %>% 
   rename(export = val_norm)
@@ -280,17 +280,17 @@ manufacturing_canada <-
 
 
 
-vector_export <- c("v1001819785",
-                     "v1001820916",
-                     "v1001809606",
-                     "v1001817523",
-                     "v1001814130",
-                     "v1001810737",
-                     "v1001812999",
-                     "v1001816392",
-                     "v1001811868",
-                     "v1001815261",
-                     "v1001818654")
+vector_export <- c("v1567090443",
+                     "v1567091197",
+                     "v1567083280",
+                     "v1567088935",
+                     "v1567086673",
+                     "v1567084411",
+                     "v1567085919",
+                     "v1567088181",
+                     "v1567085165",
+                     "v1567087427",
+                     "v1567089689")
 
 province_vector <- c("Alberta",
                           "British Colombia",
@@ -901,17 +901,17 @@ vector_manuf <- c("v800450",
                   "v807928")  
 
 
-vector_export <- c("v1001809606",
-                   "v1001810737",
-                   "v1001811868",
-                   "v1001812999",
-                   "v1001814130",
-                   "v1001815261",
-                   "v1001816392",
-                   "v1001817523",
-                   "v1001818654",
-                   "v1001819785",
-                   "v1001820916")
+vector_export <- c("v1567083280",
+                   "v1567084411",
+                   "v1567085165",
+                   "v1567085919",
+                   "v1567086673",
+                   "v1567087427",
+                   "v1567088181",
+                   "v1567088935",
+                   "v1567089689",
+                   "v1567090443",
+                   "v1567091197")
 
 
 
@@ -2578,7 +2578,7 @@ fr_wealth_df <-
 
 
 
-files <- c("lfs/pub0724.csv","lfs/pub0624.csv","lfs/pub0723.csv") # Change for last month, last year
+files <- c("lfs/pub0924.csv","lfs/pub0824.csv","lfs/pub0823.csv") # Change for last month, last year
 
 NSNE_Young_People <- data.frame()
 
