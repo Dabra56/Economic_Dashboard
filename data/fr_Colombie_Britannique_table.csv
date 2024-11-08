@@ -6,10 +6,10 @@
 "4","Exportations ^Données mensuelles^","4,7^Milliards de $^","2024-09","7,8 %","  6,4 %^M/M^","GREEN","  0,8 %^A/A^","GREEN"
 "5","Entreprises actives","156 K","2024-07","16,7 %"," 0,1 %^M/M^","GREEN","  0,5 %^A/A^","GREEN"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA,NA
-"7","Emplois totaux ^Population avec un emploi^","2,8^Millions d'emplois^","2024-09","13,7 %"," -0,6 %^M/M^","RED","  0,3 %^A/A^","GREEN"
-"8","Taux de chômage ^% de la population active sans emploi^"," 6,0 %","2024-09","6,5 %^au Canada^"," 0,2 p.p.^M/M^","RED"," 0,5 p.p.^A/A^","RED"
-"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","82,5 %","2024-09","83,5 %^au Canada^","-0,3 p.p.^M/M^","RED"," -1,8 p.p.^A/A^","RED"
+"7","Emplois totaux ^Population avec un emploi^","2,8^Millions d'emplois^","2024-10","13,7 %","  0,3 %^M/M^","GREEN","  0,6 %^A/A^","GREEN"
+"8","Taux de chômage ^% de la population active sans emploi^"," 5,8 %","2024-10","6,5 %^au Canada^","-0,2 p.p.^M/M^","GREEN"," 0,5 p.p.^A/A^","RED"
+"9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","82,9 %","2024-10","83,3 %^au Canada^"," 0,4 p.p.^M/M^","GREEN"," -1,0 p.p.^A/A^","RED"
 "10","Postes vacants ^Nombre de postes non-comblés^","90 K^3,6 % des employés^","2024-08","17,3 %"," -1,1 %^M/M^","GREEN","-16,8 %^A/A^","GREEN"
-"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 588$","2024-09","1 540 $^au Canada^"," 0,6 %^M/M^","GREEN"," 2,3 %^A/A^","GREEN"
+"11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 585$","2024-10","1 546 $^au Canada^","-0,2 %^M/M^","RED"," 2,2 %^A/A^","GREEN"
 "12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 2,0 %^A/A^","2024-09","1,6 %^au Canada^","-0,3 %^M/M^","GREEN",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","16,8 K","2024-04","12,5 %"," -5,5 %^T/T^","RED"," -3,0 %^A/A^","RED"
