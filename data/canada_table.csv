@@ -8,7 +8,7 @@
 "7","Total employed ^Population with a job^","20.9^Million jobs^","2024-12","0.4%^M/M^","GREEN","1.9%^Y/Y^","GREEN"
 "8","Unemployment rate ^% of active workforce unemployed^","6.7%","2024-12","-0.2 p.p.^M/M^","GREEN","0.9 p.p.^Y/Y^","RED"
 "9","Employment rate ^% of total population holding a job (25 - 54 years old)^","83.4%","2024-12","0.1 p.p.^M/M^","GREEN","-1.1 p.p.^Y/Y^","RED"
-"10","Job vacancies ^Number of unfilled positions^","513 K^2.9% of payroll employees^","2024-10","-2.8 %^M/M^","GREEN","-23.7%^Y/Y^","GREEN"
+"10","Job vacancies ^Number of unfilled positions^","518 K^2.9% of payroll employees^","2024-11","0.8 %^M/M^","RED","-22.9%^Y/Y^","GREEN"
 "11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1536","2024-12","0%^M/M^","YELLOW","2.7%^Y/Y^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Household debt ^Weight on the economy^","96.6%","2024-07","0 p.p.^Q/Q^","YELLOW","-0.8 p.p.^Y/Y^","GREEN"
@@ -18,7 +18,7 @@
 "17","New immigrants ^Quarterly^","124.2 K^Equivalent to 1.2% of population annually^","2024-07","-7.4%^Q/Q^","RED","15%^Y/Y^","GREEN"
 "18","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","8.8 p.p.","2024-12","-0.2 p.p.^M/M^","GREEN","-0.4 p.p.^Y/Y^","GREEN"
 "19","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","10 p.p.","2024-12","1.7 p.p.^M/M^","RED","0.2 p.p.^Y/Y^","RED"
-"20","Wealth distribution ^Wealth of bottom 60%^","12.1%^of total wealth^","2024-04","0%^Q/Q^","YELLOW","-0.8%^Y/Y^","RED"
+"20","Wealth distribution ^Wealth of bottom 60%^","13.4%^of total wealth^","2024-07","-0.7%^Q/Q^","RED","0%^Y/Y^","YELLOW"
 "21","Unactive youth ^Not employed, not studying or training (15-29)^","10.8%^861 000^","2024 - 12","-1.4%^M/M^","GREEN","1.8%^Y/Y^","RED"
 "22","Women wage gap ^% of difference with men (adjusted by industry)^","13.1%","2024 - 12","0.5 p.p.^M/M^","RED","-0.5 p.p.^Y/Y^","GREEN"
 "23","Sustainability",NA,NA,NA,NA,NA,NA

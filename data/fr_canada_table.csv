@@ -8,7 +8,7 @@
 "7","Emplois totaux ^Population avec un emploi^","20,9^Millions d'emplois^","2024-12","  0,4 %^M/M^","GREEN","  1,9 %^A/A^","GREEN"
 "8","Taux de chômage ^% de la population active sans emploi^"," 6,7 %","2024-12","-0,2 p.p.^M/M^","GREEN"," 0,9 p.p.^A/A^","RED"
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","83,4 %","2024-12"," 0,1 p.p.^M/M^","GREEN"," -1,1 p.p.^A/A^","RED"
-"10","Postes vacants ^Nombre de postes non-comblés^"," 513 K^2,9 % des employés^","2024-10"," -2,8 %^M/M^","GREEN","-23,7 %^A/A^","GREEN"
+"10","Postes vacants ^Nombre de postes non-comblés^"," 518 K^2,9 % des employés^","2024-11","  0,8 %^M/M^","RED","-22,9 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 à 54 ans)^","1 536$","2024-12"," 0,0 %^M/M^","YELLOW","2,7 %^A/A^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Dette des ménages ^Poids sur l'économie^"," 96,6 %","2024-07","  0,0 p.p.^T/T^","YELLOW"," -0,8 p.p.^A/A^","GREEN"
@@ -18,7 +18,7 @@
 "17","Nouveaux immigrants ^Donnéees trimestrielles^","124,2 K^Equivalent à 1,2 % de la population annuellement^","2024-07"," -7,4 %^T/T^","RED"," 15,0 %^A/A^","GREEN"
 "18","Écart de l'emploi pour les immigrantes ^Differences entre le taux d'emploi des femmes immigrantes et de celles nées au Canada (25-54)^"," 8.8 p.p.","2024-12","-0.2 p.p.^M/M^","GREEN","-0.4 p.p.^A/A^","GREEN"
 "19","Écart de l'emploi pour la population autochtone ^Differences entre le taux d'emploi de la population autochtone et non autochtone (25-54)^","10,0 p.p.","2024-12"," 1,7 p.p.^M/M^","RED"," 0,2 p.p.^A/A^","RED"
-"20","Distribution de la richesse ^Richesse des 60 % les moins riches^","12,1 %^de la richesse totale^","2024-04"," 0,0 %^T/T^","YELLOW","-0,8 %^A/A^","RED"
+"20","Distribution de la richesse ^Richesse des 60 % les moins riches^","13,4 %^de la richesse totale^","2024-07","-0,7 %^T/T^","RED"," 0,0 %^A/A^","YELLOW"
 "21","Jeunes inactifs ^Ni en emploi, ni aux études, ni en formation (15-29)^","10,8%^861 000^","2024 - 12","-1,4 %^M/M^","GREEN","1,8 %^A/A^","RED"
 "22","Écart salarial des femmes ^% de différence avec les hommes (ajusté par industrie)^","13,1 %","2024 - 12"," 0,5 p.p.^M/M^","RED","-0,5 p.p.^A/A^","GREEN"
 "23","Environnement",NA,NA,NA,NA,NA,NA
