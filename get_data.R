@@ -2578,7 +2578,7 @@ fr_wealth_df <-
 
 
 
-files <- c("lfs/pub1224.csv","lfs/pub1124.csv","lfs/pub1223.csv") # Change for last month, last year
+files <- c("lfs/pub0125.csv","lfs/pub1224.csv","lfs/pub0124.csv") # Change for last month, last year
 
 NSNE_Young_People <- data.frame()
 
@@ -2685,13 +2685,13 @@ for(i in files) {
   
   Wage_Men_Industry <- Wages_People_25_54 %>% 
     drop_na(NAICS_21) %>% 
-    filter(SEX==1) %>% 
+    filter(GENDER==1) %>% 
     group_by(NAICS_21) %>% 
     summarise(Average_Wage = weighted.mean(HRLYEARN,FINALWT) )
   
   Weight_Men_Industry <- Wages_People_25_54 %>% 
     drop_na(NAICS_21) %>% 
-    filter(SEX==1) %>% 
+    filter(GENDER==1) %>% 
     group_by(NAICS_21) %>% 
     summarise(Weight = sum(FINALWT) )
   
@@ -2700,13 +2700,13 @@ for(i in files) {
   
   Wage_Women_Industry <- Wages_People_25_54 %>% 
     drop_na(NAICS_21) %>% 
-    filter(SEX==2) %>% 
+    filter(GENDER==2) %>% 
     group_by(NAICS_21) %>% 
     summarise(Average_Wage_Women = weighted.mean(HRLYEARN,FINALWT) )
   
   Weight_Women_Industry <- Wages_People_25_54 %>% 
     drop_na(NAICS_21) %>% 
-    filter(SEX==2) %>% 
+    filter(GENDER==2) %>% 
     group_by(NAICS_21) %>% 
     summarise(Weight_Women = sum(FINALWT) )
   
