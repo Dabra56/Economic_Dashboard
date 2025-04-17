@@ -456,7 +456,7 @@ tail_manufacturing <-
     format("%Y-%m")
 
 
-export_date <- get_cansim_vector("v1001819785") 
+export_date <- get_cansim_vector("v1567083280") 
 
 tail_export <-
   tail(export_date$Date,n=1) %>% 
