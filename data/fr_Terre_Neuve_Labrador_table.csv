@@ -2,14 +2,14 @@
 "1","Economie",NA,NA,NA,NA,NA,NA,NA
 "2","Produit intérieur brut (PIB) réel
 ^Sur une base annuelle et ajusté en fonction de l'inflation^","29,6^Milliards de $^","2024","1,2 %",NA,NA," 2,4 %^A/A^","GREEN"
-"3","Ventes manufacturières ^Données mensuelles^","0,3^Milliards de $^","2025-02","0,4 %","-28,1 %^M/M^","RED","-11,7 %^A/A^","RED"
+"3","Ventes manufacturières ^Données mensuelles^","0,3^Milliards de $^","2025-03","0,4 %","  1,7 %^M/M^","GREEN","-29,6 %^A/A^","RED"
 "4","Exportations ^Données mensuelles^","1,3^Milliards de $^","2025-03","1,9 %"," 58,5 %^M/M^","GREEN"," 29,9 %^A/A^","GREEN"
-"5","Entreprises actives","13 K","2025-01","1,4 %","-0,1 %^M/M^","RED","  1,0 %^A/A^","GREEN"
+"5","Entreprises actives","13 K","2025-02","1,4 %","-0,3 %^M/M^","RED","  0,4 %^A/A^","GREEN"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA,NA
 "7","Emplois totaux ^Population avec un emploi^","0,2^Millions d'emplois^","2025-04","1,2 %","  1,6 %^M/M^","GREEN","  0,8 %^A/A^","GREEN"
 "8","Taux de chômage ^% de la population active sans emploi^"," 9,6 %","2025-04","6,9 %^au Canada^","-0,4 p.p.^M/M^","GREEN"," 0,4 p.p.^A/A^","RED"
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","81,8 %","2025-04","83,1 %^au Canada^"," 1,4 p.p.^M/M^","GREEN"," 1,1 p.p.^A/A^","GREEN"
-"10","Postes vacants ^Nombre de postes non-comblés^","5 K^2,5 % des employés^","2025-02","0,9 %"," 10,4 %^M/M^","RED","-14,7 %^A/A^","GREEN"
+"10","Postes vacants ^Nombre de postes non-comblés^","6 K^3,1 % des employés^","2025-03","1,2 %"," 21,1 %^M/M^","RED"," 29,6 %^A/A^","RED"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 469$","2025-04","1 549 $^au Canada^","-1,1 %^M/M^","RED"," 1,0 %^A/A^","GREEN"
-"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 1,1 %^A/A^","2025-03","2,3 %^au Canada^"," 0,7 %^M/M^","RED",NA,NA
+"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 0,4 %^A/A^","2025-04","1,7 %^au Canada^","-0,4 %^M/M^","GREEN",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","1,2 K","2024-10","1,1 %","-25,8 %^T/T^","RED"," -7,1 %^A/A^","RED"
