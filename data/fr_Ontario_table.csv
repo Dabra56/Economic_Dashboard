@@ -9,7 +9,7 @@
 "7","Emplois totaux ^Population avec un emploi^","8,2^Millions d'emplois^","2025-07","39,1 %"," 0,0 %^M/M^","YELLOW","  0,6 %^A/A^","GREEN"
 "8","Taux de chômage ^% de la population active sans emploi^"," 7,9 %","2025-07","6,9 %^au Canada^"," 0,1 p.p.^M/M^","RED"," 1,0 p.p.^A/A^","RED"
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","81,8 %","2025-07","83,3 %^au Canada^","-0,3 p.p.^M/M^","RED"," -1,6 p.p.^A/A^","RED"
-"10","Postes vacants ^Nombre de postes non-comblés^","171 K^2,5 % des employés^","2025-05","35,8 %"," -1,2 %^M/M^","GREEN","-12,2 %^A/A^","GREEN"
+"10","Postes vacants ^Nombre de postes non-comblés^","177 K^2,6 % des employés^","2025-06","35,9 %","  2,0 %^M/M^","RED"," -9,7 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 644$","2025-07","1 582 $^au Canada^"," 1,5 %^M/M^","GREEN"," 4,1 %^A/A^","GREEN"
 "12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 1,6 %^A/A^","2025-07","1,7 %^au Canada^"," 0,3 %^M/M^","RED",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","47,3 K","2025-01","45,4 %"," -1,4 %^T/T^","RED","-10,4 %^A/A^","RED"
