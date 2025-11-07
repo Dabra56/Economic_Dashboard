@@ -5,11 +5,11 @@
 "4","Exports ^Monthly^","$53.6^Billion^","2025-08","-6%^M/M^","RED","-7.7%^Y/Y^","RED"
 "5","Active businesses^Total number^","938 K","2025-07","0%^M/M^","YELLOW","0.1%^Y/Y^","GREEN"
 "6","Labour market",NA,NA,NA,NA,NA,NA
-"7","Total employed ^Population with a job^","21^Million jobs^","2025-09","0.3%^M/M^","GREEN","1.1%^Y/Y^","GREEN"
-"8","Unemployment rate ^% of active workforce unemployed^","7.1%","2025-09","0 p.p.^M/M^","YELLOW","0.5 p.p.^Y/Y^","RED"
-"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","83.3%","2025-09","0.6 p.p.^M/M^","GREEN","-0.2 p.p.^Y/Y^","RED"
+"7","Total employed ^Population with a job^","21.1^Million jobs^","2025-10","0.3%^M/M^","GREEN","1.4%^Y/Y^","GREEN"
+"8","Unemployment rate ^% of active workforce unemployed^","6.9%","2025-10","-0.2 p.p.^M/M^","GREEN","0.3 p.p.^Y/Y^","RED"
+"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","83.5%","2025-10","0.2 p.p.^M/M^","GREEN","0.3 p.p.^Y/Y^","GREEN"
 "10","Job vacancies ^Number of unfilled positions^","457 K^2.6% of payroll employees^","2025-08","-2.4 %^M/M^","GREEN","-15.2%^Y/Y^","GREEN"
-"11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1581","2025-09","-0.1%^M/M^","RED","2.7%^Y/Y^","GREEN"
+"11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1592","2025-10","0.7%^M/M^","GREEN","3%^Y/Y^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Household debt ^Weight on the economy^","97.4%","2025-04","1.4 p.p.^Q/Q^","RED","0.9 p.p.^Y/Y^","RED"
 "14","Government debt ^Weight on the economy^","124.9%","2025-04","0.9 p.p.^Q/Q^","RED","5.5 p.p.^Y/Y^","RED"
@@ -17,7 +17,7 @@
 "16","Demography and social",NA,NA,NA,NA,NA,NA
 "17","New immigrants ^Quarterly^","103.5 K^Equivalent to 1% of population annually^","2025-04","-0.7%^Q/Q^","RED","-22.9%^Y/Y^","RED"
 "18","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","8.8 p.p.","2024-12","-0.2 p.p.^M/M^","GREEN","-0.4 p.p.^Y/Y^","GREEN"
-"19","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","8.8 p.p.","2025-09","0.7 p.p.^M/M^","RED","0.2 p.p.^Y/Y^","RED"
+"19","Indigenous employment gap ^Difference in employment rate between indigenous and non-indigenous (25-54)^","9.3 p.p.","2025-10","0.5 p.p.^M/M^","RED","1.1 p.p.^Y/Y^","RED"
 "20","Wealth distribution ^Wealth of bottom 60%^","13.5%^of total wealth^","2025-04","0%^Q/Q^","YELLOW","-0.7%^Y/Y^","RED"
 "21","Unactive youth ^Not employed, not studying or training (15-29)^","14%^1 120 000^","2025 - 6","7.4%^M/M^","RED","8.1%^Y/Y^","RED"
 "22","Women wage gap ^% of difference with men (adjusted by industry)^","12.4%","2025 - 6","0.6 p.p.^M/M^","RED","-0.5 p.p.^Y/Y^","GREEN"
