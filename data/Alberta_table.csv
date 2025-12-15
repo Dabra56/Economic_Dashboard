@@ -2,7 +2,7 @@
 "1","Economy",NA,NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP)
 ^Annual adjusted for inflation^","$353.3^Billion^","2024","14.4%",NA,NA,"2.7%^Y/Y^","GREEN"
-"3","Manufacturing sales ^Monthly^","$8.8^Billion^","2025-09","12.2%","5.2%^M/M^","GREEN","6.3%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","$8.8^Billion^","2025-10","12.3%","-1.1%^M/M^","RED","0.2%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$14.4^Billion^","2025-09","23.9%","3.5%^M/M^","GREEN","-4.5%^Y/Y^","RED"
 "5","Active businesses^Total number^","123 K","2025-08","13.1%","0%^M/M^","YELLOW","0.9%^Y/Y^","GREEN"
 "6","Labour market",NA,NA,NA,NA,NA,NA,NA
@@ -11,5 +11,5 @@
 "9","Employment rate ^% of total population holding a job (25 - 54 years old)^","84.1%","2025-11","83.4%^in Canada^","1 p.p.^M/M^","GREEN","1.1 p.p.^Y/Y^","GREEN"
 "10","Job vacancies ^Number of unfilled positions^","59 K^2.7 % of payroll employees^","2025-09","12.1%","2%^M/M^","RED","-20.1%^Y/Y^","GREEN"
 "11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1672","2025-11","$1586^in Canada^","-1.2%^M/M^","RED","2.6%^Y/Y^","GREEN"
-"12","Inflation ^Consumer price index (CPI) variations^","1.8%^Y/Y^","2025-10","2.2%^in Canada^","0.5%^M/M^","RED",NA,NA
+"12","Inflation ^Consumer price index (CPI) variations^","1.9%^Y/Y^","2025-11","2.2%^in Canada^","0.1%^M/M^","RED",NA,NA
 "13","New immigrants ^Quarterly^","12.6 K","2025-04","12.2%","-7.4%^Q/Q^","RED","-33.7%^Y/Y^","RED"

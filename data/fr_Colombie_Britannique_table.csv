@@ -2,7 +2,7 @@
 "1","Economie",NA,NA,NA,NA,NA,NA,NA
 "2","Produit intérieur brut (PIB) réel
 ^Sur une base annuelle et ajusté en fonction de l'inflation^","313,1^Milliards de $^","2024","12,7 %",NA,NA," 1,2 %^A/A^","GREEN"
-"3","Ventes manufacturières ^Données mensuelles^","5,4^Milliards de $^","2025-09","7,5 %"," -0,1 %^M/M^","RED","  2,3 %^A/A^","GREEN"
+"3","Ventes manufacturières ^Données mensuelles^","5,5^Milliards de $^","2025-10","7,7 %","  2,3 %^M/M^","GREEN","  1,0 %^A/A^","GREEN"
 "4","Exportations ^Données mensuelles^","4,3^Milliards de $^","2025-09","7,2 %","  2,0 %^M/M^","GREEN"," -8,0 %^A/A^","RED"
 "5","Entreprises actives","156 K","2025-08","16,6 %","-0,1 %^M/M^","RED"," -0,1 %^A/A^","RED"
 "6","Marché de l'emploi",NA,NA,NA,NA,NA,NA,NA
@@ -11,5 +11,5 @@
 "9","Taux d'emploi ^% de la population avec un emploi (25 - 54 ans)^","83,1 %","2025-11","83,4 %^au Canada^","-0,9 p.p.^M/M^","RED","  0,0 p.p.^A/A^","YELLOW"
 "10","Postes vacants ^Nombre de postes non-comblés^","78 K^3,1 % des employés^","2025-09","16,1 %","  7,0 %^M/M^","RED","-16,3 %^A/A^","GREEN"
 "11","Salaire hebdomadaire moyen ^Travailleurs à temps plein (25 - 54 ans)^","1 629$","2025-11","1 586 $^au Canada^"," 0,2 %^M/M^","GREEN"," 3,5 %^A/A^","GREEN"
-"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 2,0 %^A/A^","2025-10","2,2 %^au Canada^"," 0,4 %^M/M^","RED",NA,NA
+"12","Inflation ^Variations de l'Indice des prix à la consommation (IPC)^"," 2,0 %^A/A^","2025-11","2,2 %^au Canada^"," 0,1 %^M/M^","RED",NA,NA
 "13","Nouveaux immigrants ^Données trimestrielles^","12,7 K","2025-04","12,3 %","-14,6 %^T/T^","RED","-24,1 %^A/A^","RED"
