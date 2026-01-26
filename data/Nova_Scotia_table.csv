@@ -6,9 +6,9 @@
 "4","Exports ^Monthly^","$0.5^Billion^","2025-10","0.8%","-1.6%^M/M^","RED","4.1%^Y/Y^","GREEN"
 "5","Active businesses^Total number^","21 K","2025-09","2.3%","0.2%^M/M^","GREEN","1.1%^Y/Y^","GREEN"
 "6","Labour market",NA,NA,NA,NA,NA,NA,NA
-"7","Total employed ^Population with a job^","0.5^Million jobs^","2025-12","2.5%","0.1%^M/M^","GREEN","-0.7%^Y/Y^","RED"
-"8","Unemployment rate ^% of active workforce unemployed^","6.5%","2025-12","6.8%^in Canada^","-0.2 p.p.^M/M^","GREEN","0.2 p.p.^Y/Y^","RED"
-"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","80.9%","2025-12","83.4%^in Canada^","-0.2 p.p.^M/M^","RED","-2.3 p.p.^Y/Y^","RED"
+"7","Total employed ^Population with a job^","0.5^Million jobs^","2025-12","2.5%","0%^M/M^","YELLOW","-0.7%^Y/Y^","RED"
+"8","Unemployment rate ^% of active workforce unemployed^","6.4%","2025-12","6.8%^in Canada^","-0.2 p.p.^M/M^","GREEN","0 p.p.^Y/Y^","YELLOW"
+"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","81%","2025-12","83.4%^in Canada^","-0.2 p.p.^M/M^","RED","-2.2 p.p.^Y/Y^","RED"
 "10","Job vacancies ^Number of unfilled positions^","13 K^2.9 % of payroll employees^","2025-10","2.9%","-6.1%^M/M^","GREEN","2.3%^Y/Y^","RED"
 "11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1422","2025-12","$1586^in Canada^","0.2%^M/M^","GREEN","4.2%^Y/Y^","GREEN"
 "12","Inflation ^Consumer price index (CPI) variations^","3.1%^Y/Y^","2025-12","2.4%^in Canada^","-0.2%^M/M^","GREEN",NA,NA
