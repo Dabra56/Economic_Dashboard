@@ -1,6 +1,6 @@
 "","Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY"
 "1","Economy",NA,NA,NA,NA,NA,NA
-"2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2327^Billion^","2025-11","0%^M/M^","YELLOW","0.6%^Y/Y^","GREEN"
+"2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2339.1^Billion^","2025-12","0.2%^M/M^","GREEN","1%^Y/Y^","GREEN"
 "3","Manufacturing sales ^Monthly^","$71^Billion^","2025-12","0.6%^M/M^","GREEN","-1.1%^Y/Y^","RED"
 "4","Exports ^Monthly^","$63.6^Billion^","2025-12","9.7%^M/M^","GREEN","-1.6%^Y/Y^","RED"
 "5","Active businesses^Total number^","940 K","2025-11","0.1%^M/M^","GREEN","0.3%^Y/Y^","GREEN"
@@ -11,8 +11,8 @@
 "10","Job vacancies ^Number of unfilled positions^","515 K^2.9% of payroll employees^","2025-12","4.8 %^M/M^","RED","-3.8%^Y/Y^","GREEN"
 "11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1586","2026-01","0%^M/M^","YELLOW","2.7%^Y/Y^","GREEN"
 "12","Finance",NA,NA,NA,NA,NA,NA
-"13","Household debt ^Weight on the economy^","96.9%","2025-07","-0.5 p.p.^Q/Q^","GREEN","0.5 p.p.^Y/Y^","RED"
-"14","Government debt ^Weight on the economy^","123.4%","2025-07","0.6 p.p.^Q/Q^","RED","3 p.p.^Y/Y^","RED"
+"13","Household debt ^Weight on the economy^","96.8%","2025-07","-0.6 p.p.^Q/Q^","GREEN","0.4 p.p.^Y/Y^","RED"
+"14","Government debt ^Weight on the economy^","123.2%","2025-07","0.5 p.p.^Q/Q^","RED","2.9 p.p.^Y/Y^","RED"
 "15","Inflation ^Consumer price index (CPI) variations^","2.3%^Y/Y^","2026-01","0%^M/M^","YELLOW",NA,NA
 "16","Demography and social",NA,NA,NA,NA,NA,NA
 "17","New immigrants ^Quarterly^","102.9 K^Equivalent to 1% of population annually^","2025-07","-0.6%^Q/Q^","RED","-17.2%^Y/Y^","RED"
