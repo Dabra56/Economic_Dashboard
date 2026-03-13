@@ -2,14 +2,14 @@
 "1","Economy",NA,NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP)
 ^Annual adjusted for inflation^","$876.6^Billion^","2024","35.7%",NA,NA,"1.2%^Y/Y^","GREEN"
-"3","Manufacturing sales ^Monthly^","$30.8^Billion^","2025-12","43.4%","1.5%^M/M^","GREEN","0.1%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","$28.2^Billion^","2026-01","41.1%","-7.7%^M/M^","RED","-9.5%^Y/Y^","RED"
 "4","Exports ^Monthly^","$20.1^Billion^","2026-01","36%","-11.3%^M/M^","RED","-16.9%^Y/Y^","RED"
 "5","Active businesses^Total number^","358 K","2025-11","38.1%","-0.1%^M/M^","RED","-1%^Y/Y^","RED"
 "6","Labour market",NA,NA,NA,NA,NA,NA,NA
-"7","Total employed ^Population with a job^","8.2^Million jobs^","2026-01","38.9%","-0.8%^M/M^","RED","-0.3%^Y/Y^","RED"
-"8","Unemployment rate ^% of active workforce unemployed^","7.3%","2026-01","6.5%^in Canada^","-0.6 p.p.^M/M^","GREEN","-0.3 p.p.^Y/Y^","GREEN"
-"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","81.5%","2026-01","83.3%^in Canada^","-0.1 p.p.^M/M^","RED","-0.7 p.p.^Y/Y^","RED"
+"7","Total employed ^Population with a job^","8.2^Million jobs^","2026-02","39%","0%^M/M^","YELLOW","-0.4%^Y/Y^","RED"
+"8","Unemployment rate ^% of active workforce unemployed^","7.6%","2026-02","6.7%^in Canada^","0.3 p.p.^M/M^","RED","0.2 p.p.^Y/Y^","RED"
+"9","Employment rate ^% of total population holding a job (25 - 54 years old)^","81.5%","2026-02","83.1%^in Canada^","0 p.p.^M/M^","YELLOW","-0.7 p.p.^Y/Y^","RED"
 "10","Job vacancies ^Number of unfilled positions^","179 K^2.6 % of payroll employees^","2025-12","34.8%","6.3%^M/M^","RED","0%^Y/Y^","YELLOW"
-"11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1647","2026-01","$1586^in Canada^","0%^M/M^","YELLOW","2.8%^Y/Y^","GREEN"
+"11","Average weekly earnings ^Full-time workers (25 - 54 years old)^","$1683","2026-02","$1607^in Canada^","2.2%^M/M^","GREEN","4.4%^Y/Y^","GREEN"
 "12","Inflation ^Consumer price index (CPI) variations^","2%^Y/Y^","2026-01","2.3%^in Canada^","-0.1%^M/M^","GREEN",NA,NA
 "13","New immigrants ^Quarterly^","43.2 K","2025-07","42%","-1.9%^Q/Q^","RED","-15.8%^Y/Y^","RED"
