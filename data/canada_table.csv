@@ -1,7 +1,7 @@
 "","Indicators","Value","Date","Recent variations","ColorMoM","","ColorYoY"
 "1","Economy",NA,NA,NA,NA,NA,NA
 "2","Real gross domestic product (GDP) ^Annual adjusted for inflation^","$2369.3^Billion^","2026-06","0.3%^M/M^","GREEN","2%^Y/Y^","GREEN"
-"3","Manufacturing sales ^Monthly^","$78.8^Billion^","2026-06","0.1%^M/M^","GREEN","14.5%^Y/Y^","GREEN"
+"3","Manufacturing sales ^Monthly^","$78.7^Billion^","2026-07","-0.4%^M/M^","RED","10.9%^Y/Y^","GREEN"
 "4","Exports ^Monthly^","$68.2^Billion^","2026-07","-7.7%^M/M^","RED","19%^Y/Y^","GREEN"
 "5","Active businesses^Total number^","937 K","2026-05","0%^M/M^","YELLOW","-0.1%^Y/Y^","RED"
 "6","Labour market",NA,NA,NA,NA,NA,NA
@@ -13,7 +13,7 @@
 "12","Finance",NA,NA,NA,NA,NA,NA
 "13","Household debt ^Weight on the economy^","97%","2026-01","-0.3 p.p.^Q/Q^","GREEN","1.1 p.p.^Y/Y^","RED"
 "14","Government debt ^Weight on the economy^","125%","2026-01","0.9 p.p.^Q/Q^","RED","2.3 p.p.^Y/Y^","RED"
-"15","Inflation ^Consumer price index (CPI) variations^","3%^Y/Y^","2026-07","0.5%^M/M^","RED",NA,NA
+"15","Inflation ^Consumer price index (CPI) variations^","3%^Y/Y^","2026-08","-0.1%^M/M^","GREEN",NA,NA
 "16","Demography and social",NA,NA,NA,NA,NA,NA
 "17","New immigrants ^Quarterly^","83.1 K^Equivalent to 0.8% of population annually^","2026-01","0%^Q/Q^","YELLOW","-20.2%^Y/Y^","RED"
 "18","Immigrant employment gap ^Difference in employment rate between immigrant women and Canadian-Born (25-54)^","0.1 p.p.","2024-12","0 p.p.^M/M^","YELLOW","0 p.p.^Y/Y^","YELLOW"
